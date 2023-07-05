@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "extends": ["plugin:playwright/playwright-test"],
+      "rules": {
+        "playwright/missing-playwright-await": ["error"],
+        "playwright/no-focused-test": "error",
+        "playwright/expect-expect": "off",
+        "playwright/no-conditional-in-test": "off",
+        "playwright/no-skipped-test": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "devDependencies": {
+    "@playwright/test": "^1.35.1"
+  },
+  "scripts": {
+    "test": "playwright test --project=chromium",
+    "e2e": "playwright test -j 1 --retries 0 --headed --project=chromium",
+    "report": "playwright show-report playwright-report",
+    "ui": "playwright test --ui-port 0",
+    "trace": "playwright show-trace --port 0",
+    "allure": "npx allure generate ./allure-results --clean && npx allure open ./allure-report"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.23.0",
+    "allure-playwright": "^2.4.0",
+    "dotenv": "^16.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "eslint": "^8.44.0",
+    "eslint-plugin-playwright": "^0.15.3"
+  }
+}
