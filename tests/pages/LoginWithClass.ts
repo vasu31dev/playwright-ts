@@ -1,5 +1,5 @@
-import { getLocatorByLabel, gotoURL, click, fill, clickAndNavigate, getLocatorByRole, } from "../utils/TestUtils";
-import { expectElementToBeEditable, expectElementToBeHidden } from "../utils/AssertUtils";
+import { getLocatorByLabel, gotoURL, click, fill, clickAndNavigate, getLocatorByRole, } from "@TestUtils";
+import { expectElementToBeEditable, expectElementToBeHidden } from "@AssertUtils";
 
 export default class LoginWithClass {
   private signInLink =  `#nav-link-accountList-nav-line-1`;

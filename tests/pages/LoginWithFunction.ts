@@ -1,5 +1,5 @@
-import { getLocatorByLabel, gotoURL, click, fill, clickAndNavigate, getLocatorByRole} from "../utils/TestUtils";
-import {  expectElementToBeEditable, expectElementToBeHidden } from "../utils/AssertUtils";
+import { getLocatorByLabel, gotoURL, click, fill, clickAndNavigate, getLocatorByRole} from "@TestUtils";
+import {  expectElementToBeEditable, expectElementToBeHidden } from "@AssertUtils";
 
 const signInLink = `#nav-link-accountList-nav-line-1`;
 const email = () => getLocatorByLabel('Email or mobile phone number');
