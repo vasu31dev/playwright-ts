@@ -15,7 +15,7 @@ export async function gotoURL(
 }
 
 // Helper function to wait for a specific page load state
-async function waitForPageLoadState(options?: NavigationOptions ): Promise<void> {
+export async function waitForPageLoadState(options?: NavigationOptions ): Promise<void> {
   let waitUntil: WaitForLoadStateOptions = 'domcontentloaded';
   
   if (options?.waitUntil && options.waitUntil !== 'commit') {
