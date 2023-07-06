@@ -5,7 +5,7 @@ Playwright TS framework
 # npm install
 # intall lint plugins
 # playwright browser install - npx playwright install
-# user set up in GIT - 
+# user set up in GIT - only if you are a code/test contributor 
    # git config user.email ""
    # git config user.name ""             
    # git remote set-url origin https://USERNAME:SECRETTOKEN@github.com/vasu31dev/playwright-ts.git
