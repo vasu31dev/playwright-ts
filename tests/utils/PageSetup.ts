@@ -1,6 +1,8 @@
-import { test } from '@playwright/test';
+import { test as baseTest } from '@playwright/test';
 import { setPage } from './PageFactory';
 
-test.beforeEach(({ page }) => {
+baseTest.beforeEach(({ page }) => {
     setPage(page);
 });
+
+export const test = baseTest;
