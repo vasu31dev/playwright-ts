@@ -1,6 +1,3 @@
-/* Read environment variables from the .env file */
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-var-requires
-require("dotenv").config({ path: ".env" });
 import { defineConfig, devices } from "@playwright/test";
 
 const BASE_URL =
@@ -23,6 +20,7 @@ export default defineConfig({
   //allure-playwright
   reporter: process.env.CI ? 'dot' : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  globalSetup: require.resolve("./tests/utils/GlobalSetup.ts"),
   timeout: 1 * 60 * 1000, // Individual test timeout to prevent tests from hanging indefinitely
   expect: {
     timeout: 5 * 1000, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
@@ -65,6 +63,10 @@ export default defineConfig({
       },
     },
 
+  ],
+});
+
+
     // {
     //   name: "firefox",
     //   use: {
@@ -106,12 +108,13 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ..devices['Desktop Chrome'], channel: 'chrome' },
     // },
-  ],
 
-  /* Run your local dev server before starting the tests */
+
+
+
+      /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
-});
