@@ -26,6 +26,7 @@ export async function switchPage(winNum: number) : Promise<void>{
     throw new Error(`Page number ${winNum} not found after 5 seconds`);
   }
   const pageInstance = page.context().pages()[winNum - 1];
+  await pageInstance.waitForLoadState();
   setPage(pageInstance);
 }
 
