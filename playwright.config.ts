@@ -27,9 +27,6 @@ export default defineConfig({
   },
   use: {
     headless: true,
-    launchOptions: {
-      slowMo: 0,
-    },
     //Setting extra headers for CloudFlare
     extraHTTPHeaders: {
       "CF-Access-Client-Id": process.env.CF_CLIENT_ID || "",
@@ -59,6 +56,7 @@ export default defineConfig({
         viewport: { width: 1600, height: 1000 },
         launchOptions: {
           args: ["--disable-web-security"],
+          slowMo: 0,
         },
       },
     },
