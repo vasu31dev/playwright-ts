@@ -14,6 +14,9 @@ test.describe("This is Customized Framework code", () => {
   test("Functions with New Framework for Amazon @function", async () => {
     await LoginMethod.gotoHomePage();
     await LoginMethod.loginSuccessfully();
+ // await switchPage(2);
+ // switchToDefaultPage();
+ // assertAllSoftAssertions(test.info());
   });
 
 });
