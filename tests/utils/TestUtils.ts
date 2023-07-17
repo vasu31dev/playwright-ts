@@ -271,5 +271,8 @@ export async function getAttribute (input: string | Locator, attributeName: stri
   return await locator.getAttribute(attributeName, options);
 }
 
+export async function saveStorageState(path?: string) : Promise<void>{
+  await getPage().context().storageState({ path: path });
+}
 
 
