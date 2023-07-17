@@ -34,7 +34,7 @@ export default defineConfig({
     },
     ignoreHTTPSErrors: true,
     acceptDownloads: true,
-    testIdAttribute: "qa-target",
+    testIdAttribute: "qaid",
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: BASE_URL,
 
