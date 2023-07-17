@@ -31,7 +31,9 @@ export async function switchPage(winNum: number) : Promise<void>{
 }
 
 /** Switch back to the default page (the first one) */
-export function switchToDefaultPage() : void{
+export async function switchToDefaultPage() : Promise<void>{
   const pageInstance = page.context().pages()[0];
+  await pageInstance.bringToFront();
   setPage(pageInstance);
+
 }
