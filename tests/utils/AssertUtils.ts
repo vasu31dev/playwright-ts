@@ -150,6 +150,25 @@ export async function expectElementToHaveValues(
   const {locator, assert} = getLocatorAndAssert(input, options);
   await assert(locator, options).toHaveValues(text, options);
 }
+
+/* Check if the given element points to empty editable element or to a DOM node that has no text */
+export async function expectElementValueToBeEmpty(
+  input: string | Locator,
+  options?: ExpectOptions
+): Promise<void> {
+  const {locator, assert} = getLocatorAndAssert(input, options);
+  await assert(locator, options).toBeEmpty(options);
+}
+
+/* Check if the given element points to non-empty editable element or to a DOM node that has text */
+export async function expectElementValueNotToBeEmpty(
+  input: string | Locator,
+  options?: ExpectOptions
+): Promise<void> {
+  const {locator, assert} = getLocatorAndAssert(input, options);
+  await assert(locator, options).not.toBeEmpty(options);
+}
+
 /**
  * Asserts that an element has an attribute with the given value.
  * @param {string | locator} input - Either a string (selector) or a Locator object
