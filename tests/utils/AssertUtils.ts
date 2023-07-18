@@ -24,6 +24,14 @@ export function assertAllSoftAssertions(testInfo: TestInfo){
  * @param {string | locator} input - Either a string (selector) or a Locator object
  */
 
+// Timeouts
+export const INSTANT_TIMEOUT = 1000;
+export const SMALL_TIMEOUT = 5 * 1000;
+export const STANDARD_TIMEOUT = 15 * 1000;
+export const BIG_TIMEOUT = 30 * 1000;
+export const MAX_TIMEOUT = 60 * 1000;
+export const TEST_TIMEOUT = 2 * 60 * 1000;
+
 //Locator Assertions
 /* Check if the given element is not present in DOM, or not visible */
 export async function expectElementToBeHidden (
