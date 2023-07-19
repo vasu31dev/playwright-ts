@@ -1,3 +1,4 @@
+import { SMALL_TIMEOUT, STANDARD_TIMEOUT, TEST_TIMEOUT } from "@AssertUtils";
 import { defineConfig, devices } from "@playwright/test";
 
 const BASE_URL =
@@ -21,9 +22,9 @@ export default defineConfig({
   reporter: process.env.CI ? 'dot' : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   globalSetup: require.resolve("./tests/utils/GlobalSetup.ts"),
-  timeout: 1 * 60 * 1000, // Individual test timeout to prevent tests from hanging indefinitely
+  timeout: TEST_TIMEOUT, // Individual test timeout to prevent tests from hanging indefinitely
   expect: {
-    timeout: 5 * 1000, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
+    timeout: SMALL_TIMEOUT, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
   },
   use: {
     headless: true,
@@ -42,9 +43,9 @@ export default defineConfig({
     trace: "retain-on-failure", // Record traces after each test failure
 
     screenshot: "only-on-failure", // Capture screenshots after each test failure
-    actionTimeout: 5 * 1000, // Timeout for actions like click, fill, select
+    actionTimeout: SMALL_TIMEOUT, // Timeout for actions like click, fill, select
     // Timeout for page loading navigations like goto URL, go back, reload, waitForNavigation
-    navigationTimeout: 15 * 1000,
+    navigationTimeout: STANDARD_TIMEOUT,
   },
 
   /* Configure projects for major browsers */

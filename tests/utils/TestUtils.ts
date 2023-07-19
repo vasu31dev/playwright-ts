@@ -5,6 +5,7 @@ import {
   GetByPlaceholderOptions, CheckOptions, NavigationOptions, TypeOptions, TimeoutOption, HoverOptions, 
   ClearOptions, SelectOptions, UploadOptions, UploadValues, DragOptions, DoubleClickOptions, WaitForLoadStateOptions,
 } from "./Types";
+import { STANDARD_TIMEOUT } from "@AssertUtils";
 
 // Navigations
 export async function gotoURL(
@@ -101,11 +102,12 @@ export async function clickAndNavigate(
   input: string | Locator,
   options?: ClickOptions,
 ) : Promise<void>{
+  const timeout = options?.timeout || STANDARD_TIMEOUT; 
   await Promise.all([
     click(input, options),
-    getPage().waitForEvent("framenavigated"),
+    getPage().waitForEvent("framenavigated", {timeout: timeout}),
   ]);
-  await getPage().waitForLoadState(options?.loadState || 'domcontentloaded', {timeout: options?.timeout});
+  await getPage().waitForLoadState(options?.loadState || 'domcontentloaded', {timeout: timeout});
 }
 
 export async function fill(input: string | Locator, value: string, options?: FillOptions) : Promise<void> {

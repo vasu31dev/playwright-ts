@@ -35,5 +35,13 @@ export async function switchToDefaultPage() : Promise<void>{
   const pageInstance = page.context().pages()[0];
   await pageInstance.bringToFront();
   setPage(pageInstance);
+}
 
+export async function closePage(winNum: number ) : Promise<void>{
+  if(!winNum){
+    await page.close();
+    return;
+  }
+  const pageInstance = page.context().pages()[winNum - 1];
+  await pageInstance.close();
 }
