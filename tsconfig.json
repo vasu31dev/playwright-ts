@@ -17,6 +17,7 @@
         "@PageFactory": ["tests/utils/PageFactory.ts"],
         "@TestUtils": ["tests/utils/TestUtils.ts"],
         "@AssertUtils": ["tests/utils/AssertUtils.ts"],
+        "@Timeouts": ["tests/utils/Timeouts.ts"],
         "@Types": ["tests/utils/Types.ts"]
       },
     }

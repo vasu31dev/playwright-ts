@@ -44,4 +44,5 @@ export async function closePage(winNum: number ) : Promise<void>{
   }
   const pageInstance = page.context().pages()[winNum - 1];
   await pageInstance.close();
+  await switchToDefaultPage();
 }
