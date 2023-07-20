@@ -182,6 +182,16 @@ export async function expectElementToHaveAttribute(
   await assert(locator, options).toHaveAttribute(attribute, value, options);
 }
 
+export async function expectElementToContainAttribute(
+  input: string | Locator,
+  attribute: string,
+  value: string | RegExp,
+  options?: ExpectOptions
+) : Promise<void>{
+  const {locator, assert} = getLocatorAndAssert(input, options);
+  await assert(locator, options).toHaveAttribute(attribute, new RegExp(value), options);
+}
+
 export async function expectElementToHaveCount(
   input: string | Locator,
   count: number,
