@@ -5,7 +5,7 @@ import {
   GetByPlaceholderOptions, CheckOptions, NavigationOptions, TypeOptions, TimeoutOption, HoverOptions, 
   ClearOptions, SelectOptions, UploadOptions, UploadValues, DragOptions, DoubleClickOptions, WaitForLoadStateOptions,
 } from "./Types";
-import { STANDARD_TIMEOUT } from "@AssertUtils";
+import { STANDARD_TIMEOUT } from "@Timeouts";
 
 // Navigations
 export async function gotoURL(

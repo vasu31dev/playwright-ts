@@ -1,4 +1,4 @@
-import { SMALL_TIMEOUT, STANDARD_TIMEOUT, TEST_TIMEOUT } from "@AssertUtils";
+import { SMALL_TIMEOUT, STANDARD_TIMEOUT, TEST_TIMEOUT } from "@Timeouts";
 import { defineConfig, devices } from "@playwright/test";
 
 const BASE_URL =
