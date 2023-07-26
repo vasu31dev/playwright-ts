@@ -33,8 +33,10 @@ export async function switchPage(winNum: number) : Promise<void>{
 /** Switch back to the default page (the first one) */
 export async function switchToDefaultPage() : Promise<void>{
   const pageInstance = page.context().pages()[0];
-  await pageInstance.bringToFront();
-  setPage(pageInstance);
+  if(pageInstance){
+    await pageInstance.bringToFront();
+    setPage(pageInstance);
+  }
 }
 
 export async function closePage(winNum: number ) : Promise<void>{
@@ -42,7 +44,10 @@ export async function closePage(winNum: number ) : Promise<void>{
     await page.close();
     return;
   }
+  const noOfWindows = page.context().pages().length;
   const pageInstance = page.context().pages()[winNum - 1];
   await pageInstance.close();
-  await switchToDefaultPage();
+  if(noOfWindows > 1){
+    await switchToDefaultPage();
+  }
 }
