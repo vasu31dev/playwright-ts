@@ -5,7 +5,7 @@ import {
   GetByPlaceholderOptions, CheckOptions, NavigationOptions, TypeOptions, TimeoutOption, HoverOptions, 
   ClearOptions, SelectOptions, UploadOptions, UploadValues, DragOptions, DoubleClickOptions, WaitForLoadStateOptions,
 } from "./Types";
-import { STANDARD_TIMEOUT } from "@Timeouts";
+import { SMALL_TIMEOUT, STANDARD_TIMEOUT } from "@Timeouts";
 
 // Navigations
 export async function gotoURL(
@@ -277,4 +277,24 @@ export async function saveStorageState(path?: string) : Promise<void>{
   await getPage().context().storageState({ path: path });
 }
 
+//Conditions
+export async function isElementVisible (input: string | Locator, options?: TimeoutOption): Promise<boolean>{
+  const locator = getLocator(input);
+  const timeInMs = options?.timeout || SMALL_TIMEOUT;
+  const startTime = Date.now();
+  try {
+    while (!await locator.isVisible(options) && Date.now() - startTime < timeInMs) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+  } catch (error) {
+    console.log(`isElementVisible1- ${error instanceof Error ? error.message : String(error)}`);
+      return false;
+  }
+  try {
+    return await locator.isVisible();
+  } catch (error) {
+    console.log(`isElementVisible2- ${error instanceof Error ? error.message : String(error)}`);
+      return false;
+  }
+}
 
