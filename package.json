@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@playwright/test": "^1.36.0"
+    "@playwright/test": "^1.36.2"
   },
   "scripts": {
     "test": "playwright test --project=chromium",
@@ -11,12 +11,12 @@
     "allure": "npx allure generate ./allure-results --clean && npx allure open ./allure-report"
   },
   "dependencies": {
-    "allure-commandline": "^2.23.0",
+    "allure-commandline": "^2.23.1",
     "allure-playwright": "^2.4.0",
     "dotenv": "^16.3.1",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
-    "eslint": "^8.44.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
     "eslint-plugin-playwright": "^0.15.3"
   }
 }
