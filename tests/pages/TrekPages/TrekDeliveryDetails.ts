@@ -5,7 +5,7 @@ import {
   getLocatorByTestId,
   selectByValue,
 } from "@TestUtils";
-import { expectElementToHaveValue, expectPageToHaveURL } from "@AssertUtils";
+import { expectElementToHaveValue, expectElementValueNotToBeEmpty, expectElementValueToBeEmpty, expectPageToHaveURL } from "@AssertUtils";
 
 const firstName = `#firstName`;
 const lastName = `#lastName`;
@@ -17,6 +17,7 @@ const state = `#regionIso`;
 const postCode = `#postcode`;
 
 export async function fillDeliveryDetails() {
+  await verifyDeliveryDetailsAreEmptyOnPageLoad();
   await fill(firstName, deliveryDetails.firstName);
   await fill(lastName, deliveryDetails.lastName);
   await fill(phoneNumber, deliveryDetails.phoneNumber);
@@ -36,6 +37,14 @@ export async function fillDeliveryDetails() {
 //  expect (await getInputValue(city)).toEqual(deliveryDetails.city);
 //  expect (await getInputValue(postCode)).toEqual(deliveryDetails.postCode);
 export async function verifyDeliveryDetails() {
+  await expectElementValueNotToBeEmpty(firstName);
+  await expectElementValueNotToBeEmpty(lastName);
+  await expectElementValueNotToBeEmpty(phoneNumber);
+  await expectElementValueNotToBeEmpty(addressLine1);
+  await expectElementValueNotToBeEmpty(addressLine2);
+  await expectElementValueNotToBeEmpty(city);
+  await expectElementValueNotToBeEmpty(state);
+  await expectElementValueNotToBeEmpty(postCode);
   await expectElementToHaveValue(firstName, deliveryDetails.firstName);
   await expectElementToHaveValue(lastName, deliveryDetails.lastName);
   await expectElementToHaveValue(phoneNumber, deliveryDetails.phoneNumber);
@@ -45,6 +54,18 @@ export async function verifyDeliveryDetails() {
   //  await expectElementToHaveValue(state, await getText(`//*[@id='regionIso']//*[@value='${deliveryDetails.state}']`));
   await expectElementToHaveValue(state, deliveryDetails.state);
   await expectElementToHaveValue(postCode, deliveryDetails.postCode);
+}
+
+async function verifyDeliveryDetailsAreEmptyOnPageLoad() {
+  await expectElementValueToBeEmpty(firstName);
+  await expectElementValueToBeEmpty(lastName);
+  await expectElementValueToBeEmpty(phoneNumber);
+  await expectElementValueToBeEmpty(addressLine1);
+  await expectElementValueToBeEmpty(addressLine2);
+  await expectElementValueToBeEmpty(city);
+  // await expectElementValueToBeEmpty(state);
+  // await expectElementToHaveValue(state, 'Please select')
+  await expectElementValueToBeEmpty(postCode);
 }
 
 export async function navigateToDeliveryMethodPage() {
