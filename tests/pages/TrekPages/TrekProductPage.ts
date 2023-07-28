@@ -5,7 +5,6 @@ const viewCartLink = () => getLocatorByText(`View cart`);
 
 export async function navigateToproductPage(url: string): Promise<void> {
   await gotoURL(url);
-  await waitForPageLoadState();
 }
 
 export async function addProductToCart(): Promise<void> {

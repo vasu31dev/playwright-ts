@@ -1,4 +1,4 @@
-import { expectElementToBeVisible } from "@AssertUtils";
+import { expectElementToBeVisible, expectElementToHaveAttribute } from "@AssertUtils";
 import {
   getLocatorByRole,
   gotoURL,
@@ -10,12 +10,8 @@ import {
   isElementVisible,
 } from "@TestUtils";
 
-import { expect } from "@playwright/test";
-import { navigateToproductPage } from "./TrekProductPage";
-
 export async function navigateToHomepage(): Promise<void> {
   await gotoURL("https://test.trekbikes.com/us/en_US");
-  await waitForPageLoadState();
 }
 
 export async function clickBikeArchiveFooterLunk() {
@@ -28,19 +24,16 @@ export async function verifyHomePageMarquee() {
 
 export async function clickUserManualsFooterLink() {
   await click(`#link_OwnersManualPage`);
-  await waitForPageLoadState();
 }
 
 export async function clickShopsNavheader() {
   await clickAndNavigate(
     getLocatorByTestId(`nav-categories-link-viewRetailerLocator-large`)
   );
-  await waitForPageLoadState();
 }
 
 export async function clickRacingFooterLink() {
   await click(`#insideTrekRacingFooterLink`);
-  await waitForPageLoadState();
 }
 
 export async function clickMyAccountIcon() {
@@ -49,7 +42,6 @@ export async function clickMyAccountIcon() {
 
 export async function clicklogInText() {
   await clickAndNavigate(getLocator(`//a[contains(@href,'/login')]`).nth(0));
-  await waitForPageLoadState();
 }
 
 export async function clickTrekLogoIfDisplayed() {
