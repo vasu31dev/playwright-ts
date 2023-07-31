@@ -6,18 +6,19 @@ import {
   ClearOptions, SelectOptions, UploadOptions, UploadValues, DragOptions, DoubleClickOptions, WaitForLoadStateOptions,
 } from "./Types";
 import { SMALL_TIMEOUT, STANDARD_TIMEOUT } from "@Timeouts";
+import { loadState } from "playwright.config";
 
 // Navigations
 export async function gotoURL(
   path: string,
-  options: GotoOptions = { waitUntil: "domcontentloaded" }
+  options: GotoOptions = { waitUntil: loadState }
 ) : Promise<null|Response>{
   return await getPage().goto(path, options);
 }
 
 // Helper function to wait for a specific page load state
 export async function waitForPageLoadState(options?: NavigationOptions ): Promise<void> {
-  let waitUntil: WaitForLoadStateOptions = 'domcontentloaded';
+  let waitUntil: WaitForLoadStateOptions = loadState;
   
   if (options?.waitUntil && options.waitUntil !== 'commit') {
     waitUntil = options.waitUntil;
@@ -107,7 +108,7 @@ export async function clickAndNavigate(
     click(input, options),
     getPage().waitForEvent("framenavigated", {timeout: timeout}),
   ]);
-  await getPage().waitForLoadState(options?.loadState || 'domcontentloaded', {timeout: timeout});
+  await getPage().waitForLoadState(options?.loadState || loadState, {timeout: timeout});
 }
 
 export async function fill(input: string | Locator, value: string, options?: FillOptions) : Promise<void> {
