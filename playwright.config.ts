@@ -31,6 +31,7 @@ export default defineConfig({
   reporter: process.env.CI ? "dot" : [["html", { open: "never" }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   globalSetup: require.resolve("./tests/setup/GlobalSetup.ts"),
+  globalTeardown: require.resolve("./tests/setup/GlobalTeardown.ts"),
   timeout: TEST_TIMEOUT, // Individual test timeout to prevent tests from hanging indefinitely
   expect: {
     timeout: EXPECT_TIMEOUT, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
