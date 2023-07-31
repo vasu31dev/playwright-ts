@@ -12,7 +12,7 @@ dotenv.config({ path: ".env" });
 const BASE_URL = process.env.URL || "https://www.amazon.com";
 const startLocalHost = process.env.URL && process.env.URL.includes("localhost");
 /* Default LoadsSate while Loading url, clickAndNavigate */
-export const loadState: WaitForLoadStateOptions = "domcontentloaded";
+export const LOADSTATE: WaitForLoadStateOptions = "domcontentloaded";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */

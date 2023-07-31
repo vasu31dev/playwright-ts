@@ -15,8 +15,10 @@
       // "@utils/*": ["../utils/*"],
       "@PageSetup": ["tests/setup/PageSetup.ts"],
       "@PageFactory": ["tests/setup/PageFactory.ts"],
-      "@TestUtils": ["tests/utils/TestUtils.ts"],
+      "@ActionUtils": ["tests/utils/ActionUtils.ts"],
       "@AssertUtils": ["tests/utils/AssertUtils.ts"],
+      "@LocatorUtils": ["tests/utils/LocatorUtils.ts"],
+      "@ElementUtils": ["tests/utils/ElementUtils.ts"],
       "@Timeouts": ["tests/utils/Timeouts.ts"],
       "@Types": ["tests/setup/Types.ts"]
     }

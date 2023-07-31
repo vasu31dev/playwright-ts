@@ -1,20 +1,9 @@
-import {
-  FrameLocator,
-  Locator,
-  selectors,
-  Response,
-  Dialog,
-} from "@playwright/test";
-import { getPage } from "../setup/PageFactory";
+import { Response, Dialog, Locator } from "@playwright/test";
+import { getPage } from "@PageFactory";
 import {
   ClickOptions,
   FillOptions,
-  GetByTextOptions,
   GotoOptions,
-  LocatorOptions,
-  GetByRoleOptions,
-  GetByRoleTypes,
-  GetByPlaceholderOptions,
   CheckOptions,
   NavigationOptions,
   TypeOptions,
@@ -28,13 +17,14 @@ import {
   DoubleClickOptions,
   WaitForLoadStateOptions,
 } from "@Types";
-import { SMALL_TIMEOUT, STANDARD_TIMEOUT } from "@Timeouts";
-import { loadState } from "playwright.config";
+import { STANDARD_TIMEOUT } from "@Timeouts";
+import { LOADSTATE } from "playwright.config";
+import { getLocator } from "@LocatorUtils";
 
 // Navigations
 export async function gotoURL(
   path: string,
-  options: GotoOptions = { waitUntil: loadState }
+  options: GotoOptions = { waitUntil: LOADSTATE }
 ): Promise<null | Response> {
   return await getPage().goto(path, options);
 }
@@ -43,7 +33,7 @@ export async function gotoURL(
 export async function waitForPageLoadState(
   options?: NavigationOptions
 ): Promise<void> {
-  let waitUntil: WaitForLoadStateOptions = loadState;
+  let waitUntil: WaitForLoadStateOptions = LOADSTATE;
 
   if (options?.waitUntil && options.waitUntil !== "commit") {
     waitUntil = options.waitUntil;
@@ -72,77 +62,6 @@ export async function wait(ms: number): Promise<void> {
   await getPage().waitForTimeout(ms);
 }
 
-// Locators
-export function getLocator(
-  input: string | Locator,
-  options?: LocatorOptions
-): Locator {
-  return typeof input === "string" ? getPage().locator(input, options) : input;
-}
-
-export function getLocatorByTestId(
-  testId: string | RegExp,
-  attributeName?: string
-): Locator {
-  if (attributeName) {
-    selectors.setTestIdAttribute(attributeName);
-  }
-  return getPage().getByTestId(testId);
-}
-
-export function getLocatorByText(
-  text: string | RegExp,
-  options?: GetByTextOptions
-): Locator {
-  return getPage().getByText(text, options);
-}
-
-export function getLocatorByRole(
-  role: GetByRoleTypes,
-  options?: GetByRoleOptions
-): Locator {
-  return getPage().getByRole(role, options);
-}
-
-export function getLocatorByLabel(
-  text: string | RegExp,
-  options?: GetByRoleOptions
-): Locator {
-  return getPage().getByLabel(text, options);
-}
-
-export function getLocatorByPlaceholder(
-  text: string | RegExp,
-  options?: GetByPlaceholderOptions
-): Locator {
-  return getPage().getByPlaceholder(text, options);
-}
-
-export async function getAllLocators(
-  input: string | Locator,
-  options?: LocatorOptions
-): Promise<Locator[]> {
-  return typeof input === "string"
-    ? await getPage().locator(input, options).all()
-    : await input.all();
-}
-
-//Frames
-export function getFrameLocator(
-  frameInput: string | FrameLocator
-): FrameLocator {
-  return typeof frameInput === "string"
-    ? getPage().frameLocator(frameInput)
-    : frameInput;
-}
-
-export function getLocatorInFrame(
-  frameInput: string | FrameLocator,
-  input: string | Locator
-): Locator {
-  return getFrameLocator(frameInput).locator(input);
-}
-
 // Actions
 export async function click(
   input: string | Locator,
@@ -161,7 +80,7 @@ export async function clickAndNavigate(
     click(input, options),
     getPage().waitForEvent("framenavigated", { timeout: timeout }),
   ]);
-  await getPage().waitForLoadState(options?.loadState || loadState, {
+  await getPage().waitForLoadState(options?.loadState || LOADSTATE, {
     timeout: timeout,
   });
 }
@@ -371,86 +290,4 @@ export async function clickByJS(
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.evaluate("el => el.click()", options);
-}
-
-// Text
-export async function getText(
-  input: string | Locator,
-  options?: TimeoutOption
-): Promise<string> {
-  const locator = getLocator(input);
-  return await locator.innerText(options);
-}
-
-export async function getAllTexts(
-  input: string | Locator
-): Promise<Array<string>> {
-  const locator = getLocator(input);
-  return await locator.allInnerTexts();
-}
-
-export async function getInputValue(
-  input: string | Locator,
-  options?: TimeoutOption
-): Promise<string> {
-  const locator = getLocator(input);
-  return await locator.inputValue(options);
-}
-
-export async function getAllInputValues(
-  input: string | Locator,
-  options?: TimeoutOption
-): Promise<Array<string>> {
-  const locators = await getAllLocators(input);
-  return Promise.all(
-    locators.map((locator) => getInputValue(locator, options))
-  );
-}
-
-export async function getAttribute(
-  input: string | Locator,
-  attributeName: string,
-  options?: TimeoutOption
-): Promise<null | string> {
-  const locator = getLocator(input);
-  return await locator.getAttribute(attributeName, options);
-}
-
-export async function saveStorageState(path?: string): Promise<void> {
-  await getPage().context().storageState({ path: path });
-}
-
-//Conditions
-export async function isElementVisible(
-  input: string | Locator,
-  options?: TimeoutOption
-): Promise<boolean> {
-  const locator = getLocator(input);
-  const timeInMs = options?.timeout || SMALL_TIMEOUT;
-  const startTime = Date.now();
-  try {
-    while (
-      !(await locator.isVisible(options)) &&
-      Date.now() - startTime < timeInMs
-    ) {
-      await new Promise((resolve) => setTimeout(resolve, 100));
-    }
-  } catch (error) {
-    console.log(
-      `isElementVisible1- ${
-        error instanceof Error ? error.message : String(error)
-      }`
-    );
-    return false;
-  }
-  try {
-    return await locator.isVisible();
-  } catch (error) {
-    console.log(
-      `isElementVisible2- ${
-        error instanceof Error ? error.message : String(error)
-      }`
-    );
-    return false;
-  }
 }
