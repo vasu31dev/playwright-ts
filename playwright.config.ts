@@ -1,13 +1,18 @@
-import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from "@Timeouts";
-import { WaitForLoadStateOptions } from "@Types";
+import {
+  ACTION_TIMEOUT,
+  EXPECT_TIMEOUT,
+  NAVIGATION_TIMEOUT,
+  TEST_TIMEOUT,
+} from "@Timeouts";
+import { WaitForLoadStateOptions } from "tests/setup/Types";
 import { defineConfig, devices } from "@playwright/test";
 import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
-const BASE_URL =
-  process.env.URL || "https://nucleus-latest.anacondaconnect.com";
-const startLocalHost = process.env.URL && process.env.URL.includes('localhost');
-export const loadState : WaitForLoadStateOptions = 'domcontentloaded';
+const BASE_URL = process.env.URL || "https://www.amazon.com";
+const startLocalHost = process.env.URL && process.env.URL.includes("localhost");
+/* Default LoadsSate while Loading url, clickAndNavigate */
+export const loadState: WaitForLoadStateOptions = "domcontentloaded";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -23,9 +28,9 @@ export default defineConfig({
   workers: process.env.CI ? 3 : 6,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //allure-playwright
-  reporter: process.env.CI ? "dot" : [['html', { open: 'never' }]],
+  reporter: process.env.CI ? "dot" : [["html", { open: "never" }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  globalSetup: require.resolve("./tests/utils/GlobalSetup.ts"),
+  globalSetup: require.resolve("./tests/setup/GlobalSetup.ts"),
   timeout: TEST_TIMEOUT, // Individual test timeout to prevent tests from hanging indefinitely
   expect: {
     timeout: EXPECT_TIMEOUT, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
@@ -80,45 +85,44 @@ export default defineConfig({
   }),
 });
 
+// {
+//   name: "firefox",
+//   use: {
+//     ...devices["Desktop Firefox"],
+//     viewport: { width: 1600, height: 1000 },
+//     launchOptions: {
+//       firefoxUserPrefs: {
+//         "browser.cache.disk.enable": false,
+//         "browser.cache.memory.enable": false,
+//       },
+//     },
+//   },
+// },
 
-    // {
-    //   name: "firefox",
-    //   use: {
-    //     ...devices["Desktop Firefox"],
-    //     viewport: { width: 1600, height: 1000 },
-    //     launchOptions: {
-    //       firefoxUserPrefs: {
-    //         "browser.cache.disk.enable": false,
-    //         "browser.cache.memory.enable": false,
-    //       },
-    //     },
-    //   },
-    // },
+// {
+//   name: "webkit",
+//   use: {
+//     ...devices["Desktop Safari"],
+//     viewport: { width: 1600, height: 1000 },
+//   },
+// },
 
-    // {
-    //   name: "webkit",
-    //   use: {
-    //     ...devices["Desktop Safari"],
-    //     viewport: { width: 1600, height: 1000 },
-    //   },
-    // },
+/* Test against mobile viewports. */
+// {
+//   name: 'Mobile Chrome',
+//   use: { ...devices['Pixel 5'] },
+// },
+// {
+//   name: 'Mobile Safari',
+//   use: { ...devices['iPhone 12'] },
+// },
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ..devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+/* Test against branded browsers. */
+// {
+//   name: 'Microsoft Edge',
+//   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+// },
+// {
+//   name: 'Google Chrome',
+//   use: { ..devices['Desktop Chrome'], channel: 'chrome' },
+// },

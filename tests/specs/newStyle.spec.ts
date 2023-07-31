@@ -1,4 +1,4 @@
-import {  test } from "@PageSetup";
+import { test } from "tests/setup/PageSetup";
 import LoginWithClass from "../pages/LoginWithClass";
 import * as LoginMethod from "../pages/LoginWithFunction";
 
@@ -14,33 +14,11 @@ test.describe("This is Customized Framework code", () => {
   test("Functions with New Framework for Amazon @function", async () => {
     await LoginMethod.gotoHomePage();
     await LoginMethod.loginSuccessfully();
- // await switchPage(2);
- // switchToDefaultPage();
- // assertAllSoftAssertions(test.info());
+    // await switchPage(2);
+    // switchToDefaultPage();
+    // assertAllSoftAssertions(test.info());
   });
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // test('No TestUtils with test Signin @test', async ({ page }) => {
 //   const signin = new Signin();
