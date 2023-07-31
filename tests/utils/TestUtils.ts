@@ -170,7 +170,8 @@ export async function acceptAlert (input: string | Locator, promptText?: string)
     dialog.accept(promptText).catch(e => console.error('Error accepting dialog:', e));
   });
   await locator.click();
-  await getPage().waitForEvent('dialog'); 
+  // temporary fix to alerts - Need to be fixed
+  // await getPage().waitForEvent('dialog'); 
   return dialogMessage;
 }
 
@@ -181,8 +182,9 @@ export async function dismissAlert (input: string | Locator) : Promise<string> {
     dialogMessage = dialog.message();
     dialog.dismiss().catch(e => console.error('Error dismissing dialog:', e));
   });
-  await locator.click();
-  await getPage().waitForEvent('dialog'); 
+  await locator.click({noWaitAfter: true});
+  // temporary fix for alerts - Need to be fixed
+  // await getPage().waitForEvent('dialog'); 
   return dialogMessage;
 }
 
