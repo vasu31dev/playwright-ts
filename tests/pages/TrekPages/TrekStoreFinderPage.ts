@@ -1,5 +1,6 @@
-import {  STANDARD_TIMEOUT, expectElementToBeVisible, expectElementToHaveAttribute, expectElementToHaveText, expectElementValueNotToBeEmpty } from "@AssertUtils";
+import {  expectElementToBeVisible, expectElementToHaveAttribute, expectElementToHaveText, expectElementValueNotToBeEmpty } from "@AssertUtils";
 import { click, getLocator, getLocatorByTestId, getLocatorInFrame, type, waitForPageLoadState } from "@TestUtils";
+import { STANDARD_TIMEOUT } from "@Timeouts";
 
 const searchLocation = () => getLocatorInFrame(`#lcly-embedded-iframe-inner-0`, `//*[@aria-label='Search Location']`);
 const autoSearchSuggestions = () => getLocatorInFrame(`#lcly-embedded-iframe-inner-0`, `//*[@class='google-suggestions']//*[contains(@qaid,'store-locator__search__suggestions__')]`);

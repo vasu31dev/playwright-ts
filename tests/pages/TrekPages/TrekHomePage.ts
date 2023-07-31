@@ -1,8 +1,7 @@
-import { expectElementToBeVisible, expectElementToHaveAttribute } from "@AssertUtils";
+import { expectElementToBeVisible } from "@AssertUtils";
 import {
   getLocatorByRole,
   gotoURL,
-  waitForPageLoadState,
   click,
   getLocatorByTestId,
   clickAndNavigate,
