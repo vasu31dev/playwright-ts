@@ -22,7 +22,6 @@ Welcome to the Playwright TypeScript Framework, a comprehensive automation frame
 - [Usage](#usage)
   - [Writing Tests](#writing-tests)
   - [Page Objects](#page-objects)
-  - [Running Tests](#running-tests)
 - [Utilities](#utilities)
   - [LocatorUtils](#locatorutils)
   - [ActionUtils](#actionutils)
@@ -30,7 +29,8 @@ Welcome to the Playwright TypeScript Framework, a comprehensive automation frame
   - [ElementUtils](#elementutils)
   - [AssertUtils](#assertutils)
 - [Framework Setup](#framework-setup)
-  - [Switching Pages from PageFactory](#pagefactory)
+  - [Switching Pages](#pagefactory) 
+- [Running Tests](#running-tests)
 - [Contributing](#contributing)
 
 ## Getting Started
@@ -213,7 +213,7 @@ The framework provides a set of utility functions that simplify common actions a
 - `AssertUtils.ts`: Contains functions for adding soft and hard assertions in your tests.
 - `Timeouts.ts`: Contains static timeouts to use along with different functions or to override the existing default timeouts using functional options
 
-Here are few examples of how to use utility function:
+Here are a few examples of how to use the utility function:
 
 ### LocatorUtils
 
@@ -235,7 +235,7 @@ const roleLocator = () => getLocatorByRole("button");
 const labelLocator = () => getLocatorByLabel("Submit Button");
 ```
 
-Here the examples are self explanatory
+Mostly the examples are self-explanatory
 
 ### ActionUtils
 
@@ -260,14 +260,14 @@ In this example, we're using various functions from ActionUtils:
 3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function is used to fill a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.`
 4. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
 5. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
-6. `selectByValue(input: string | Locator,value: string,options?: SelectOptions)`: This function is used to select value from drop down. The input parameter is a string or Locator representing the select element, value parameter is the value to select for drop down option, and the SelectOptions parameter is an optional parameter that specifies additional select options. Similarly, we have selectByText() and selectByIndex() functions and selectByValues() for multi select
+6. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function is used to select a value from the drop down. The input parameter is a string or Locator representing the select element, the value parameter is the value to select for the drop-down option, and the SelectOptions parameter is an optional parameter that specifies additional select options. Similarly, we have selectByText() and selectByIndex() functions and selectByValues() for multi-select
 
 ### Alerts
 
 ```typescript
 import { acceptAlert, dismissAlert, getAlertText } from "@ActionUtils";
-await acceptAlert(outOfStockButton()); //click on an element which opens an alert and then accept the alert
-await dismissAlert(outOfStockButton()); //click on an element which opens an alert and then dismiss the alert
+await acceptAlert(outOfStockButton()); //click on an element that opens an alert and then accept the alert
+await dismissAlert(outOfStockButton()); //click on an element that opens an alert and then dismiss the alert
 const text = await getAlertText(outOfStockButton()); //click on an element which opens an alert and then get the text from the alert
 ```
 
@@ -292,11 +292,11 @@ Here's an example of how to use these functions:
 
 In this example, we're using various functions from ElementUtils:
 
-1. `getText(input: string | Locator,options?: TimeoutOption)`: This function gets inner text. The input parameter is a string or Locator representing the element to get text. TimeoutOption is a optional parameter for time out
-2. `getAllTexts(input: string | Locator):`: This function gets all inner texts from the given locator and TimeoutOption is a optional parameter for timeout
-3. `getInputValue(input: string | Locator,options?: TimeoutOption):`: This function gets input value form text or form fields. The input parameter is a string or Locator representing the element to get text. TimeoutOption is a optional parameter for time out
-4. `getAttribute(input: string | Locator,attributeName: string,options?: TimeoutOption):`: This function gets attribute value from the given attributeName parameter of the Locator with TiemoutOption as optional parameter
-5. `isElementVisible(input: string | Locator,options?: TimeoutOption):`: This function checks whether the given input parameter is visible and returns boolean value
+1. `getText(input: string | Locator,options?: TimeoutOption)`: This function gets inner text. The input parameter is a string or Locator representing the element to get text. TimeoutOption is an optional parameter for time out
+2. `getAllTexts(input: string | Locator):`: This function gets all inner texts from the given locator and TimeoutOption is an optional parameter for timeout
+3. `getInputValue(input: string | Locator, options?: TimeoutOption):`: This function gets input value form text or form fields. The input parameter is a string or Locator representing the element to get text. TimeoutOption is an optional parameter for time out
+4. `getAttribute(input: string | Locator,attributeName: string, options?: TimeoutOption):`: This function gets attribute value from the given attributeName parameter of the Locator with TiemoutOption as an optional parameter
+5. `isElementVisible(input: string | Locator, options?: TimeoutOption):`: This function checks whether the given input parameter is visible and returns a boolean value
 
 ### AssertUtils
 
@@ -337,13 +337,13 @@ In this example, we're using various functions from AssertUtils:
 
 1. `expectElementToBeVisible(input: string | Locator, options?: ExpectOptions)`: This function checks if a specific element is visible on the page. The input parameter is a string or Locator representing the element you want to check. The options parameter is an optional parameter that specifies additional options like timeout and a custom message to display in the report if the assertion fails.
 2. `expectElementToBeHidden(element: Locator, message?: string, options?: ExpectOptions)`: This function checks if a specific element is hidden on the page. The parameters are the same as expectElementToBeVisible.
-3. `expectElementToHaveText(input: string | Locator,text: string | RegExp | Array<string | RegExp>,options?: ExpectOptions & ExpectTextOption)`: This function is asserting text equals. The input parameter is a string or Locator representing the element from where we assert text, the text parameter is the value you want to assert with, and the ExpectOptions and ExpectTextOption parameters are optional parameters that specifies additional assert options like soft assertion, ignore case etc.
+3. `expectElementToHaveText(input: string | Locator,text: string | RegExp | Array<string | RegExp>,options?: ExpectOptions & ExpectTextOption)`: This function is asserting text equals. The input parameter is a string or Locator representing the element from where we assert text, the text parameter is the value you want to assert with, and the ExpectOptions and ExpectTextOption parameters are optional parameters that specify additional assert options like soft assertion, ignore case, etc.
 4. `expectElementNotToContainText(element: Locator, unexpectedText: string, options?: ExpectOptions)`: This function checks if a specific element does not contain a certain text. The unexpectedText parameter is the text you expect the element not to contain. Soft assertion is a Expectoptions parameter
 5. `assertAllSoftAssertions(testInfo: TestInfo)`: This function checks if there were any failures in the soft assertions and stops the test if there were. The testInfo parameter is the test information object from Playwright.
 
 These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail.
 
-### Running Tests
+## Running Tests
 
 To run the tests, use the following commands:
 
@@ -361,7 +361,7 @@ npm run test -- -g 'login test'
 npm run test -- nucleus.spec.ts
 ```
 
-- To run all the tests in a spec file with 3 threads, 2 retries in headless:
+- To run all the tests in a spec file with 3 threads, and 2 retries in headless:
 
 ```bash
 npm run reg -- nucleus.spec.ts -j 3 --retries 2
@@ -373,7 +373,7 @@ npm run reg -- nucleus.spec.ts -j 3 --retries 2
 npm run test -- nucleus.spec.ts --debug
 ```
 
-- To all the smoke tests using tag:
+- To all the smoke tests using the tag:
 
 ```bash
 npm run test -- -g '@smoke'
@@ -391,9 +391,9 @@ npx playwright test -c playwright.config.ts -g "logo is present @reg" --headed -
 - --retries -> retry count for failed tests
 - --headed -> run in headed mode (default is headless)
 - --project=chromium
-- --repeat-each 3 -> repeach each test 3 times
+- --repeat-each 3 -> repeat each test 3 times
 - --grep-invert -> opposite of -g or grep
-- --max-failures 4 -> Stop after the first 4 test failures. This includes count of failures in retry test as well
+- --max-failures 4 -> Stop after the first 4 test failures. This includes a count of failures in the retry test as well
 - --list -> list all the tests, but do not run them.
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
