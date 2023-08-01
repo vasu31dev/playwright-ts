@@ -26,7 +26,7 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Updates](#updates)
+  - [Project Update Guide](#project-update-guide)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
   - [Writing Tests](#writing-tests)
@@ -46,8 +46,8 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 ### Prerequisites
 
-- Node.js
-- npm
+- Node.js (v18.0.0 or later)
+- npm (v9.0.0 or later)
 
 ### Installation
 
@@ -75,29 +75,35 @@ npm install
 npx playwright install
 ```
 
-5. Git User setup for first time
-   If you are a code/test contributor, set up your user in GIT using the commands:
+5. Git User setup for the first time. If you are a code/test contributor, set up your user in GIT using the commands:
+   
+   ```bash
    git config user.email "<your-email>"
    git config user.name "<your-name>"
    git remote set-url origin https://USERNAME:SECRETTOKEN@github.com/vasu31dev/playwright-ts.git
+   ```
 
-### Updates
+   Replace `<USERNAME>` with your GitHub username and `<SECRETTOKEN>` with your GitHub personal access token. If you don't have a personal access token, you can create one in your GitHub account settings.
+
+### Project Update Guide
 
 To pull the latest changes and install the latest packages, follow these steps:
 
-1. Pull latest changes
+1. Pull the latest changes
 
 ```bash
 git pull origin <branchName>
 ```
 
-2. Install latest packages
+Replace `<branchName>` with the name of the branch that you want to update.
+
+2. Install the latest packages
 
 ```bash
 npm install
 ```
 
-3. If there are dependency errors while installing packages, remove the `node_modules` folder and install the packages again:
+3. If there are dependency errors while installing packages, you can remove the node_modules folder and install the packages again:
 
 ```bash
 rm -rf node_modules
@@ -114,46 +120,48 @@ npx playwright install
 
 The project is structured into several packages and files, each serving a specific purpose:
 
-- `tests`: This directory contains all the test files and related utilities.
-- `.eslintrc`: This file contains the configuration for ESLint, a tool for identifying and reporting on patterns in JavaScript.
+- `tests`: This directory contains all the end-to-end test files, API tests, and related utilities for testing the application.
+- `.eslintrc`: This file contains the configuration for ESLint, a tool for identifying and reporting patterns in JavaScript.
 - `.gitignore`: This file specifies intentionally untracked files that Git should ignore.
 - `README.md`: This file provides information about the project and instructions on how to use it.
 - `package-lock.json` and `package.json`: These files contain the project's npm dependencies.
-- `playwright.config.ts`: This file contains the configuration for Playwright, including settings for different browsers and devices.
+- `playwright.config.ts`: This file contains the configuration for Playwright, including settings for different browsers and devices, such as viewport sizes, user agent strings, and launch options.
 - `tsconfig.json`: This file specifies the root files and the compiler options required to compile the project.
+  
 
 ## Framework Setup
 
-1. `GlobalSetup.ts`: This file contains the global setup function that is executed once before all test files. It is typically used for setting up global state or configuring the test environment.
+1. `GlobalSetup.ts`: This file contains the global setup function that is executed once before all test files. It is typically used for setting up global state such as database connections or configuring the test environment like setting environment variables.
 
-2. `GlobalTeardown.ts`: This file contains the global teardown function that is executed once after all test files. It is typically used for cleaning up the global state or the test environment.
+2. `GlobalTeardown.ts`: This file contains the global teardown function that is executed once after all test files. It is typically used for cleaning up the global state such as closing database connections or resetting the test environment.
 
-3. `PageSetup.ts`: This file contains the setup function for the Page object from Playwright. It is used for setting up the page before each test.
+3. `PageSetup.ts`: This file contains the setup function for the Page object from Playwright. It is used for setting up the page before each test. This is where you can add any common setup code that should run before each test across all spec files.
 
-4. `PageFactory.ts`: This file contains the PageFactory class that is used for creating and managing Page objects.
+4. `PageFactory.ts`: This file contains the functions of the PageFactory. These functions are used for managing Page objects, including getting and setting Page objects, switching between pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
 
 5. `Types.ts`: This file contains type definitions that are used across the framework as optional parameters for the utility methods.
 
 ### PageFactory
 
-Examples on how to Switch between Pages and closing a page
+Examples of how to switch between pages and close a page:
 
 ```typescript
 import { switchPage, switchToDefaultPage, closePage } from "@PageFactory";
 await switchPage(2); // switching to second tab/window
-switchToDefaultPage(); // switch to the intial page that was launched or first tab/window
-await closePage(); // close the current page and then switch to default page if it exists
+switchToDefaultPage(); // switch to the initial page that was launched or the first tab/window
+await closePage(); // close the current page and then switch to the default page if it exists
 ```
 
 ## Usage
 
-### Writing Tests
+### Writing Tests in spec file
 
-Tests are written in the tests directory. Each test file should correspond to a specific feature or functionality.
+Tests are written in the tests directory. Each test file should correspond to a specific feature or functionality of the application under test.
 
-Here's an example of a test file under specs package:
+Here's an example of a test file under the `specs` package:
 
 ```typescript
+login.spec.ts;
 //import Page object from PageSetup.ts which sets up the page before each test
 import { test } from "@PageSetup";
 import * as LoginPage from "../pages/LoginPage";
@@ -164,11 +172,11 @@ test("successful login", async () => {
 });
 ```
 
-In this example, we're testing a login functionality. We first navigate to the home page, perform the login action, and then verify if the login was successful.
+In this example, we're testing a login functionality. We first navigate to the home page, then perform the login action, and finally verify if the login was successful. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all the pages operate on the same page object.
 
 ### Page Objects
 
-Page objects are used to encapsulate the information about the elements on your application's page and the methods to interact with them. Page objects can be found in the `pages` directory.
+Page objects are used to encapsulate the information about the elements on each of your application's pages, as well as the methods and assertions to interact with each page. Page objects can be found in the `pages` directory.
 
 Here's an example of a page object under `pages` package:
 
@@ -210,7 +218,7 @@ export async function isLoginSuccessful() {
 
 In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the page, perform a login action, and check if the login was successful.
 
-Refer `Running Tests` section below on how to run tests using CLI
+Refer to the [Running Tests](#running-tests) section below on how to run tests using the command-line interface (CLI).
 
 ## Utilities
 
@@ -370,7 +378,7 @@ npm run test -- -g 'login test'
 npm run test -- nucleus.spec.ts
 ```
 
-- To run all the tests in a spec file with 3 threads, and 2 retries in headless:
+- To run all the tests in a spec file with 3 threads, and 2 retries in headless mode:
 
 ```bash
 npm run reg -- nucleus.spec.ts -j 3 --retries 2
@@ -382,7 +390,7 @@ npm run reg -- nucleus.spec.ts -j 3 --retries 2
 npm run test -- nucleus.spec.ts --debug
 ```
 
-- To all the smoke tests using the tag:
+- To run all the smoke tests using the tag:
 
 ```bash
 npm run test -- -g '@smoke'
@@ -394,16 +402,16 @@ npm run test -- -g '@smoke'
 npx playwright test -c playwright.config.ts -g "logo is present @reg" --headed -j 1 --retries 0
 ```
 
-- -c -> pointing to the playwright.config file
-- -g -> grep the tests you want to run instead of all the tests
-- -j -> number of workers
-- --retries -> retry count for failed tests
-- --headed -> run in headed mode (default is headless)
-- --project=chromium
-- --repeat-each 3 -> repeat each test 3 times
-- --grep-invert -> opposite of -g or grep
-- --max-failures 4 -> Stop after the first 4 test failures. This includes a count of failures in the retry test as well
-- --list -> list all the tests, but do not run them.
+- `-c` -> pointing to the playwright.config file
+- `-g` -> grep the tests you want to run instead of all the tests
+- `-j` -> number of workers
+- `--retries` -> retry count for failed tests
+- `--headed` -> run in headed mode (default is headless)
+- `--project=chromium`
+- `--repeat-each 3` -> repeat each test 3 times
+- `--grep-invert` -> opposite of `-g` or grep
+- `--max-failures 4` -> Stop after the first 4 test failures. This includes a count of failures in the retry test as well
+- `--list` -> List all the tests, but do not run them.
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
