@@ -1,3 +1,5 @@
+![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts)  ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts)
+
 # Playwright TypeScript Framework
 
 Welcome to the Playwright TypeScript Framework, a comprehensive automation framework designed for web applications. This framework leverages the power of Playwright and TypeScript to provide a robust and flexible structure for writing and managing automated tests. It's equipped with utilities that simplify test creation and maintenance, allowing you to focus on writing your tests.
