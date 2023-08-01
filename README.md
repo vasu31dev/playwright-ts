@@ -2,14 +2,34 @@
 
 Welcome to the Playwright TypeScript Framework, a comprehensive automation framework designed for web applications. This framework leverages the power of Playwright and TypeScript to provide a robust and flexible structure for writing and managing automated tests. It's equipped with utilities that simplify test creation and maintenance, allowing you to focus on writing your tests.
 
-
 ## Features
 
 - **Page Object Model Design Pattern**: Enhances test maintenance and reduces code duplication.
 - **Utility Functions**: Simplifies common actions and assertions.
 - **TypeScript**: Offers static typing, autocompletion, and other benefits.
 - **Configurable Options**: Allows different settings for environments and test behaviors.
-- **Detailed Reporting**: Provides screenshots, videos and traces on test failures.
+- **Detailed Reporting**: Provides screenshots, videos, and traces of test failures.
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Updates](#updates)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+  - [Writing Tests](#writing-tests)
+  - [Page Objects](#page-objects)
+  - [Running Tests](#running-tests)
+- [Utilities](#utilities)
+  - [ActionUtils](#actionutils)
+  - [Alerts](#alerts)
+  - [LocatorUtils](#locatorutils)
+  - [AssertUtils](#assertutils)
+  - [ElementUtils](#elementutils)
+- [Framework Setup](#framework-setup)
+  - [Switching Pages from PageFactory](#pagefactory)
+- [Contributing](#contributing)
 
 ## Getting Started
 
