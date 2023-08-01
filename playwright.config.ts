@@ -1,9 +1,18 @@
-import { SMALL_TIMEOUT, STANDARD_TIMEOUT, TEST_TIMEOUT } from "@Timeouts";
+import {
+  ACTION_TIMEOUT,
+  EXPECT_TIMEOUT,
+  NAVIGATION_TIMEOUT,
+  TEST_TIMEOUT,
+} from "@Timeouts";
+import { WaitForLoadStateOptions } from "tests/setup/Types";
 import { defineConfig, devices } from "@playwright/test";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env" });
 
-const BASE_URL =
-  process.env.URL || "https://www.amazon.com/";
-
+const BASE_URL = process.env.URL || "https://www.amazon.com";
+const startLocalHost = process.env.URL && process.env.URL.includes("localhost");
+/* Default LoadsSate while Loading url, clickAndNavigate */
+export const LOADSTATE: WaitForLoadStateOptions = "domcontentloaded";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -19,12 +28,13 @@ export default defineConfig({
   workers: process.env.CI ? 3 : 6,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //allure-playwright
-  reporter: process.env.CI ? 'dot' : 'html',
+  reporter: process.env.CI ? "dot" : [["html", { open: "never" }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  globalSetup: require.resolve("./tests/utils/GlobalSetup.ts"),
+  globalSetup: require.resolve("./tests/setup/GlobalSetup.ts"),
+  globalTeardown: require.resolve("./tests/setup/GlobalTeardown.ts"),
   timeout: TEST_TIMEOUT, // Individual test timeout to prevent tests from hanging indefinitely
   expect: {
-    timeout: SMALL_TIMEOUT, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
+    timeout: EXPECT_TIMEOUT, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
   },
   use: {
     headless: true,
@@ -43,9 +53,9 @@ export default defineConfig({
     trace: "retain-on-failure", // Record traces after each test failure
 
     screenshot: "only-on-failure", // Capture screenshots after each test failure
-    actionTimeout: SMALL_TIMEOUT, // Timeout for actions like click, fill, select
+    actionTimeout: ACTION_TIMEOUT, // Timeout for actions like click, fill, select
     // Timeout for page loading navigations like goto URL, go back, reload, waitForNavigation
-    navigationTimeout: STANDARD_TIMEOUT,
+    navigationTimeout: NAVIGATION_TIMEOUT,
   },
 
   /* Configure projects for major browsers */
@@ -57,63 +67,63 @@ export default defineConfig({
         viewport: { width: 1600, height: 1000 },
         launchOptions: {
           args: ["--disable-web-security"],
+          // args: ["--disable-web-security","--auto-open-devtools-for-tabs"],
           slowMo: 0,
         },
       },
     },
-
   ],
+
+  ...(startLocalHost && {
+    webServer: {
+      command: "cd ~/repos/ui && npm start ui-server",
+      port: 9002,
+      timeout: 60 * 1000,
+      reuseExistingServer: !process.env.CI,
+      stdout: "pipe",
+      stderr: "pipe",
+    },
+  }),
 });
 
+// {
+//   name: "firefox",
+//   use: {
+//     ...devices["Desktop Firefox"],
+//     viewport: { width: 1600, height: 1000 },
+//     launchOptions: {
+//       firefoxUserPrefs: {
+//         "browser.cache.disk.enable": false,
+//         "browser.cache.memory.enable": false,
+//       },
+//     },
+//   },
+// },
 
-    // {
-    //   name: "firefox",
-    //   use: {
-    //     ...devices["Desktop Firefox"],
-    //     viewport: { width: 1600, height: 1000 },
-    //     launchOptions: {
-    //       firefoxUserPrefs: {
-    //         "browser.cache.disk.enable": false,
-    //         "browser.cache.memory.enable": false,
-    //       },
-    //     },
-    //   },
-    // },
+// {
+//   name: "webkit",
+//   use: {
+//     ...devices["Desktop Safari"],
+//     viewport: { width: 1600, height: 1000 },
+//   },
+// },
 
-    // {
-    //   name: "webkit",
-    //   use: {
-    //     ...devices["Desktop Safari"],
-    //     viewport: { width: 1600, height: 1000 },
-    //   },
-    // },
+/* Test against mobile viewports. */
+// {
+//   name: 'Mobile Chrome',
+//   use: { ...devices['Pixel 5'] },
+// },
+// {
+//   name: 'Mobile Safari',
+//   use: { ...devices['iPhone 12'] },
+// },
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ..devices['Desktop Chrome'], channel: 'chrome' },
-    // },
-
-
-
-
-      /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+/* Test against branded browsers. */
+// {
+//   name: 'Microsoft Edge',
+//   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+// },
+// {
+//   name: 'Google Chrome',
+//   use: { ..devices['Desktop Chrome'], channel: 'chrome' },
+// },

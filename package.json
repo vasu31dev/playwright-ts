@@ -3,8 +3,8 @@
     "@playwright/test": "^1.36.2"
   },
   "scripts": {
-    "test": "playwright test --project=chromium",
-    "e2e": "playwright test -j 1 --retries 0 --headed --project=chromium",
+    "test": "playwright test -j 1 --retries 0 --headed --project=chromium",
+    "reg": "playwright test --project=chromium",
     "report": "playwright show-report playwright-report",
     "ui": "playwright test --ui-port 0",
     "trace": "playwright show-trace --port 0",
