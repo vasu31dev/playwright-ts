@@ -1,4 +1,4 @@
-![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts)  ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts)
+![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts) ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts)
 
 # Playwright TypeScript Framework
 
@@ -22,15 +22,15 @@ Welcome to the Playwright TypeScript Framework, a comprehensive automation frame
 - [Usage](#usage)
   - [Writing Tests](#writing-tests)
   - [Page Objects](#page-objects)
-  - [Running Tests](#running-tests)
 - [Utilities](#utilities)
+  - [LocatorUtils](#locatorutils)
   - [ActionUtils](#actionutils)
   - [Alerts](#alerts)
-  - [LocatorUtils](#locatorutils)
-  - [AssertUtils](#assertutils)
   - [ElementUtils](#elementutils)
+  - [AssertUtils](#assertutils)
 - [Framework Setup](#framework-setup)
-  - [Switching Pages from PageFactory](#pagefactory)
+  - [Switching Pages](#pagefactory) 
+- [Running Tests](#running-tests)
 - [Contributing](#contributing)
 
 ## Getting Started
@@ -67,13 +67,13 @@ npx playwright install
 ```
 
 5. Git User setup for first time
-If you are a code/test contributor, set up your user in GIT using the commands:
-git config user.email "<your-email>"
-git config user.name "<your-name>"
-git remote set-url origin https://USERNAME:SECRETTOKEN@github.com/vasu31dev/playwright-ts.git
-
+   If you are a code/test contributor, set up your user in GIT using the commands:
+   git config user.email "<your-email>"
+   git config user.name "<your-name>"
+   git remote set-url origin https://USERNAME:SECRETTOKEN@github.com/vasu31dev/playwright-ts.git
 
 ### Updates
+
 To pull the latest changes and install the latest packages, follow these steps:
 
 1. Pull latest changes
@@ -102,6 +102,7 @@ npx playwright install
 ```
 
 ## Project Structure
+
 The project is structured into several packages and files, each serving a specific purpose:
 
 - `tests`: This directory contains all the test files and related utilities.
@@ -111,193 +112,6 @@ The project is structured into several packages and files, each serving a specif
 - `package-lock.json` and `package.json`: These files contain the project's npm dependencies.
 - `playwright.config.ts`: This file contains the configuration for Playwright, including settings for different browsers and devices.
 - `tsconfig.json`: This file specifies the root files and the compiler options required to compile the project.
-
-## Usage
-
-### Writing Tests
-
-Tests are written in the tests directory. Each test file should correspond to a specific feature or functionality.
-
-Here's an example of a test file under specs package:
-
-```typescript
-import { test } from "@PageSetup";
-import * as LoginPage from "../pages/loginPage";
-
-test("successful login", async () => {
-    await LoginPage.gotoHomePage();
-    await LoginPage.loginSuccessfully();
-});
-```
-
-In this example, we're testing a login functionality. We first navigate to the login page, perform the login action, and then verify if the login was successful.
-
-### Page Objects
-
-Page objects are used to encapsulate the information about the elements on your application's page and the methods to interact with them. Page objects can be found in the `pages` directory.
-
-Here's an example of a page object under `pages` package:
-
-```typescript
-import { getLocatorByTestId, getLocatorByLabel, getLocatorByText } from "@LocatorUtils";
-import { gotoURL, click, fill, clickAndNavigate } from "@ActionUtils";
-import { expectElementToBeHidden } from "@AssertUtils";
-import { isElementVisible } from "@ElementUtils";
-
-  const signInLink = () => getLocatorByTestId("sign-in-button").or(getLocatorByTestId("sign-in-link"));
-  const email = () => getLocatorByTestId("email-input");
-  const password = `//*[@id="password"]/input`;
-  const signInButton = () => getLocatorByLabel('sign-in-button');
-  const successfulMessage = () => getLocatorByText('Login successful');
-
-  export async function gotoHomePage() {
-    gotoURL("/", { waitUntil: "domcontentloaded", timeout: 60000 });
-  }
-
-  export async function login(username: string, password: string) {
-    await click(signInLink());
-    await fill(email(), "username");
-    await fill(password, "password");
-    await clickAndNavigate(signInButton());
-  }
-
-  export async function isLoginSuccessful() {
-    await expectElementToBeHidden(signInButton(), "Login should be successful");
-    return isElementVisible(successfulMessage());
-  }
-```
-
-In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the page, perform a login action, and check if the login was successful.
-
-### Running Tests
-To run the tests, use the following commands:
-
-#### npm run commands
-- To run a single test with grep command in headed mode:
-
-```bash
-npm run test -- -g 'login test'
-```
-
-- To run all the tests in a spec file:
-
-```bash
-npm run test -- nucleus.spec.ts
-```
-
-- To run all the tests in a spec file with 3 threads, 2 retries in headless:
-
-```bash
-npm run reg -- nucleus.spec.ts -j 3 --retries 2
-```
-
-- To run in debug mode:
-
-```bash
-npm run test -- nucleus.spec.ts --debug
-```
-
-- To all the smoke tests using tag:
-
-```bash
-npm run test -- -g '@smoke'
-```
-
-#### npx playwright test commands
-
-```bash
-npx playwright test -c playwright.config.ts -g "logo is present @reg" --headed -j 1 --retries 0
-```
-- -c -> pointing to the playwright.config file
-- -g -> grep the tests you want to run instead of all the tests
-- -j -> number of workers
-- --retries -> retry count for failed tests
-- --headed -> run in headed mode (default is headless)
-- --project=chromium 
--  --repeat-each 3 -> repeach each test 3 times
-- --grep-invert -> opposite of -g or grep
-- --max-failures 4 -> Stop after the first 4 test failures. This includes count of failures in retry test as well
-- --list -> list all the tests, but do not run them.
-
-For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
-
-## Utilities
-
-The framework provides a set of utility functions that simplify common actions and checks in Playwright. These functions are located in the `tests/utils` directory and include:
-
--	`ActionUtils.ts`: Contains functions for performing actions such as clicking, filling input fields, selecting options, and navigating pages.
--	`LocatorUtils.ts`: Contains functions for locating web elements in different ways.
--	`AssertUtils.ts`: Contains functions for adding soft and hard assertions in your tests.
--	`ElementUtils.ts`: Contains functions for conditional statements with web elements, text/s, imputvalue/s.
-
-
-Here are few examples of how to use utility function:
-
-### ActionUtils
-```typescript
-import { gotoURL, click, fill, check, uploadFiles } from "@ActionUtils";
-
-await gotoURL('https://www.example.com');
-await click('text="Log in"');
-await fill('input#username', 'myusername');
-await check('input#agree');
-await uploadFiles('input#file', '/path/to/myfile.jpg');
-```
-
-In this example, we're using the `click` function from `ActionUtils` to click a button with the text "Log in". 
-1. `click(input: string | Locator, options?: ClickOptions)`: This function is used to click an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
-2. `gotoURL(path: string, options: GotoOptions)`: This function is used to navigate to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options.
-3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function is used to fill a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.`
-4. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
-5. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
-
-### Alerts 
-
-```typescript
-import { acceptAlert, dismissAlert, getAlertText } from "@ActionUtils";
-    await acceptAlert(outOfStockButton()); //click on an element which opens an alert and then accept the alert
-    await dismissAlert(outOfStockButton()); //click on an element which opens an alert and then dismiss the alert
-    const text = await getAlertText(outOfStockButton()); //click on an element which opens an alert and then get the text from the alert
-```
-
-### LocatorUtils
-```typescript
-import { getLocator, getLocatorByTestId, getLocatorByText, getLocatorByRole, getLocatorByLabel } from "@LocatorUtils";
-
-const locator =  () => getLocator('button#submit');
-const testIdLocator =  () => getLocatorByTestId('submit-button');
-const textLocator =  () => getLocatorByText('Submit');
-const roleLocator =  () => getLocatorByRole('button');
-const labelLocator =  () => getLocatorByLabel('Submit Button');
-```
-
-### AssertUtils
-```typescript
-import { expectElementToBeVisible, expectElementToBeHidden, expectElementToHaveText,
- expectElementNotToBeChecked, expectElementNotToContainText } from "@uAssertUtils";
-import { INSTANT_TIMEOUT } from "@Timeouts";
-await expectElementToBeVisible(logoutButton(), "Login should be successful");
-await expectElementToBeHidden(signInButton(), "signInButton should not be displayed");
-await expectElementToHaveText(successfulMessage(), "Login is successful");
-await expectElementNotToBeChecked(agreeCheckbox(), {timeout: INSTANT_TIMEOUT});
-await expectElementNotToContainText(successfulMessage(), "404 error", {soft: true});
-assertAllSoftAssertions(test.info()); // use this in the spec file to stop the test if there are failures for any soft assertions
-```
-
-### ElementUtils
-```typescript
-import { getText, getAllTexts, getInputValue, getAttribute, attribute } from "@ElementUtils";
-const text = await getText(textLocator());
-const allTexts = await getAllTexts(textLocator());
-const inputValue = await getInputValue(userName());
-const attribute = await getAttribute(labelLocator(), 'class');
-if(isElementVisible(logoutButton())){
-   console.log(''Login is successful)
-} else{
-    console.log(''Login is not successful)
-}
-
-```
 
 ## Framework Setup
 
@@ -313,15 +127,276 @@ if(isElementVisible(logoutButton())){
 
 ### PageFactory
 
- Examples on how to Switch between Pages and closing a page
+Examples on how to Switch between Pages and closing a page
 
 ```typescript
-    import { switchPage, switchToDefaultPage, closePage } from "@PageFactory";
-    await switchPage(2); // switching to second tab/window
-    switchToDefaultPage(); // switch to the intial page that was launched or first tab/window
-    await closePage(); // close the current page and then switch to default page if it exists
+import { switchPage, switchToDefaultPage, closePage } from "@PageFactory";
+await switchPage(2); // switching to second tab/window
+switchToDefaultPage(); // switch to the intial page that was launched or first tab/window
+await closePage(); // close the current page and then switch to default page if it exists
 ```
 
+## Usage
+
+### Writing Tests
+
+Tests are written in the tests directory. Each test file should correspond to a specific feature or functionality.
+
+Here's an example of a test file under specs package:
+
+```typescript
+//import Page object from PageSetup.ts which sets up the page before each test
+import { test } from "@PageSetup";
+import * as LoginPage from "../pages/LoginPage";
+
+test("successful login", async () => {
+  await LoginPage.gotoHomePage();
+  await LoginPage.loginSuccessfully();
+});
+```
+
+In this example, we're testing a login functionality. We first navigate to the home page, perform the login action, and then verify if the login was successful.
+
+### Page Objects
+
+Page objects are used to encapsulate the information about the elements on your application's page and the methods to interact with them. Page objects can be found in the `pages` directory.
+
+Here's an example of a page object under `pages` package:
+
+```typescript
+LoginPage.ts;
+import {
+  getLocatorByTestId,
+  getLocatorByLabel,
+  getLocatorByText,
+} from "@LocatorUtils";
+import { gotoURL, click, fill, clickAndNavigate } from "@ActionUtils";
+import { expectElementToBeHidden } from "@AssertUtils";
+import { isElementVisible } from "@ElementUtils";
+
+//Refer LocatorUtils section for more info on locators
+const signInLink = () =>
+  getLocatorByTestId("sign-in-button").or(getLocatorByTestId("sign-in-link"));
+const email = () => getLocatorByTestId("email-input");
+const password = `//*[@id="password"]/input`;
+const signInButton = () => getLocatorByLabel("sign-in-button");
+const successfulMessage = () => getLocatorByText("Login successful");
+
+export async function gotoHomePage() {
+  gotoURL("/", { waitUntil: "domcontentloaded", timeout: 60000 });
+}
+
+export async function login(username: string, password: string) {
+  await click(signInLink());
+  await fill(email(), "username");
+  await fill(password, "password");
+  await clickAndNavigate(signInButton());
+}
+
+export async function isLoginSuccessful() {
+  await expectElementToBeHidden(signInButton(), "Login should be successful");
+  return isElementVisible(successfulMessage());
+}
+```
+
+In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the page, perform a login action, and check if the login was successful.
+
+Refer `Running Tests` section below on how to run tests using CLI
+
+## Utilities
+
+The framework provides a set of utility functions that simplify common actions and assertions in Playwright. These functions are located in the `tests/utils` directory and include:
+
+- `LocatorUtils.ts`: Contains functions for locating web elements in different ways.
+- `ActionUtils.ts`: Contains functions for performing actions such as clicking, filling input fields, selecting options, and navigating pages.
+- `ElementUtils.ts`: Contains functions for conditional statements with web elements, text/s, inputvalue/s.
+- `AssertUtils.ts`: Contains functions for adding soft and hard assertions in your tests.
+- `Timeouts.ts`: Contains static timeouts to use along with different functions or to override the existing default timeouts using functional options
+
+Here are a few examples of how to use the utility function:
+
+### LocatorUtils
+
+The `LocatorUtils` module provides a set of utility functions that identify locators in different ways in Playwright.
+
+```typescript
+import {
+  getLocator,
+  getLocatorByTestId,
+  getLocatorByText,
+  getLocatorByRole,
+  getLocatorByLabel,
+} from "@LocatorUtils";
+
+const locator = () => getLocator("button#submit");
+const testIdLocator = () => getLocatorByTestId("submit-button");
+const textLocator = () => getLocatorByText("Submit");
+const roleLocator = () => getLocatorByRole("button");
+const labelLocator = () => getLocatorByLabel("Submit Button");
+```
+
+Mostly the examples are self-explanatory
+
+### ActionUtils
+
+The `ActionUtils` module provides a set of utility functions that simplify common actions in Playwright.
+
+```typescript
+import { gotoURL, click, fill, check, uploadFiles } from "@ActionUtils";
+import { MAX_TIMEOUT } from "@Timeouts";
+
+await gotoURL("https://www.example.com", { timeout: MAX_TIMEOUT });
+await click('text="Log in"');
+await fill("input#username", "myusername");
+await check("input#agree");
+await uploadFiles("input#file", "/path/to/myfile.jpg");
+await selectByValue("#dropdown", "selectValue");
+```
+
+In this example, we're using various functions from ActionUtils:
+
+1. `click(input: string | Locator, options?: ClickOptions)`: This function is used to click an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
+2. `gotoURL(path: string, options: GotoOptions)`: This function is used to navigate to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with NAVIGATION_TIMEOUT optional parameter
+3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function is used to fill a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.`
+4. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
+5. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
+6. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function is used to select a value from the drop down. The input parameter is a string or Locator representing the select element, the value parameter is the value to select for the drop-down option, and the SelectOptions parameter is an optional parameter that specifies additional select options. Similarly, we have selectByText() and selectByIndex() functions and selectByValues() for multi-select
+
+### Alerts
+
+```typescript
+import { acceptAlert, dismissAlert, getAlertText } from "@ActionUtils";
+await acceptAlert(outOfStockButton()); //click on an element that opens an alert and then accept the alert
+await dismissAlert(outOfStockButton()); //click on an element that opens an alert and then dismiss the alert
+const text = await getAlertText(outOfStockButton()); //click on an element which opens an alert and then get the text from the alert
+```
+
+### ElementUtils
+
+The `ElementUtils` module provides a set of utility functions for extracting values and condition checks in Playwright.
+
+```typescript
+import { getText, getAllTexts, getInputValue, getAttribute, attribute } from "@ElementUtils";
+const text = await getText(textLocator());
+const allTexts = await getAllTexts(textLocator());
+const inputValue = await getInputValue(userName());
+const attribute = await getAttribute(labelLocator(), 'class');
+if(isElementVisible(logoutButton())){
+   console.log(''Login is successful)
+} else{
+    console.log(''Login is not successful)
+}
+```
+
+Here's an example of how to use these functions:
+
+In this example, we're using various functions from ElementUtils:
+
+1. `getText(input: string | Locator,options?: TimeoutOption)`: This function gets inner text. The input parameter is a string or Locator representing the element to get text. TimeoutOption is an optional parameter for time out
+2. `getAllTexts(input: string | Locator):`: This function gets all inner texts from the given locator and TimeoutOption is an optional parameter for timeout
+3. `getInputValue(input: string | Locator, options?: TimeoutOption):`: This function gets input value form text or form fields. The input parameter is a string or Locator representing the element to get text. TimeoutOption is an optional parameter for time out
+4. `getAttribute(input: string | Locator,attributeName: string, options?: TimeoutOption):`: This function gets attribute value from the given attributeName parameter of the Locator with TiemoutOption as an optional parameter
+5. `isElementVisible(input: string | Locator, options?: TimeoutOption):`: This function checks whether the given input parameter is visible and returns a boolean value
+
+### AssertUtils
+
+The `AssertUtils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable
+
+```typescript
+import {
+  expectElementToBeVisible,
+  expectElementToBeHidden,
+  expectElementToHaveText,
+  expectElementNotToBeChecked,
+  expectElementNotToContainText,
+} from "@AssertUtils";
+import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from "@Timeouts";
+await expectElementToBeVisible(logoutButton(), "Login should be successful", {
+  timeout: STANDARD_TIMEOUT,
+});
+await expectElementToBeHidden(
+  signInButton(),
+  "signInButton should not be displayed"
+);
+await expectElementToHaveText(successfulMessage(), "Login is successful", {
+  ignoreCase: false,
+});
+await expectElementNotToBeChecked(agreeCheckbox(), {
+  timeout: INSTANT_TIMEOUT,
+});
+//with 'soft' optional parameter 'true' we are making this assertion as soft assertion
+await expectElementNotToContainText(successfulMessage(), "404 error", {
+  soft: true,
+});
+assertAllSoftAssertions(test.info()); // use this in the spec file to stop the test if there are failures for any soft assertions
+```
+
+Here's an example of how to use these functions:
+
+In this example, we're using various functions from AssertUtils:
+
+1. `expectElementToBeVisible(input: string | Locator, options?: ExpectOptions)`: This function checks if a specific element is visible on the page. The input parameter is a string or Locator representing the element you want to check. The options parameter is an optional parameter that specifies additional options like timeout and a custom message to display in the report if the assertion fails.
+2. `expectElementToBeHidden(element: Locator, message?: string, options?: ExpectOptions)`: This function checks if a specific element is hidden on the page. The parameters are the same as expectElementToBeVisible.
+3. `expectElementToHaveText(input: string | Locator,text: string | RegExp | Array<string | RegExp>,options?: ExpectOptions & ExpectTextOption)`: This function is asserting text equals. The input parameter is a string or Locator representing the element from where we assert text, the text parameter is the value you want to assert with, and the ExpectOptions and ExpectTextOption parameters are optional parameters that specify additional assert options like soft assertion, ignore case, etc.
+4. `expectElementNotToContainText(element: Locator, unexpectedText: string, options?: ExpectOptions)`: This function checks if a specific element does not contain a certain text. The unexpectedText parameter is the text you expect the element not to contain. Soft assertion is a Expectoptions parameter
+5. `assertAllSoftAssertions(testInfo: TestInfo)`: This function checks if there were any failures in the soft assertions and stops the test if there were. The testInfo parameter is the test information object from Playwright.
+
+These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail.
+
+## Running Tests
+
+To run the tests, use the following commands:
+
+#### npm run commands
+
+- To run a single test with grep command in headed mode:
+
+```bash
+npm run test -- -g 'login test'
+```
+
+- To run all the tests in a spec file:
+
+```bash
+npm run test -- nucleus.spec.ts
+```
+
+- To run all the tests in a spec file with 3 threads, and 2 retries in headless:
+
+```bash
+npm run reg -- nucleus.spec.ts -j 3 --retries 2
+```
+
+- To run in debug mode:
+
+```bash
+npm run test -- nucleus.spec.ts --debug
+```
+
+- To all the smoke tests using the tag:
+
+```bash
+npm run test -- -g '@smoke'
+```
+
+#### npx playwright test commands
+
+```bash
+npx playwright test -c playwright.config.ts -g "logo is present @reg" --headed -j 1 --retries 0
+```
+
+- -c -> pointing to the playwright.config file
+- -g -> grep the tests you want to run instead of all the tests
+- -j -> number of workers
+- --retries -> retry count for failed tests
+- --headed -> run in headed mode (default is headless)
+- --project=chromium
+- --repeat-each 3 -> repeat each test 3 times
+- --grep-invert -> opposite of -g or grep
+- --max-failures 4 -> Stop after the first 4 test failures. This includes a count of failures in the retry test as well
+- --list -> list all the tests, but do not run them.
+
+For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
 ## Contributing
 
