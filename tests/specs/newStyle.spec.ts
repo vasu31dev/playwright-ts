@@ -1,4 +1,4 @@
-import { test } from "tests/setup/PageSetup";
+import { test } from "@PageSetup";
 import LoginWithClass from "../pages/LoginWithClass";
 import * as LoginMethod from "../pages/LoginWithFunction";
 
