@@ -1,5 +1,5 @@
 import { test } from "@PageSetup";
-import { click } from "@TestUtils";
+import { click } from "@ActionUtils";
 import { clickMyAccountIcon, clicklogInText, navigateToHomepage } from "tests/pages/TrekPages/TrekHomePage";
 import { logInSuccessfullyAsB2BUser, verifyLogInFieldsAreEmptyAndUnchecked } from "tests/pages/TrekPages/TrekLoginPage";
 import { clickAppleLabelsTab, clickingOnAppleLabelToggleToMakeActive, updateAppleLabelDescription, acceptAppleLabelAlert, dismissAppleLabelAlert, verifyAppleLabelsSaveButtonEnabled } from "tests/pages/TrekPages/TrekAppleLabels";
