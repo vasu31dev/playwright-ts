@@ -296,6 +296,8 @@ In this example, we're using various functions from LocatorUtils:
 
 6. These locator functions can also be easily used with Locator operators( `and`, `or`) and filters(`filter`). For more information on Locator operators and filter, please refer to [Playwright Locator documentation](https://playwright.dev/docs/locators#filtering-locators)
 
+Here is some more information about `LocatorUtilis` usage as this is a unique POM design pattern
+
 - We use a closure to declare the Locator because the page object is initialized during runtime. If we call the function directly, it may return null due to the page object not being initialized yet. By using a closure, we ensure that we're accessing the page object only after it has been properly initialized.
 
 - For XPath or CSS selectors, we can directly use a string instead of a closure, as these selectors do not involve the page object. This approach allows us to define selectors in a straightforward manner without worrying about the page object's initialization state.
