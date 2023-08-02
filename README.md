@@ -215,12 +215,6 @@ export async function isLoginSuccessful() {
 }
 ```
 
-- We use a closure to declare the Locator because the page object is initialized during runtime. If we call the function directly, it may return null due to the page object not being initialized yet. By using a closure, we ensure that we're accessing the page object only after it has been properly initialized.
-
-- For XPath or CSS selectors, we can directly use a string instead of a closure, as these selectors do not involve the page object. This approach allows us to define selectors in a straightforward manner without worrying about the page object's initialization state.
-
-- We are calling the locator function instead of using a constant locator as the page object is initialized during runtime only.
-
 In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the page, perform a login action, and check if the login was successful.
 
 Refer [LocatorUtils](#locatorutils) section for more info on locators.
@@ -273,6 +267,12 @@ In this example, we're using various functions from LocatorUtils:
 
 5. `getLocatorByLabel(label: string)`: This function returns a Locator object for the element with the given label. The label parameter is a string representing the label of the element you want to locate.
 
+- We use a closure to declare the Locator because the page object is initialized during runtime. If we call the function directly, it may return null due to the page object not being initialized yet. By using a closure, we ensure that we're accessing the page object only after it has been properly initialized.
+
+- For XPath or CSS selectors, we can directly use a string instead of a closure, as these selectors do not involve the page object. This approach allows us to define selectors in a straightforward manner without worrying about the page object's initialization state.
+
+- We are calling the locator function instead of using a constant locator as the page object is initialized during runtime only.
+  
 These functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
 
 ### ActionUtils
