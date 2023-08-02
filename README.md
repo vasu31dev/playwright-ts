@@ -196,7 +196,11 @@ test("successful login", async () => {
 });
 ```
 
-In this example, we're testing a login functionality. We first navigate to the home page, then perform the login action, and finally verify if the login was successful. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
+In this example, we are setting the page state and writing the spec file
+
+1. `setPage` function from `Pagesetup` file will set the page state before every each test and is imported to our spec files while excuting the tests. If you want to use Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
+
+2. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
 ### Page Objects
 
