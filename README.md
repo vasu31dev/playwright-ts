@@ -58,6 +58,7 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
 This project uses the following languages and frameworks:
 
 Typescript as the programming language
+ESLint
 Playwright test runner for executing tests
 Playwright web first assertions for assertions
 Allure Report as the testing report strategy
@@ -256,7 +257,7 @@ The framework provides a set of utility functions that simplify common actions a
 
 These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
-Here are a few examples of how to use the utility function:
+Here are a few examples of how to use the utility functions:
 
 ### LocatorUtils
 
@@ -317,9 +318,9 @@ In this example, we're using various functions from LocatorUtils to handle frame
 
 1. `getFrameLocator(frameInput: string | FrameLocator):`: This function returns a FrameLocator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate
 
-2. `getLocatorInFrame(frameInput: string | FrameLocator,input: string | Locator):`: This function returns a Locator object inside the frame. The frameInput parameter is a string or Locator representing the frame and input parameter a string or Locator of the element you want to locate inside the frame.
+2. `getLocatorInFrame(frameInput: string | FrameLocator,input: string | Locator):`: This function returns a Locator object inside the frame. The frameInput parameter is a string or Locator representing the frame that you want to locate the element with in and the input parameter is a string or Locator of the element you want to locate inside the frame.
 
-These functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
+These Locator functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
 
 ### ActionUtils
 
