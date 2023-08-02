@@ -9,17 +9,24 @@ This framework is ideal for QA professionals, developers, and business analysts 
 ## Key Features:
 
 - **Unique Page Object Model Design Pattern**: Our Page Object Model (POM) design is not just another POM. It's a unique approach that significantly reduces complexity and accelerates coding, making it easier and faster to write scripts compared to traditional POMs. This means less time spent on setup and more time spent on creating effective tests. [See how we differ from the traditional Playwright POM](https://playwright.dev/docs/pom).
-- **Ease of Use**: Designed to be intuitive and user-friendly, making it an excellent choice for beginners to understand and write scripts. This means less time spent on learning the tool and more time spent on creating effective tests.
-- **User-Friendly for All Roles**: This framework is not just for QA professionals. Developers, manual QA, and even Business Analysts can contribute to end-to-end testing, promoting collaboration across different departments and roles.
-- **Utility Functions**: Simplifies common actions and assertions, such as clicking buttons, filling forms, and checking elements. It also includes inbuilt methods for conditional statements and maintains a default LoadState across applications.
-- **Customizable**: Easily adaptable to meet individual project needs, fitting seamlessly into any project, regardless of its specific requirements or constraints.
-- **Inbuilt CI/CD Support with GitHub Actions**: Facilitates continuous integration and continuous delivery with inbuilt support for GitHub actions, automating your testing process from code integration to delivery.
-- **Versatile Support**: Supports testing for Web in Desktop and Mobile, Electron Desktop applications, and APIs, allowing comprehensive testing across different platforms and applications.
-- **Detailed Reporting**: Provides screenshots, videos, and traces of test failures, making it easier to understand and fix issues.
-- **Local Web Server**: Allows you to test UI code changes directly on your local machine or on a VM by easily setting up a local web server, eliminating the need for a separate testing environment.
-  
-In essence, the Playwright TypeScript Framework is a powerful, flexible, and user-friendly tool that leverages the power of Playwright and TypeScript. It's an excellent choice for teams looking to improve their testing practices and efficiency.
 
+- **Ease of Use**: Designed to be intuitive and user-friendly, making it an excellent choice for beginners to understand and write scripts. This means less time spent on learning the tool and more time spent on creating effective tests.
+
+- **User-Friendly for All Roles**: This framework is not just for QA professionals. Developers, manual QA, and even Business Analysts can contribute to end-to-end testing, promoting collaboration across different departments and roles.
+
+- **Utility Functions**: Simplifies common actions and assertions, such as clicking buttons, filling forms, and checking elements. It also includes inbuilt methods for conditional statements and maintains a default LoadState across applications.
+
+- **Customizable**: Easily adaptable to meet individual project needs, fitting seamlessly into any project, regardless of its specific requirements or constraints.
+
+- **Inbuilt CI/CD Support with GitHub Actions**: Facilitates continuous integration and continuous delivery with inbuilt support for GitHub actions, automating your testing process from code integration to delivery.
+
+- **Versatile Support**: Supports testing for Web in Desktop and Mobile, Electron Desktop applications, and APIs, allowing comprehensive testing across different platforms and applications.
+
+- **Detailed Reporting**: Provides screenshots, videos, and traces of test failures, making it easier to understand and fix issues.
+
+- **Local Web Server**: Allows you to test UI code changes directly on your local machine or on a VM by easily setting up a local web server, eliminating the need for a separate testing environment.
+
+In essence, the Playwright TypeScript Framework is a powerful, flexible, and user-friendly tool that leverages the power of Playwright and TypeScript. It's an excellent choice for teams looking to improve their testing practices and efficiency.
 
 ## Table of Contents
 
@@ -33,16 +40,27 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Page Objects](#page-objects)
 - [Utilities](#utilities)
   - [LocatorUtils](#locatorutils)
+  - [Frames](#frames)
   - [ActionUtils](#actionutils)
   - [Alerts](#alerts)
   - [ElementUtils](#elementutils)
   - [AssertUtils](#assertutils)
+  - [Types](#types)
 - [Framework Setup](#framework-setup)
-  - [Switching Pages](#pagefactory) 
+  - [Switching Pages](#pagefactory)
 - [Running Tests](#running-tests)
 - [Contributing](#contributing)
 
 ## Getting Started
+
+### Languages and Frameworks
+
+This project uses the following languages and frameworks:
+
+Typescript as the programming language
+Playwright test runner for executing tests
+Playwright web first assertions for assertions
+Allure Report as the testing report strategy
 
 ### Prerequisites
 
@@ -76,7 +94,7 @@ npx playwright install
 ```
 
 5. Git User setup for the first time. If you are a code/test contributor, set up your user in GIT using the commands:
-   
+
    ```bash
    git config user.email "<your-email>"
    git config user.name "<your-name>"
@@ -121,13 +139,18 @@ npx playwright install
 The project is structured into several packages and files, each serving a specific purpose:
 
 - `tests`: This directory contains all the end-to-end test files, API tests, and related utilities for testing the application.
+
 - `.eslintrc`: This file contains the configuration for ESLint, a tool for identifying and reporting patterns in JavaScript.
+
 - `.gitignore`: This file specifies intentionally untracked files that Git should ignore.
+
 - `README.md`: This file provides information about the project and instructions on how to use it.
+
 - `package-lock.json` and `package.json`: These files contain the project's npm dependencies.
+
 - `playwright.config.ts`: This file contains the configuration for Playwright, including settings for different browsers and devices, such as viewport sizes, user agent strings, and launch options.
+
 - `tsconfig.json`: This file specifies the root files and the compiler options required to compile the project.
-  
 
 ## Framework Setup
 
@@ -172,7 +195,7 @@ test("successful login", async () => {
 });
 ```
 
-In this example, we're testing a login functionality. We first navigate to the home page, then perform the login action, and finally verify if the login was successful. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all the pages operate on the same page object.
+In this example, we're testing a login functionality. We first navigate to the home page, then perform the login action, and finally verify if the login was successful. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
 ### Page Objects
 
@@ -193,7 +216,7 @@ import { isElementVisible } from "@ElementUtils";
 
 const signInLink = () =>
   getLocatorByTestId("sign-in-button").or(getLocatorByTestId("sign-in-link"));
-const email = () => getLocatorByTestId("email-input"); 
+const email = () => getLocatorByTestId("email-input");
 const password = `//*[@id="password"]/input`;
 const signInButton = () => getLocatorByLabel("sign-in-button");
 const successfulMessage = () => getLocatorByText("Login successful");
@@ -203,7 +226,7 @@ export async function gotoHomePage() {
 }
 
 export async function login(username: string, password: string) {
-  await click(signInLink()); 
+  await click(signInLink());
   await fill(email(), "username");
   await fill(password, "password");
   await clickAndNavigate(signInButton());
@@ -229,7 +252,7 @@ The framework provides a set of utility functions that simplify common actions a
 - `ActionUtils.ts`: This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
 - `ElementUtils.ts`: This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
 - `AssertUtils.ts`: This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
-- `Timeouts.ts`:  This file contains static timeout values that can be used along with different functions.
+- `Timeouts.ts`: This file contains static timeout values that can be used along with different functions.
 
 These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
@@ -253,6 +276,9 @@ const testIdLocator = () => getLocatorByTestId("submit-button");
 const textLocator = () => getLocatorByText("Submit");
 const roleLocator = () => getLocatorByRole("button");
 const labelLocator = () => getLocatorByLabel("Submit Button");
+const locatorWithAnd = () => getLocator("button#submit").and.(getLocator("button#Enabled"));
+const locatorWithOr = () => getLocator("button#gridview").or.(getLocator("button#listview"));
+const locatorWithFilter = () => getLocatorByRole("button").filter({hasText: "submit"});
 ```
 
 In this example, we're using various functions from LocatorUtils:
@@ -267,12 +293,32 @@ In this example, we're using various functions from LocatorUtils:
 
 5. `getLocatorByLabel(label: string)`: This function returns a Locator object for the element with the given label. The label parameter is a string representing the label of the element you want to locate.
 
+6. These locator functions can also be easily used with Locator operators( `and`, `or`) and filters(`filter`). For more information on Locator operators and filter, please refer to [Playwright Locator documentation](https://playwright.dev/docs/locators#filtering-locators)
+
 - We use a closure to declare the Locator because the page object is initialized during runtime. If we call the function directly, it may return null due to the page object not being initialized yet. By using a closure, we ensure that we're accessing the page object only after it has been properly initialized.
 
 - For XPath or CSS selectors, we can directly use a string instead of a closure, as these selectors do not involve the page object. This approach allows us to define selectors in a straightforward manner without worrying about the page object's initialization state.
 
 - We are calling the locator function instead of using a constant locator as the page object is initialized during runtime only.
-  
+
+Refer to the [Types](#types) section below for more information of optional parameters.
+
+#### Frames
+
+The `LocatorUtils` module provides utility functions to handle frames in Playwright.
+
+```typescript
+import { getFrameLocator, getLocatorInFrame } from "@LocatorUtils";
+await getFrameLocator(frame());
+await getLocatorInFrame(frame(), elementInsideFrame());
+```
+
+In this example, we're using various functions from LocatorUtils to handle frames:
+
+1. `getFrameLocator(frameInput: string | FrameLocator):`: This function returns a FrameLocator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate
+
+2. `getLocatorInFrame(frameInput: string | FrameLocator,input: string | Locator):`: This function returns a Locator object inside the frame. The frameInput parameter is a string or Locator representing the frame and input parameter a string or Locator of the element you want to locate inside the frame.
+
 These functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
 
 ### ActionUtils
@@ -280,7 +326,14 @@ These functions make it easier to locate elements on the page, and they provide 
 The `ActionUtils` module provides a set of utility functions that simplify common actions in Playwright.
 
 ```typescript
-import { gotoURL, click, fill, check, uploadFiles, selectByValue } from "@ActionUtils";
+import {
+  gotoURL,
+  click,
+  fill,
+  check,
+  uploadFiles,
+  selectByValue,
+} from "@ActionUtils";
 import { MAX_TIMEOUT } from "@Timeouts";
 
 await gotoURL("https://www.example.com", { timeout: MAX_TIMEOUT });
@@ -293,13 +346,21 @@ await selectByValue("#dropdown", "selectValue");
 
 In this example, we're using various functions from ActionUtils:
 
-1. `click(input: string | Locator, options?: ClickOptions)`: This function is used to click an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
-2. `gotoURL(path: string, options: GotoOptions)`: This function is used to navigate to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
+1. `gotoURL(path: string, options: GotoOptions)`: This function is used to navigate to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
+
+2. `click(input: string | Locator, options?: ClickOptions)`: This function is used to click an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
+
 3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function is used to fill a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
+
 4. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
+
 5. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
+
 6. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function is used to select a value from a dropdown. The input parameter is a string or Locator representing the select element, the value parameter is the value to select for the dropdown option, and the SelectOptions parameter is an optional parameter that specifies additional select options.
+
 7. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
+
+Refer to the [Types](#types) section below for more information of optional parameters.
 
 ### Alerts
 
@@ -317,7 +378,7 @@ In this example, we're using various functions from ActionUtils to handle alerts
 1. `acceptAlert(input: string | Locator, promptText?: string)`: This function is used to accept an alert dialog. The input parameter is a string or Locator representing the element that triggers the alert, and the promptText parameter is an optional parameter that specifies the text to enter into a prompt dialog.
 
 2. `dismissAlert(input: string | Locator)`: This function is used to dismiss an alert dialog. The input parameter is a string or Locator representing the element that triggers the alert.
-   
+
 3. `getAlertText(input: string | Locator)`: This function is used to get the text from an alert dialog. The input parameter is a string or Locator representing the element that triggers the alert.
 
 ### ElementUtils
@@ -340,9 +401,13 @@ if(isElementVisible(logoutButton())){
 In this example, we're using various functions from ElementUtils:
 
 1. `getText(input: string | Locator, options?: TimeoutOption)`: This function gets the inner text of an element. The input parameter is a string or Locator representing the element from which to get the text. TimeoutOption is an optional parameter for timeout.
+
 2. `getAllTexts(input: string | Locator)`: This function gets all inner texts from the given locator. TimeoutOption is an optional parameter for timeout.
+
 3. `getInputValue(input: string | Locator, options?: TimeoutOption)`: This function gets the input value from text or form fields. The input parameter is a string or Locator representing the element from which to get the text. TimeoutOption is an optional parameter for timeout.
+
 4. `getAttribute(input: string | Locator,attributeName: string, options?: TimeoutOption)`: This function gets the attribute value from the given attributeName parameter of the Locator. TimeoutOption is an optional parameter for timeout.
+
 5. `isElementVisible(input: string | Locator, options?: TimeoutOption)`: This function checks whether the given input parameter is visible and returns a boolean value. TimeoutOption is an optional parameter for timeout.
 
 ### AssertUtils
@@ -381,12 +446,22 @@ assertAllSoftAssertions(test.info()); // use this in the spec file to stop the t
 In this example, we're using various functions from AssertUtils:
 
 1. `expectElementToBeVisible(input: string | Locator, options?: ExpectOptions)`: This function checks if a specific element is visible on the page. The input parameter is a string or Locator representing the element you want to check. The options parameter is an optional parameter that specifies additional options like timeout and a custom message to display in the report if the assertion fails.
+
 2. `expectElementToBeHidden(element: Locator, message?: string, options?: ExpectOptions)`: This function checks if a specific element is hidden on the page. The parameters are the same as expectElementToBeVisible.
+
 3. `expectElementToHaveText(input: string | Locator,text: string | RegExp | Array<string | RegExp>,options?: ExpectOptions & ExpectTextOption)`: This function asserts that the text of a specific element matches the expected text. The input parameter is a string or Locator representing the element from where we assert text, the text parameter is the value you want to assert with, and the ExpectOptions and ExpectTextOption parameters are optional parameters that specify additional assert options like soft assertion, ignore case, etc.
+
 4. `expectElementNotToContainText(element: Locator, unexpectedText: string, options?: ExpectOptions)`: This function checks if a specific element does not contain a certain text. The unexpectedText parameter is the text you expect the element not to contain. Soft assertion is a Expectoptions parameter.
+
 5. `assertAllSoftAssertions(testInfo: TestInfo)`: This function checks if there were any failures in the soft assertions and stops the test if there were. The testInfo parameter is the test information object from Playwright.
 
 These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail. They also support both hard and soft assertions, allowing you to choose the appropriate level of strictness for your tests.
+
+Refer to the [Types](#types) section below for more information of optional parameters.
+
+### Types
+
+types content
 
 ## Running Tests
 
