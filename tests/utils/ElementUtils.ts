@@ -1,8 +1,9 @@
 import { Locator } from '@playwright/test';
 import { getPage } from '@PageFactory';
-import { TimeoutOption } from '@Types';
+import { NavigationOptions, TimeoutOption } from '@Types';
 import { getAllLocators, getLocator } from '@LocatorUtils';
 import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from '@Timeouts';
+import { waitForPageLoadState } from '@ActionUtils';
 
 // Text
 export async function getText(
@@ -49,6 +50,18 @@ export async function getAttribute(
 
 export async function saveStorageState(path?: string): Promise<void> {
   await getPage().context().storageState({ path: path });
+}
+
+export async function getURL(options: NavigationOptions = {waitUntil: 'load'}): Promise<string> {
+  try {
+    await waitForPageLoadState(options);
+    return getPage().url();
+  } catch (error) {
+    console.log(
+      `getURL- ${error instanceof Error ? error.message : String(error)}`,
+    );
+    return '';
+  }
 }
 
 export async function getLocatorCount(
