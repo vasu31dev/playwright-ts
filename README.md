@@ -176,7 +176,7 @@ In this example, we're testing a login functionality. We first navigate to the h
 
 ### Page Objects
 
-Page objects are used to encapsulate the information about the elements on each of your application's pages, as well as the methods and assertions to interact with each page. Page objects can be found in the `pages` directory.
+Page objects are utilized to encapsulate information about the elements present on each page of your application. They also provide a structured way to write action and assertion functions for various functionalities on each page. This approach promotes code reusability and makes the tests easier to maintain and understand. Page objects can be found in the `pages` directory.
 
 Here's an example of a page object under `pages` package:
 
@@ -191,10 +191,9 @@ import { gotoURL, click, fill, clickAndNavigate } from "@ActionUtils";
 import { expectElementToBeHidden } from "@AssertUtils";
 import { isElementVisible } from "@ElementUtils";
 
-//Refer LocatorUtils section for more info on locators
 const signInLink = () =>
   getLocatorByTestId("sign-in-button").or(getLocatorByTestId("sign-in-link"));
-const email = () => getLocatorByTestId("email-input");
+const email = () => getLocatorByTestId("email-input"); 
 const password = `//*[@id="password"]/input`;
 const signInButton = () => getLocatorByLabel("sign-in-button");
 const successfulMessage = () => getLocatorByText("Login successful");
@@ -204,7 +203,7 @@ export async function gotoHomePage() {
 }
 
 export async function login(username: string, password: string) {
-  await click(signInLink());
+  await click(signInLink()); 
   await fill(email(), "username");
   await fill(password, "password");
   await clickAndNavigate(signInButton());
@@ -216,7 +215,15 @@ export async function isLoginSuccessful() {
 }
 ```
 
+- We use a closure to declare the Locator because the page object is initialized during runtime. If we call the function directly, it may return null due to the page object not being initialized yet. By using a closure, we ensure that we're accessing the page object only after it has been properly initialized.
+
+- For XPath or CSS selectors, we can directly use a string instead of a closure, as these selectors do not involve the page object. This approach allows us to define selectors in a straightforward manner without worrying about the page object's initialization state.
+
+- We are calling the locator function instead of using a constant locator as the page object is initialized during runtime only.
+
 In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the page, perform a login action, and check if the login was successful.
+
+Refer [LocatorUtils](#locatorutils) section for more info on locators.
 
 Refer to the [Running Tests](#running-tests) section below on how to run tests using the command-line interface (CLI).
 
@@ -224,11 +231,13 @@ Refer to the [Running Tests](#running-tests) section below on how to run tests u
 
 The framework provides a set of utility functions that simplify common actions and assertions in Playwright. These functions are located in the `tests/utils` directory and include:
 
-- `LocatorUtils.ts`: Contains functions for locating web elements in different ways.
-- `ActionUtils.ts`: Contains functions for performing actions such as clicking, filling input fields, selecting options, and navigating pages.
-- `ElementUtils.ts`: Contains functions for conditional statements with web elements, text/s, inputvalue/s.
-- `AssertUtils.ts`: Contains functions for adding soft and hard assertions in your tests.
-- `Timeouts.ts`: Contains static timeouts to use along with different functions or to override the existing default timeouts using functional options
+- `LocatorUtils.ts`: This file contains functions for locating web elements in different ways, such as by test ID, label, text, CSS, or XPath.
+- `ActionUtils.ts`: This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
+- `ElementUtils.ts`: This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
+- `AssertUtils.ts`: This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
+- `Timeouts.ts`:  This file contains static timeout values that can be used along with different functions.
+
+These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
 Here are a few examples of how to use the utility function:
 
@@ -252,14 +261,26 @@ const roleLocator = () => getLocatorByRole("button");
 const labelLocator = () => getLocatorByLabel("Submit Button");
 ```
 
-Mostly the examples are self-explanatory
+In this example, we're using various functions from LocatorUtils:
+
+1. `getLocator(selector: string)`: This function returns a Locator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the element you want to locate.
+
+2. `getLocatorByTestId(testId: string)`: This function returns a Locator object for the element with the given test ID. The testId parameter is a string representing the test ID of the element you want to locate.
+
+3. `getLocatorByText(text: string)`: This function returns a Locator object for the element with the given text. The text parameter is a string representing the text of the element you want to locate.
+
+4. `getLocatorByRole(role: string)`: This function returns a Locator object for the element with the given ARIA role. The role parameter is a string representing the ARIA role of the element you want to locate.
+
+5. `getLocatorByLabel(label: string)`: This function returns a Locator object for the element with the given label. The label parameter is a string representing the label of the element you want to locate.
+
+These functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
 
 ### ActionUtils
 
 The `ActionUtils` module provides a set of utility functions that simplify common actions in Playwright.
 
 ```typescript
-import { gotoURL, click, fill, check, uploadFiles } from "@ActionUtils";
+import { gotoURL, click, fill, check, uploadFiles, selectByValue } from "@ActionUtils";
 import { MAX_TIMEOUT } from "@Timeouts";
 
 await gotoURL("https://www.example.com", { timeout: MAX_TIMEOUT });
@@ -273,13 +294,16 @@ await selectByValue("#dropdown", "selectValue");
 In this example, we're using various functions from ActionUtils:
 
 1. `click(input: string | Locator, options?: ClickOptions)`: This function is used to click an element on the page. The input parameter is a string or Locator representing the element you want to click, and the options parameter is an optional parameter that specifies additional click options.
-2. `gotoURL(path: string, options: GotoOptions)`: This function is used to navigate to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with NAVIGATION_TIMEOUT optional parameter
-3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function is used to fill a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.`
+2. `gotoURL(path: string, options: GotoOptions)`: This function is used to navigate to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
+3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function is used to fill a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
 4. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
 5. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
-6. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function is used to select a value from the drop down. The input parameter is a string or Locator representing the select element, the value parameter is the value to select for the drop-down option, and the SelectOptions parameter is an optional parameter that specifies additional select options. Similarly, we have selectByText() and selectByIndex() functions and selectByValues() for multi-select
+6. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function is used to select a value from a dropdown. The input parameter is a string or Locator representing the select element, the value parameter is the value to select for the dropdown option, and the SelectOptions parameter is an optional parameter that specifies additional select options.
+7. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
 
 ### Alerts
+
+The `ActionUtils` module provides utility functions to handle alerts in Playwright.
 
 ```typescript
 import { acceptAlert, dismissAlert, getAlertText } from "@ActionUtils";
@@ -288,9 +312,17 @@ await dismissAlert(outOfStockButton()); //click on an element that opens an aler
 const text = await getAlertText(outOfStockButton()); //click on an element which opens an alert and then get the text from the alert
 ```
 
+In this example, we're using various functions from ActionUtils to handle alerts:
+
+1. `acceptAlert(input: string | Locator, promptText?: string)`: This function is used to accept an alert dialog. The input parameter is a string or Locator representing the element that triggers the alert, and the promptText parameter is an optional parameter that specifies the text to enter into a prompt dialog.
+
+2. `dismissAlert(input: string | Locator)`: This function is used to dismiss an alert dialog. The input parameter is a string or Locator representing the element that triggers the alert.
+   
+3. `getAlertText(input: string | Locator)`: This function is used to get the text from an alert dialog. The input parameter is a string or Locator representing the element that triggers the alert.
+
 ### ElementUtils
 
-The `ElementUtils` module provides a set of utility functions for extracting values and condition checks in Playwright.
+The `ElementUtils` module provides utility functions for extracting values from web elements and performing condition checks. These functions are designed to handle common tasks related to web elements, such as retrieving text or attribute values, checking visibility, and more.
 
 ```typescript
 import { getText, getAllTexts, getInputValue, getAttribute, attribute } from "@ElementUtils";
@@ -305,19 +337,17 @@ if(isElementVisible(logoutButton())){
 }
 ```
 
-Here's an example of how to use these functions:
-
 In this example, we're using various functions from ElementUtils:
 
-1. `getText(input: string | Locator,options?: TimeoutOption)`: This function gets inner text. The input parameter is a string or Locator representing the element to get text. TimeoutOption is an optional parameter for time out
-2. `getAllTexts(input: string | Locator):`: This function gets all inner texts from the given locator and TimeoutOption is an optional parameter for timeout
-3. `getInputValue(input: string | Locator, options?: TimeoutOption):`: This function gets input value form text or form fields. The input parameter is a string or Locator representing the element to get text. TimeoutOption is an optional parameter for time out
-4. `getAttribute(input: string | Locator,attributeName: string, options?: TimeoutOption):`: This function gets attribute value from the given attributeName parameter of the Locator with TiemoutOption as an optional parameter
-5. `isElementVisible(input: string | Locator, options?: TimeoutOption):`: This function checks whether the given input parameter is visible and returns a boolean value
+1. `getText(input: string | Locator, options?: TimeoutOption)`: This function gets the inner text of an element. The input parameter is a string or Locator representing the element from which to get the text. TimeoutOption is an optional parameter for timeout.
+2. `getAllTexts(input: string | Locator)`: This function gets all inner texts from the given locator. TimeoutOption is an optional parameter for timeout.
+3. `getInputValue(input: string | Locator, options?: TimeoutOption)`: This function gets the input value from text or form fields. The input parameter is a string or Locator representing the element from which to get the text. TimeoutOption is an optional parameter for timeout.
+4. `getAttribute(input: string | Locator,attributeName: string, options?: TimeoutOption)`: This function gets the attribute value from the given attributeName parameter of the Locator. TimeoutOption is an optional parameter for timeout.
+5. `isElementVisible(input: string | Locator, options?: TimeoutOption)`: This function checks whether the given input parameter is visible and returns a boolean value. TimeoutOption is an optional parameter for timeout.
 
 ### AssertUtils
 
-The `AssertUtils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable
+The `AssertUtils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable.
 
 ```typescript
 import {
@@ -348,17 +378,15 @@ await expectElementNotToContainText(successfulMessage(), "404 error", {
 assertAllSoftAssertions(test.info()); // use this in the spec file to stop the test if there are failures for any soft assertions
 ```
 
-Here's an example of how to use these functions:
-
 In this example, we're using various functions from AssertUtils:
 
 1. `expectElementToBeVisible(input: string | Locator, options?: ExpectOptions)`: This function checks if a specific element is visible on the page. The input parameter is a string or Locator representing the element you want to check. The options parameter is an optional parameter that specifies additional options like timeout and a custom message to display in the report if the assertion fails.
 2. `expectElementToBeHidden(element: Locator, message?: string, options?: ExpectOptions)`: This function checks if a specific element is hidden on the page. The parameters are the same as expectElementToBeVisible.
-3. `expectElementToHaveText(input: string | Locator,text: string | RegExp | Array<string | RegExp>,options?: ExpectOptions & ExpectTextOption)`: This function is asserting text equals. The input parameter is a string or Locator representing the element from where we assert text, the text parameter is the value you want to assert with, and the ExpectOptions and ExpectTextOption parameters are optional parameters that specify additional assert options like soft assertion, ignore case, etc.
-4. `expectElementNotToContainText(element: Locator, unexpectedText: string, options?: ExpectOptions)`: This function checks if a specific element does not contain a certain text. The unexpectedText parameter is the text you expect the element not to contain. Soft assertion is a Expectoptions parameter
+3. `expectElementToHaveText(input: string | Locator,text: string | RegExp | Array<string | RegExp>,options?: ExpectOptions & ExpectTextOption)`: This function asserts that the text of a specific element matches the expected text. The input parameter is a string or Locator representing the element from where we assert text, the text parameter is the value you want to assert with, and the ExpectOptions and ExpectTextOption parameters are optional parameters that specify additional assert options like soft assertion, ignore case, etc.
+4. `expectElementNotToContainText(element: Locator, unexpectedText: string, options?: ExpectOptions)`: This function checks if a specific element does not contain a certain text. The unexpectedText parameter is the text you expect the element not to contain. Soft assertion is a Expectoptions parameter.
 5. `assertAllSoftAssertions(testInfo: TestInfo)`: This function checks if there were any failures in the soft assertions and stops the test if there were. The testInfo parameter is the test information object from Playwright.
 
-These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail.
+These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail. They also support both hard and soft assertions, allowing you to choose the appropriate level of strictness for your tests.
 
 ## Running Tests
 
