@@ -14,7 +14,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    // "prettier/prettier": "error",
+    "prettier/prettier": "error",
     "sort-imports": [
       "error",
       {

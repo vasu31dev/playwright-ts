@@ -1,8 +1,4 @@
-import {
-  FrameLocator,
-  Locator,
-  selectors,
-} from "@playwright/test";
+import { FrameLocator, Locator, selectors } from "@playwright/test";
 import { getPage } from "@PageFactory";
 import {
   GetByPlaceholderOptions,
@@ -15,14 +11,14 @@ import {
 // Locators
 export function getLocator(
   input: string | Locator,
-  options?: LocatorOptions
+  options?: LocatorOptions,
 ): Locator {
   return typeof input === "string" ? getPage().locator(input, options) : input;
 }
 
 export function getLocatorByTestId(
   testId: string | RegExp,
-  attributeName?: string
+  attributeName?: string,
 ): Locator {
   if (attributeName) {
     selectors.setTestIdAttribute(attributeName);
@@ -32,35 +28,35 @@ export function getLocatorByTestId(
 
 export function getLocatorByText(
   text: string | RegExp,
-  options?: GetByTextOptions
+  options?: GetByTextOptions,
 ): Locator {
   return getPage().getByText(text, options);
 }
 
 export function getLocatorByRole(
   role: GetByRoleTypes,
-  options?: GetByRoleOptions
+  options?: GetByRoleOptions,
 ): Locator {
   return getPage().getByRole(role, options);
 }
 
 export function getLocatorByLabel(
   text: string | RegExp,
-  options?: GetByRoleOptions
+  options?: GetByRoleOptions,
 ): Locator {
   return getPage().getByLabel(text, options);
 }
 
 export function getLocatorByPlaceholder(
   text: string | RegExp,
-  options?: GetByPlaceholderOptions
+  options?: GetByPlaceholderOptions,
 ): Locator {
   return getPage().getByPlaceholder(text, options);
 }
 
 export async function getAllLocators(
   input: string | Locator,
-  options?: LocatorOptions
+  options?: LocatorOptions,
 ): Promise<Locator[]> {
   return typeof input === "string"
     ? await getPage().locator(input, options).all()
@@ -69,7 +65,7 @@ export async function getAllLocators(
 
 //Frames
 export function getFrameLocator(
-  frameInput: string | FrameLocator
+  frameInput: string | FrameLocator,
 ): FrameLocator {
   return typeof frameInput === "string"
     ? getPage().frameLocator(frameInput)
@@ -78,7 +74,7 @@ export function getFrameLocator(
 
 export function getLocatorInFrame(
   frameInput: string | FrameLocator,
-  input: string | Locator
+  input: string | Locator,
 ): Locator {
   return getFrameLocator(frameInput).locator(input);
 }

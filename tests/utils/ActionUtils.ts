@@ -24,14 +24,14 @@ import { getLocator } from "@LocatorUtils";
 // Navigations
 export async function gotoURL(
   path: string,
-  options: GotoOptions = { waitUntil: LOADSTATE }
+  options: GotoOptions = { waitUntil: LOADSTATE },
 ): Promise<null | Response> {
   return await getPage().goto(path, options);
 }
 
 // Helper function to wait for a specific page load state
 export async function waitForPageLoadState(
-  options?: NavigationOptions
+  options?: NavigationOptions,
 ): Promise<void> {
   let waitUntil: WaitForLoadStateOptions = LOADSTATE;
 
@@ -65,7 +65,7 @@ export async function wait(ms: number): Promise<void> {
 // Actions
 export async function click(
   input: string | Locator,
-  options?: ClickOptions
+  options?: ClickOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.click(options);
@@ -73,7 +73,7 @@ export async function click(
 
 export async function clickAndNavigate(
   input: string | Locator,
-  options?: ClickOptions
+  options?: ClickOptions,
 ): Promise<void> {
   const timeout = options?.timeout || STANDARD_TIMEOUT;
   await Promise.all([
@@ -88,7 +88,7 @@ export async function clickAndNavigate(
 export async function fill(
   input: string | Locator,
   value: string,
-  options?: FillOptions
+  options?: FillOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.fill(value, options);
@@ -97,7 +97,7 @@ export async function fill(
 export async function fillAndEnter(
   input: string | Locator,
   value: string,
-  options?: FillOptions
+  options?: FillOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.fill(value, options);
@@ -107,7 +107,7 @@ export async function fillAndEnter(
 export async function type(
   input: string | Locator,
   value: string,
-  options?: TypeOptions
+  options?: TypeOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.type(value, options);
@@ -115,7 +115,7 @@ export async function type(
 
 export async function clear(
   input: string | Locator,
-  options?: ClearOptions
+  options?: ClearOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.clear(options);
@@ -123,7 +123,7 @@ export async function clear(
 
 export async function check(
   input: string | Locator,
-  options?: CheckOptions
+  options?: CheckOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.check(options);
@@ -131,7 +131,7 @@ export async function check(
 
 export async function uncheck(
   input: string | Locator,
-  options?: CheckOptions
+  options?: CheckOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.uncheck(options);
@@ -140,7 +140,7 @@ export async function uncheck(
 export async function selectByValue(
   input: string | Locator,
   value: string,
-  options?: SelectOptions
+  options?: SelectOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.selectOption({ value: value }, options);
@@ -149,7 +149,7 @@ export async function selectByValue(
 export async function selectByValues(
   input: string | Locator,
   value: Array<string>,
-  options?: SelectOptions
+  options?: SelectOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.selectOption(value, options);
@@ -158,7 +158,7 @@ export async function selectByValues(
 export async function selectByText(
   input: string | Locator,
   text: string,
-  options?: SelectOptions
+  options?: SelectOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.selectOption({ label: text }, options);
@@ -167,7 +167,7 @@ export async function selectByText(
 export async function selectByIndex(
   input: string | Locator,
   index: number,
-  options?: SelectOptions
+  options?: SelectOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.selectOption({ index: index }, options);
@@ -176,15 +176,15 @@ export async function selectByIndex(
 //todo: Optmize Alert functions with DRY principle
 export async function acceptAlert(
   input: string | Locator,
-  promptText?: string
+  promptText?: string,
 ): Promise<string> {
   const locator = getLocator(input);
   let dialogMessage = "";
-  getPage().once("dialog", (dialog) => {
+  getPage().once("dialog", dialog => {
     dialogMessage = dialog.message();
     dialog
       .accept(promptText)
-      .catch((e) => console.error("Error accepting dialog:", e));
+      .catch(e => console.error("Error accepting dialog:", e));
   });
   await locator.click();
   // temporary fix to alerts - Need to be fixed
@@ -195,9 +195,9 @@ export async function acceptAlert(
 export async function dismissAlert(input: string | Locator): Promise<string> {
   const locator = getLocator(input);
   let dialogMessage = "";
-  getPage().once("dialog", (dialog) => {
+  getPage().once("dialog", dialog => {
     dialogMessage = dialog.message();
-    dialog.dismiss().catch((e) => console.error("Error dismissing dialog:", e));
+    dialog.dismiss().catch(e => console.error("Error dismissing dialog:", e));
   });
   await locator.click({ noWaitAfter: true });
   // temporary fix for alerts - Need to be fixed
@@ -220,7 +220,7 @@ export async function getAlertText(input: string | Locator): Promise<string> {
 
 export async function hover(
   input: string | Locator,
-  options?: HoverOptions
+  options?: HoverOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.hover(options);
@@ -228,7 +228,7 @@ export async function hover(
 
 export async function focus(
   input: string | Locator,
-  options?: TimeoutOption
+  options?: TimeoutOption,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.focus(options);
@@ -237,7 +237,7 @@ export async function focus(
 export async function dragAndDrop(
   input: string | Locator,
   dest: string | Locator,
-  options?: DragOptions
+  options?: DragOptions,
 ): Promise<void> {
   const drag = getLocator(input);
   const drop = getLocator(dest);
@@ -246,7 +246,7 @@ export async function dragAndDrop(
 
 export async function doubleClick(
   input: string | Locator,
-  options?: DoubleClickOptions
+  options?: DoubleClickOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.dblclick(options);
@@ -254,7 +254,7 @@ export async function doubleClick(
 
 export async function downloadFile(
   input: string | Locator,
-  path: string
+  path: string,
 ): Promise<void> {
   const locator = getLocator(input);
   const downloadPromise = getPage().waitForEvent("download");
@@ -269,7 +269,7 @@ export async function downloadFile(
 export async function uploadFiles(
   input: string | Locator,
   path: UploadValues,
-  options?: UploadOptions
+  options?: UploadOptions,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.setInputFiles(path, options);
@@ -277,7 +277,7 @@ export async function uploadFiles(
 
 export async function scrollLocatorIntoView(
   input: string | Locator,
-  options?: TimeoutOption
+  options?: TimeoutOption,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.scrollIntoViewIfNeeded(options);
@@ -286,7 +286,7 @@ export async function scrollLocatorIntoView(
 //JS
 export async function clickByJS(
   input: string | Locator,
-  options?: TimeoutOption
+  options?: TimeoutOption,
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.evaluate("el => el.click()", options);

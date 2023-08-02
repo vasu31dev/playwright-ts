@@ -1,9 +1,4 @@
-import {
-  click,
-  clickAndNavigate,
-  fill,
-  gotoURL,
-} from "@ActionUtils";
+import { click, clickAndNavigate, fill, gotoURL } from "@ActionUtils";
 import {
   expectElementToBeEditable,
   expectElementToBeHidden,

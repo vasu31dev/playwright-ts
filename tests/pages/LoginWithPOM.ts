@@ -9,10 +9,10 @@ export default class Login {
 
   constructor(page: Page) {
     this.page = page;
-    this.signInLink = page.locator('#nav-link-accountList-nav-line-1');
-    this.email = page.getByLabel('Email or mobile phone number');
-    this.password = page.getByLabel('Password');
-    this.continue = page.getByRole('button', { name: 'Continue' });
+    this.signInLink = page.locator("#nav-link-accountList-nav-line-1");
+    this.email = page.getByLabel("Email or mobile phone number");
+    this.password = page.getByLabel("Password");
+    this.continue = page.getByRole("button", { name: "Continue" });
   }
 
   async gotoHomePage() {
@@ -24,10 +24,12 @@ export default class Login {
     await this.email.fill("test@mailinator.com");
     await Promise.all([
       this.continue.click(),
-      this.page.waitForEvent('framenavigated'),
+      this.page.waitForEvent("framenavigated"),
     ]);
     await expect(this.email, "Email field should be hidden").toBeHidden();
-    await expect(this.password, "Password field should be Editable").toBeEditable();
-
+    await expect(
+      this.password,
+      "Password field should be Editable",
+    ).toBeEditable();
   }
 }
