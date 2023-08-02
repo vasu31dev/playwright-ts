@@ -15,7 +15,12 @@
   },
   "rules": {
     // "prettier/prettier": "error",
-    // "sort-imports": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
     "@typescript-eslint/no-unsafe-assignment": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
     "@typescript-eslint/no-unsafe-member-access": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
     "require-await": "error",

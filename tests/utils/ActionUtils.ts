@@ -1,20 +1,20 @@
-import { Response, Dialog, Locator } from "@playwright/test";
+import { Dialog, Locator, Response } from "@playwright/test";
 import { getPage } from "@PageFactory";
 import {
+  CheckOptions,
+  ClearOptions,
   ClickOptions,
+  DoubleClickOptions,
+  DragOptions,
   FillOptions,
   GotoOptions,
-  CheckOptions,
-  NavigationOptions,
-  TypeOptions,
-  TimeoutOption,
   HoverOptions,
-  ClearOptions,
+  NavigationOptions,
   SelectOptions,
+  TimeoutOption,
+  TypeOptions,
   UploadOptions,
   UploadValues,
-  DragOptions,
-  DoubleClickOptions,
   WaitForLoadStateOptions,
 } from "@Types";
 import { STANDARD_TIMEOUT } from "@Timeouts";

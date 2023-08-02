@@ -1,6 +1,6 @@
 import { Expect, Locator, TestInfo, expect } from "@playwright/test";
 import { getPage } from "@PageFactory";
-import { SoftOption, ExpectOptions, ExpectTextOptions } from "@Types";
+import { ExpectOptions, ExpectTextOptions, SoftOption } from "@Types";
 import { getLocator } from "@LocatorUtils";
 
 function getExpectWithSoftOption(options?: SoftOption): Expect {

@@ -1,8 +1,8 @@
 import {
-  gotoURL,
   click,
-  fill,
   clickAndNavigate,
+  fill,
+  gotoURL,
 } from "@ActionUtils";
 import {
   expectElementToBeEditable,

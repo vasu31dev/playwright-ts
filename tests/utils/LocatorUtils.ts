@@ -5,11 +5,11 @@ import {
 } from "@playwright/test";
 import { getPage } from "@PageFactory";
 import {
-  GetByTextOptions,
-  LocatorOptions,
+  GetByPlaceholderOptions,
   GetByRoleOptions,
   GetByRoleTypes,
-  GetByPlaceholderOptions,
+  GetByTextOptions,
+  LocatorOptions,
 } from "@Types";
 
 // Locators
