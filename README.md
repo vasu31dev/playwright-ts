@@ -501,13 +501,13 @@ await expectElementToHaveText(
 );
 ```
 
-In this example, we're using some Types optional parameters with Utility functions:
+In this example, we're using some Types optional parameters with some utility functions:
 
 1. `Locator options`: `hasText` is used as a optional parameter to locate the element that has given text
 
 2. `Action Options(ClickOptions)`: `button` is used for right click, `force` is used to bypass the actionability checks and force the click and `clickCount` is used to click the element for the given number of times
 
-3. `Action Options(TypeOptions)`: `delay` is used to simulate the delay between the key presses with the given time, `noWaitAfter` is used to specify not to wait after the action type
+3. `Action Options(TypeOptions)`: `delay` is used to simulate the delay between the key presses with the given time, `noWaitAfter` is used to specify not to wait after the action `type`
 
 4. `ExpectOptions(ExpectTextOptions)`: `useInnerText` is used to assert the inner text, `ignoreCase` is used to ignore case while asserting and `timeout` is used to wait until the specified time before failing the test
 
