@@ -1,13 +1,15 @@
 {
   "devDependencies": {
     "@playwright/test": "^1.36.2",
-    "eslint-config-prettier": "^8.9.0",
+    "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-prettier": "^5.0.0"
   },
   "scripts": {
     "test": "playwright test",
+    "test:chromium": "playwright test --retries 0 --project=chromium",
     "test:chromium-headed": "playwright test -j 1 --retries 0 --headed --project=chromium",
-    "reg": "playwright test --project=chromium",
+    "reg": "playwright test --project=chromium -g '@reg'",
+    "smoke": "playwright test --project=chromium -g '@smoke'",
     "report": "playwright show-report playwright-report",
     "ui": "playwright test --ui-port 0",
     "trace": "playwright show-trace --port 0",
@@ -22,6 +24,7 @@
     "allure-playwright": "^2.4.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.46.0",
-    "eslint-plugin-playwright": "^0.15.3"
+    "eslint-plugin-playwright": "^0.15.3",
+    "winston": "^3.10.0"
   }
 }
