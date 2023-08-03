@@ -1,9 +1,9 @@
-import { Locator } from "@playwright/test";
-import { getPage } from "@PageFactory";
-import { NavigationOptions, TimeoutOption } from "@Types";
-import { getAllLocators, getLocator } from "@LocatorUtils";
-import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from "@Timeouts";
-import { waitForPageLoadState } from "@ActionUtils";
+import { Locator } from '@playwright/test';
+import { getPage } from '@PageFactory';
+import { NavigationOptions, TimeoutOption } from '@Types';
+import { getAllLocators, getLocator } from '@LocatorUtils';
+import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from '@Timeouts';
+import { waitForPageLoadState } from '@ActionUtils';
 
 // Text
 export async function getText(
@@ -51,7 +51,7 @@ export async function saveStorageState(path?: string): Promise<void> {
 }
 
 export async function getURL(
-  options: NavigationOptions = { waitUntil: "load" },
+  options: NavigationOptions = { waitUntil: 'load' },
 ): Promise<string> {
   try {
     await waitForPageLoadState(options);
@@ -60,7 +60,7 @@ export async function getURL(
     console.log(
       `getURL- ${error instanceof Error ? error.message : String(error)}`,
     );
-    return "";
+    return '';
   }
 }
 
@@ -92,7 +92,7 @@ export async function isElementAttached(
   const timeoutInMs = options?.timeout || SMALL_TIMEOUT;
 
   try {
-    await locator.waitFor({ state: "attached", timeout: timeoutInMs });
+    await locator.waitFor({ state: 'attached', timeout: timeoutInMs });
     return true;
   } catch (error) {
     console.log(

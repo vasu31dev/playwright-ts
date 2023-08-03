@@ -1,5 +1,5 @@
-import { Dialog, Locator, Response } from "@playwright/test";
-import { getPage } from "@PageFactory";
+import { Dialog, Locator, Response } from '@playwright/test';
+import { getPage } from '@PageFactory';
 import {
   CheckOptions,
   ClearOptions,
@@ -16,10 +16,10 @@ import {
   UploadOptions,
   UploadValues,
   WaitForLoadStateOptions,
-} from "@Types";
-import { STANDARD_TIMEOUT } from "@Timeouts";
-import { LOADSTATE } from "playwright.config";
-import { getLocator } from "@LocatorUtils";
+} from '@Types';
+import { STANDARD_TIMEOUT } from '@Timeouts';
+import { LOADSTATE } from 'playwright.config';
+import { getLocator } from '@LocatorUtils';
 
 // Navigations
 export async function gotoURL(
@@ -35,7 +35,7 @@ export async function waitForPageLoadState(
 ): Promise<void> {
   let waitUntil: WaitForLoadStateOptions = LOADSTATE;
 
-  if (options?.waitUntil && options.waitUntil !== "commit") {
+  if (options?.waitUntil && options.waitUntil !== 'commit') {
     waitUntil = options.waitUntil;
   }
 
@@ -44,7 +44,7 @@ export async function waitForPageLoadState(
 export async function reloadPage(options?: NavigationOptions): Promise<void> {
   await Promise.all([
     getPage().reload(options),
-    getPage().waitForEvent("framenavigated"),
+    getPage().waitForEvent('framenavigated'),
   ]);
   await waitForPageLoadState(options);
 }
@@ -52,7 +52,7 @@ export async function reloadPage(options?: NavigationOptions): Promise<void> {
 export async function goBack(options?: NavigationOptions): Promise<void> {
   await Promise.all([
     getPage().goBack(options),
-    getPage().waitForEvent("framenavigated"),
+    getPage().waitForEvent('framenavigated'),
   ]);
   await waitForPageLoadState(options);
 }
@@ -78,7 +78,7 @@ export async function clickAndNavigate(
   const timeout = options?.timeout || STANDARD_TIMEOUT;
   await Promise.all([
     click(input, options),
-    getPage().waitForEvent("framenavigated", { timeout: timeout }),
+    getPage().waitForEvent('framenavigated', { timeout: timeout }),
   ]);
   await getPage().waitForLoadState(options?.loadState || LOADSTATE, {
     timeout: timeout,
@@ -101,7 +101,7 @@ export async function fillAndEnter(
 ): Promise<void> {
   const locator = getLocator(input);
   await locator.fill(value, options);
-  await locator.press("Enter");
+  await locator.press('Enter');
 }
 
 export async function type(
@@ -179,12 +179,12 @@ export async function acceptAlert(
   promptText?: string,
 ): Promise<string> {
   const locator = getLocator(input);
-  let dialogMessage = "";
-  getPage().once("dialog", dialog => {
+  let dialogMessage = '';
+  getPage().once('dialog', dialog => {
     dialogMessage = dialog.message();
     dialog
       .accept(promptText)
-      .catch(e => console.error("Error accepting dialog:", e));
+      .catch(e => console.error('Error accepting dialog:', e));
   });
   await locator.click();
   // temporary fix to alerts - Need to be fixed
@@ -194,10 +194,10 @@ export async function acceptAlert(
 
 export async function dismissAlert(input: string | Locator): Promise<string> {
   const locator = getLocator(input);
-  let dialogMessage = "";
-  getPage().once("dialog", dialog => {
+  let dialogMessage = '';
+  getPage().once('dialog', dialog => {
     dialogMessage = dialog.message();
-    dialog.dismiss().catch(e => console.error("Error dismissing dialog:", e));
+    dialog.dismiss().catch(e => console.error('Error dismissing dialog:', e));
   });
   await locator.click({ noWaitAfter: true });
   // temporary fix for alerts - Need to be fixed
@@ -207,14 +207,14 @@ export async function dismissAlert(input: string | Locator): Promise<string> {
 
 export async function getAlertText(input: string | Locator): Promise<string> {
   const locator = getLocator(input);
-  let dialogMessage = "";
+  let dialogMessage = '';
   const dialogHandler = (dialog: Dialog) => {
     dialogMessage = dialog.message();
   };
-  getPage().once("dialog", dialogHandler);
+  getPage().once('dialog', dialogHandler);
   await locator.click();
-  await getPage().waitForEvent("dialog");
-  getPage().off("dialog", dialogHandler);
+  await getPage().waitForEvent('dialog');
+  getPage().off('dialog', dialogHandler);
   return dialogMessage;
 }
 
@@ -257,7 +257,7 @@ export async function downloadFile(
   path: string,
 ): Promise<void> {
   const locator = getLocator(input);
-  const downloadPromise = getPage().waitForEvent("download");
+  const downloadPromise = getPage().waitForEvent('download');
   await click(locator);
   const download = await downloadPromise;
   // Wait for the download process to complete
@@ -289,5 +289,5 @@ export async function clickByJS(
   options?: TimeoutOption,
 ): Promise<void> {
   const locator = getLocator(input);
-  await locator.evaluate("el => el.click()", options);
+  await locator.evaluate('el => el.click()', options);
 }

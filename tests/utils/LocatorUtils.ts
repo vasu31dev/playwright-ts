@@ -1,19 +1,19 @@
-import { FrameLocator, Locator, selectors } from "@playwright/test";
-import { getPage } from "@PageFactory";
+import { FrameLocator, Locator, selectors } from '@playwright/test';
+import { getPage } from '@PageFactory';
 import {
   GetByPlaceholderOptions,
   GetByRoleOptions,
   GetByRoleTypes,
   GetByTextOptions,
   LocatorOptions,
-} from "@Types";
+} from '@Types';
 
 // Locators
 export function getLocator(
   input: string | Locator,
   options?: LocatorOptions,
 ): Locator {
-  return typeof input === "string" ? getPage().locator(input, options) : input;
+  return typeof input === 'string' ? getPage().locator(input, options) : input;
 }
 
 export function getLocatorByTestId(
@@ -58,7 +58,7 @@ export async function getAllLocators(
   input: string | Locator,
   options?: LocatorOptions,
 ): Promise<Locator[]> {
-  return typeof input === "string"
+  return typeof input === 'string'
     ? await getPage().locator(input, options).all()
     : await input.all();
 }
@@ -67,7 +67,7 @@ export async function getAllLocators(
 export function getFrameLocator(
   frameInput: string | FrameLocator,
 ): FrameLocator {
-  return typeof frameInput === "string"
+  return typeof frameInput === 'string'
     ? getPage().frameLocator(frameInput)
     : frameInput;
 }
