@@ -58,10 +58,11 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
 This project uses the following languages and frameworks:
 
 Typescript as the programming language
-ESLint
 Playwright test runner for executing tests
 Playwright web first assertions for assertions
 Allure Report as the testing report strategy
+ESLint
+Prettier
 
 ### Prerequisites
 
@@ -170,7 +171,7 @@ The project is structured into several packages and files, each serving a specif
 Examples of how to switch between pages and close a page:
 
 ```typescript
-import { switchPage, switchToDefaultPage, closePage } from "@PageFactory";
+import { switchPage, switchToDefaultPage, closePage } from '@PageFactory';
 await switchPage(2); // switching to second tab/window
 switchToDefaultPage(); // switch to the initial page that was launched or the first tab/window
 await closePage(); // close the current page and then switch to the default page if it exists
@@ -187,10 +188,10 @@ Here's an example of a test file under the `specs` package:
 ```typescript
 login.spec.ts;
 //import Page object from PageSetup.ts which sets up the page before each test
-import { test } from "@PageSetup";
-import * as LoginPage from "../pages/LoginPage";
+import { test } from '@PageSetup';
+import * as LoginPage from '../pages/LoginPage';
 
-test("successful login", async () => {
+test('successful login', async () => {
   await LoginPage.gotoHomePage();
   await LoginPage.loginSuccessfully();
 });
@@ -198,7 +199,7 @@ test("successful login", async () => {
 
 In this example, we are setting the page state and writing the spec file
 
-1. `setPage` function from `Pagesetup` file will set the page state before every each test and is imported to our spec files while excuting the tests. If you want to use Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
+1. `setPage` function from `Pagesetup` file will set the page state before each test and is imported to our spec files while excuting the tests. If you want to use Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
 2. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
@@ -214,31 +215,31 @@ import {
   getLocatorByTestId,
   getLocatorByLabel,
   getLocatorByText,
-} from "@LocatorUtils";
-import { gotoURL, click, fill, clickAndNavigate } from "@ActionUtils";
-import { expectElementToBeHidden } from "@AssertUtils";
-import { isElementVisible } from "@ElementUtils";
+} from '@LocatorUtils';
+import { gotoURL, click, fill, clickAndNavigate } from '@ActionUtils';
+import { expectElementToBeHidden } from '@AssertUtils';
+import { isElementVisible } from '@ElementUtils';
 
 const signInLink = () =>
-  getLocatorByTestId("sign-in-button").or(getLocatorByTestId("sign-in-link"));
-const email = () => getLocatorByTestId("email-input");
+  getLocatorByTestId('sign-in-button').or(getLocatorByTestId('sign-in-link'));
+const email = () => getLocatorByTestId('email-input');
 const password = `//*[@id="password"]/input`;
-const signInButton = () => getLocatorByLabel("sign-in-button");
-const successfulMessage = () => getLocatorByText("Login successful");
+const signInButton = () => getLocatorByLabel('sign-in-button');
+const successfulMessage = () => getLocatorByText('Login successful');
 
 export async function gotoHomePage() {
-  gotoURL("/", { waitUntil: "domcontentloaded", timeout: 60000 });
+  gotoURL('/', { waitUntil: 'domcontentloaded', timeout: 60000 });
 }
 
 export async function login(username: string, password: string) {
   await click(signInLink());
-  await fill(email(), "username");
-  await fill(password, "password");
+  await fill(email(), 'username');
+  await fill(password, 'password');
   await clickAndNavigate(signInButton());
 }
 
 export async function isLoginSuccessful() {
-  await expectElementToBeHidden(signInButton(), "Login should be successful");
+  await expectElementToBeHidden(signInButton(), 'Login should be successful');
   return isElementVisible(successfulMessage());
 }
 ```
@@ -274,16 +275,16 @@ import {
   getLocatorByText,
   getLocatorByRole,
   getLocatorByLabel,
-} from "@LocatorUtils";
+} from '@LocatorUtils';
 
-const locator = () => getLocator("button#submit");
-const testIdLocator = () => getLocatorByTestId("submit-button");
-const textLocator = () => getLocatorByText("Submit");
-const roleLocator = () => getLocatorByRole("button");
-const labelLocator = () => getLocatorByLabel("Submit Button");
-const locatorWithAnd = () => getLocator("button#submit").and.(getLocator("button#Enabled"));
-const locatorWithOr = () => getLocator("button#gridview").or.(getLocator("button#listview"));
-const locatorWithFilter = () => getLocatorByRole("button").filter({hasText: "submit"});
+const locator = () => getLocator(`button#submit`);
+const testIdLocator = () => getLocatorByTestId('submit-button');
+const textLocator = () => getLocatorByText('Submit');
+const roleLocator = () => getLocatorByRole('button');
+const labelLocator = () => getLocatorByLabel('Submit Button');
+const locatorWithAnd = () => getLocator(`button#submit`).and.(getLocator(`button#Enabled`));
+const locatorWithOr = () => getLocator(`button#gridview`).or.(getLocator(`button#listview`));
+const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'submit'});
 ```
 
 In this example, we're using various functions from LocatorUtils:
@@ -308,14 +309,14 @@ Here is some more information about `LocatorUtilis` usage as this is a unique PO
 
 - We are calling the locator function instead of using a constant locator as the page object is initialized during runtime only.
 
-Refer to the [Types](#types) section below for more information of optional parameters.
+Refer to the [Types](#types) section below for more information on the optional parameters.
 
 #### Frames
 
 The `LocatorUtils` module provides utility functions to handle frames in Playwright.
 
 ```typescript
-import { getFrameLocator, getLocatorInFrame } from "@LocatorUtils";
+import { getFrameLocator, getLocatorInFrame } from '@LocatorUtils';
 await getFrameLocator(frame());
 await getLocatorInFrame(frame(), elementInsideFrame());
 ```
@@ -340,15 +341,15 @@ import {
   check,
   uploadFiles,
   selectByValue,
-} from "@ActionUtils";
-import { MAX_TIMEOUT } from "@Timeouts";
+} from '@ActionUtils';
+import { MAX_TIMEOUT } from '@Timeouts';
 
-await gotoURL("https://www.example.com", { timeout: MAX_TIMEOUT });
-await click('text="Log in"');
-await fill("input#username", "myusername");
-await check("input#agree");
-await uploadFiles("input#file", "/path/to/myfile.jpg");
-await selectByValue("#dropdown", "selectValue");
+await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
+await click(`text='Log in'`);
+await fill(`input#username`, 'myusername');
+await check(`input#agree`);
+await uploadFiles(`input#file`, '/path/to/myfile.jpg');
+await selectByValue(`#dropdown`, 'selectValue');
 ```
 
 In this example, we're using various functions from ActionUtils:
@@ -367,14 +368,14 @@ In this example, we're using various functions from ActionUtils:
 
 7. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
 
-Refer to the [Types](#types) section below for more information of optional parameters.
+Refer to the [Types](#types) section below for more information on the optional parameters.
 
 ### Alerts
 
 The `ActionUtils` module provides utility functions to handle alerts in Playwright.
 
 ```typescript
-import { acceptAlert, dismissAlert, getAlertText } from "@ActionUtils";
+import { acceptAlert, dismissAlert, getAlertText } from '@ActionUtils';
 await acceptAlert(outOfStockButton()); //click on an element that opens an alert and then accept the alert
 await dismissAlert(outOfStockButton()); //click on an element that opens an alert and then dismiss the alert
 const text = await getAlertText(outOfStockButton()); //click on an element which opens an alert and then get the text from the alert
@@ -393,15 +394,21 @@ In this example, we're using various functions from ActionUtils to handle alerts
 The `ElementUtils` module provides utility functions for extracting values from web elements and performing condition checks. These functions are designed to handle common tasks related to web elements, such as retrieving text or attribute values, checking visibility, and more.
 
 ```typescript
-import { getText, getAllTexts, getInputValue, getAttribute, attribute } from "@ElementUtils";
+import {
+  getText,
+  getAllTexts,
+  getInputValue,
+  getAttribute,
+  attribute,
+} from '@ElementUtils';
 const text = await getText(textLocator());
 const allTexts = await getAllTexts(textLocator());
 const inputValue = await getInputValue(userName());
 const attribute = await getAttribute(labelLocator(), 'class');
-if(isElementVisible(logoutButton())){
-   console.log(''Login is successful)
-} else{
-    console.log(''Login is not successful)
+if (isElementVisible(logoutButton())) {
+  console.log('Login is successful');
+} else {
+  console.log('Login is not successful');
 }
 ```
 
@@ -428,23 +435,23 @@ import {
   expectElementToHaveText,
   expectElementNotToBeChecked,
   expectElementNotToContainText,
-} from "@AssertUtils";
-import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from "@Timeouts";
-await expectElementToBeVisible(logoutButton(), "Login should be successful", {
+} from '@AssertUtils';
+import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from '@Timeouts';
+await expectElementToBeVisible(logoutButton(), 'Login should be successful', {
   timeout: STANDARD_TIMEOUT,
 });
 await expectElementToBeHidden(
   signInButton(),
-  "signInButton should not be displayed"
+  'signInButton should not be displayed',
 );
-await expectElementToHaveText(successfulMessage(), "Login is successful", {
+await expectElementToHaveText(successfulMessage(), 'Login is successful', {
   ignoreCase: false,
 });
 await expectElementNotToBeChecked(agreeCheckbox(), {
   timeout: INSTANT_TIMEOUT,
 });
 //with 'soft' optional parameter 'true' we are making this assertion as soft assertion
-await expectElementNotToContainText(successfulMessage(), "404 error", {
+await expectElementNotToContainText(successfulMessage(), '404 error', {
   soft: true,
 });
 assertAllSoftAssertions(test.info()); // use this in the spec file to stop the test if there are failures for any soft assertions
@@ -464,11 +471,45 @@ In this example, we're using various functions from AssertUtils:
 
 These functions make it easier to write assertions in your tests, and they provide better error messages when the assertions fail. They also support both hard and soft assertions, allowing you to choose the appropriate level of strictness for your tests.
 
-Refer to the [Types](#types) section below for more information of optional parameters.
+Refer to the [Types](#types) section below for more information on the optional parameters.
 
 ### Types
 
-types content
+The `Types` module provides a set of options for utility modules
+
+```typescript
+import { getLocator } from '@LocatorUtils';
+import { clickAndNavigate, type } from '@ActionUtilis';
+import { expectElementToHaveText } from '@AssertUtils';
+import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from '@Timeouts';
+
+const loginpage = () => getLocator(`#loginpage`, { hasText: 'login' });
+await clickAndNavigate(
+  loginpage,
+  { button: 'right' },
+  { force: true },
+  { clickCount: 1 },
+);
+await type(`#username`, 'testuser', { delay: 2 }, { noWaitAfter: false });
+await expectElementToHaveText(
+  successfulMessage(),
+  { useInnerText: true },
+  {
+    ignoreCase: false,
+  },
+  { timeout: STANDARD_TIMEOUT },
+);
+```
+
+In this example, we're using some Types optional parameters with Utility functions:
+
+1. `Locator options`: `hasText` is used as a optional parameter to locate the element that has given text
+
+2. `Action Options(ClickOptions)`: `button` is used for right click, `force` is used to bypass the actionability checks and force the click and `clickCount` is used to click the element for the given number of times
+
+3. `Action Options(TypeOptions)`: `delay` is used to simulate the delay between the key presses with the given time, `noWaitAfter` is used to specify not to wait after the action type
+
+4. `ExpectOptions(ExpectTextOptions)`: `useInnerText` is used to assert the inner text, `ignoreCase` is used to ignore case while asserting and `timeout` is used to wait until the specified time before failing the test
 
 ## Running Tests
 
