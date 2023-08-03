@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 let page: Page;
 
@@ -8,7 +8,7 @@ export function getPage(): Page {
 }
 
 /** Sets the current Page */
-export function setPage(pageInstance: Page) : void{
+export function setPage(pageInstance: Page): void {
   page = pageInstance;
 }
 
@@ -17,9 +17,12 @@ export function setPage(pageInstance: Page) : void{
  * If the desired page isn't immediately available, this function will wait and retry for up to 5 seconds
  * @throws {Error} If the desired page isn't found within 5 seconds
  */
-export async function switchPage(winNum: number) : Promise<void>{
+export async function switchPage(winNum: number): Promise<void> {
   const startTime = Date.now();
-  while (page.context().pages().length < winNum && Date.now() - startTime < 5000) {
+  while (
+    page.context().pages().length < winNum &&
+    Date.now() - startTime < 5000
+  ) {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   if (page.context().pages().length < winNum) {
@@ -31,23 +34,23 @@ export async function switchPage(winNum: number) : Promise<void>{
 }
 
 /** Switch back to the default page (the first one) */
-export async function switchToDefaultPage() : Promise<void>{
+export async function switchToDefaultPage(): Promise<void> {
   const pageInstance = page.context().pages()[0];
-  if(pageInstance){
+  if (pageInstance) {
     await pageInstance.bringToFront();
     setPage(pageInstance);
   }
 }
 
-export async function closePage(winNum: number ) : Promise<void>{
-  if(!winNum){
+export async function closePage(winNum: number): Promise<void> {
+  if (!winNum) {
     await page.close();
     return;
   }
   const noOfWindows = page.context().pages().length;
   const pageInstance = page.context().pages()[winNum - 1];
   await pageInstance.close();
-  if(noOfWindows > 1){
+  if (noOfWindows > 1) {
     await switchToDefaultPage();
   }
 }

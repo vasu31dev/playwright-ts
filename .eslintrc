@@ -1,26 +1,54 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier",
+    "plugin:playwright/playwright-test"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "rules": {
+    "prettier/prettier": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "@typescript-eslint/no-unsafe-assignment": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
+    "@typescript-eslint/no-unsafe-member-access": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
+    "require-await": "error",
+    "complexity": ["warn", { "max": 11 }],
+    "playwright/missing-playwright-await": ["error"],
+    "playwright/no-focused-test": "error",
+    "playwright/valid-expect": "error",
+    "playwright/prefer-web-first-assertions": "error",
+    "playwright/no-useless-await": "error",
+    "playwright/no-page-pause": "error",
+    "playwright/no-element-handle": "error",
+    "playwright/no-eval": "error",
+    "playwright/prefer-to-be": "error",
+    "playwright/prefer-to-contain": "error",
+    "playwright/prefer-to-have-length": "error",
+    "playwright/no-wait-for-timeout": "warn",
+    "playwright/no-useless-not": "warn",
+    "playwright/require-top-level-describe": "warn",
+    "playwright/expect-expect": "off",
+    "playwright/no-conditional-in-test": "off",
+    "playwright/no-skipped-test": "off"
+  },
   "overrides": [
     {
       "files": ["**/*.ts"],
-      "extends": ["plugin:playwright/playwright-test"],
       "rules": {
-        "playwright/missing-playwright-await": ["error"],
-        "playwright/no-focused-test": "error",
-        "playwright/expect-expect": "off",
-        "playwright/no-conditional-in-test": "off",
-        "playwright/no-skipped-test": "off"
+        "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
       }
     }
   ]

@@ -1,7 +1,7 @@
-import { Expect, Locator, TestInfo, expect } from "@playwright/test";
-import { getPage } from "@PageFactory";
-import { SoftOption, ExpectOptions, ExpectTextOptions } from "@Types";
-import { getLocator } from "@LocatorUtils";
+import { Expect, Locator, TestInfo, expect } from '@playwright/test';
+import { getPage } from '@PageFactory';
+import { ExpectOptions, ExpectTextOptions, SoftOption } from '@Types';
+import { getLocator } from '@LocatorUtils';
 
 function getExpectWithSoftOption(options?: SoftOption): Expect {
   return expect.configure({ soft: options?.soft });
@@ -9,7 +9,7 @@ function getExpectWithSoftOption(options?: SoftOption): Expect {
 
 function getLocatorAndAssert(
   input: string | Locator,
-  options?: SoftOption
+  options?: SoftOption,
 ): { locator: Locator; assert: Expect } {
   const locator = getLocator(input);
   const assert = getExpectWithSoftOption(options);
@@ -31,7 +31,7 @@ export function assertAllSoftAssertions(testInfo: TestInfo) {
 /* Check if the given element is not present in DOM, or not visible */
 export async function expectElementToBeHidden(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeHidden(options);
@@ -40,7 +40,7 @@ export async function expectElementToBeHidden(
 /* Check if the given element is present in DOM, and visible */
 export async function expectElementToBeVisible(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeVisible(options);
@@ -49,7 +49,7 @@ export async function expectElementToBeVisible(
 /* Check if the given element is present in DOM */
 export async function expectElementToBeAttached(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeAttached(options);
@@ -58,7 +58,7 @@ export async function expectElementToBeAttached(
 /* Check if the given element is present in DOM and Visible in the view port of the page */
 export async function expectElementToBeInViewport(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeInViewport(options);
@@ -66,7 +66,7 @@ export async function expectElementToBeInViewport(
 
 export async function expectElementToBeChecked(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeChecked(options);
@@ -74,7 +74,7 @@ export async function expectElementToBeChecked(
 
 export async function expectElementNotToBeChecked(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).not.toBeChecked(options);
@@ -82,7 +82,7 @@ export async function expectElementNotToBeChecked(
 
 export async function expectElementToBeDisabled(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeDisabled(options);
@@ -90,7 +90,7 @@ export async function expectElementToBeDisabled(
 
 export async function expectElementToBeEnabled(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeEnabled(options);
@@ -98,7 +98,7 @@ export async function expectElementToBeEnabled(
 
 export async function expectElementToBeEditable(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeEditable(options);
@@ -113,7 +113,7 @@ export async function expectElementToBeEditable(
 export async function expectElementToHaveText(
   input: string | Locator,
   text: string | RegExp | Array<string | RegExp>,
-  options?: ExpectOptions & ExpectTextOptions
+  options?: ExpectOptions & ExpectTextOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toHaveText(text, options);
@@ -122,7 +122,7 @@ export async function expectElementToHaveText(
 export async function expectElementNotToHaveText(
   input: string | Locator,
   text: string | RegExp | Array<string | RegExp>,
-  options?: ExpectOptions & ExpectTextOptions
+  options?: ExpectOptions & ExpectTextOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).not.toHaveText(text, options);
@@ -131,7 +131,7 @@ export async function expectElementNotToHaveText(
 export async function expectElementToContainText(
   input: string | Locator,
   text: string | RegExp | Array<string | RegExp>,
-  options?: ExpectOptions & ExpectTextOptions
+  options?: ExpectOptions & ExpectTextOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toContainText(text, options);
@@ -140,7 +140,7 @@ export async function expectElementToContainText(
 export async function expectElementNotToContainText(
   input: string | Locator,
   text: string | RegExp | Array<string | RegExp>,
-  options?: ExpectOptions & ExpectTextOptions
+  options?: ExpectOptions & ExpectTextOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).not.toContainText(text, options);
@@ -150,7 +150,7 @@ export async function expectElementNotToContainText(
 export async function expectElementToHaveValue(
   input: string | Locator,
   text: string | RegExp,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toHaveValue(text, options);
@@ -160,7 +160,7 @@ export async function expectElementToHaveValue(
 export async function expectElementToHaveValues(
   input: string | Locator,
   text: Array<string | RegExp>,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toHaveValues(text, options);
@@ -169,7 +169,7 @@ export async function expectElementToHaveValues(
 /* Check if the given element points to empty editable element or to a DOM node that has no text */
 export async function expectElementValueToBeEmpty(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toBeEmpty(options);
@@ -178,7 +178,7 @@ export async function expectElementValueToBeEmpty(
 /* Check if the given element points to non-empty editable element or to a DOM node that has text */
 export async function expectElementValueNotToBeEmpty(
   input: string | Locator,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).not.toBeEmpty(options);
@@ -194,7 +194,7 @@ export async function expectElementToHaveAttribute(
   input: string | Locator,
   attribute: string,
   value: string | RegExp,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toHaveAttribute(attribute, value, options);
@@ -204,20 +204,20 @@ export async function expectElementToContainAttribute(
   input: string | Locator,
   attribute: string,
   value: string | RegExp,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toHaveAttribute(
     attribute,
     new RegExp(value),
-    options
+    options,
   );
 }
 
 export async function expectElementToHaveCount(
   input: string | Locator,
   count: number,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const { locator, assert } = getLocatorAndAssert(input, options);
   await assert(locator, options).toHaveCount(count, options);
@@ -230,7 +230,7 @@ export async function expectElementToHaveCount(
  */
 export async function expectPageToHaveURL(
   urlOrRegExp: string | RegExp,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const assert = getExpectWithSoftOption(options);
   await assert(getPage()).toHaveURL(urlOrRegExp, options);
@@ -242,7 +242,7 @@ export async function expectPageToHaveURL(
  */
 export async function expectPageToContainURL(
   url: string,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const assert = getExpectWithSoftOption(options);
   await assert(getPage()).toHaveURL(new RegExp(url), options);
@@ -254,7 +254,7 @@ export async function expectPageToContainURL(
  */
 export async function expectPageToHaveTitle(
   titleOrRegExp: string | RegExp,
-  options?: ExpectOptions
+  options?: ExpectOptions,
 ): Promise<void> {
   const assert = getExpectWithSoftOption(options);
   await assert(getPage()).toHaveTitle(titleOrRegExp, options);

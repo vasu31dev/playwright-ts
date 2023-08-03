@@ -4,6 +4,7 @@
     "target": "es6",
     "outDir": "dist",
     "strict": true,
+    "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -12,7 +13,6 @@
     "noUnusedParameters": true,
     "baseUrl": ".",
     "paths": {
-      // "@utils/*": ["../utils/*"],
       "@PageSetup": ["tests/setup/PageSetup.ts"],
       "@PageFactory": ["tests/setup/PageFactory.ts"],
       "@ActionUtils": ["tests/utils/ActionUtils.ts"],
@@ -22,5 +22,7 @@
       "@Timeouts": ["tests/utils/Timeouts.ts"],
       "@Types": ["tests/setup/Types.ts"]
     }
-  }
+  },
+  "include": ["tests/**/*.ts"],
+  "exclude": ["node_modules"]
 }
