@@ -19,7 +19,7 @@
       "@AssertUtils": ["tests/utils/AssertUtils.ts"],
       "@LocatorUtils": ["tests/utils/LocatorUtils.ts"],
       "@ElementUtils": ["tests/utils/ElementUtils.ts"],
-      "@Timeouts": ["tests/utils/Timeouts.ts"],
+      "@TimeoutConstants": ["tests/utils/TimeoutConstants.ts"],
       "@Types": ["tests/setup/Types.ts"],
       "@CustomReporterConfig": ["tests/setup/CustomReporterConfig.ts"],
     }

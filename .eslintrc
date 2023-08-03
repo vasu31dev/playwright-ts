@@ -1,7 +1,14 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+      }
+    }
+  },
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -23,6 +30,7 @@
     ],
     "@typescript-eslint/no-unsafe-assignment": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
     "@typescript-eslint/no-unsafe-member-access": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
+    "import/no-unresolved": "error",
     "require-await": "error",
     "complexity": ["warn", { "max": 11 }],
     "playwright/missing-playwright-await": ["error"],

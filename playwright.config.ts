@@ -3,7 +3,7 @@ import {
   EXPECT_TIMEOUT,
   NAVIGATION_TIMEOUT,
   TEST_TIMEOUT,
-} from '@Timeouts';
+} from '@TimeoutConstants';
 import { WaitForLoadStateOptions } from 'tests/setup/Types';
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
