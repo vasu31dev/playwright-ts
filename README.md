@@ -273,7 +273,7 @@ test.skip('Skip this test', async () => {});
 
 3. `skip`: marks the test as irerevelant. Playwright Test does not run such a test. Use this annotation when the test is not applicable in some configuration.
 
-For more info on test annotations, please refer [Playwright Test Annotations Document](https://playwright.dev/docs/test-annotations)
+For more info on test annotations, please refer [Playwright Test Annotations Documentation](https://playwright.dev/docs/test-annotations)
 
 ## Utilities
 
