@@ -355,6 +355,7 @@ import { MAX_TIMEOUT } from '@Timeouts';
 await gotoURL('https://www.example.com', { timeout: MAX_TIMEOUT });
 await click(`text='Log in'`);
 await fill(`input#username`, 'myusername');
+await type(`input#search`, 'searchText');
 await check(`input#agree`);
 await uploadFiles(`input#file`, '/path/to/myfile.jpg');
 await selectByValue(`#dropdown`, 'selectValue');
@@ -368,13 +369,17 @@ In this example, we're using various functions from ActionUtils:
 
 3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function is used to fill a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
 
-4. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
+4. `type(input: string | Locator,value: string,options?: TypeOptions,)`: This function is used to type into the field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional type options.
 
-5. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
+`To find more info on 'fill' vs 'type, please refer to [Playwright type documentation](#https://playwright.dev/docs/input#type-characters)`. Generally 'fill' will work in most of the cases
 
-6. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function is used to select a value from a dropdown. The input parameter is a string or Locator representing the select element, the value parameter is the value to select for the dropdown option, and the SelectOptions parameter is an optional parameter that specifies additional select options.
+5. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
 
-7. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
+6. `uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions)`: This function is used to upload files. The input parameter is a string or Locator representing the file input you want to upload files to, the path parameter is the path of the files you want to upload, and the options parameter is an optional parameter that specifies additional upload options.
+
+7. `selectByValue(input: string | Locator, value: string, options?: SelectOptions)`: This function is used to select a value from a dropdown. The input parameter is a string or Locator representing the select element, the value parameter is the value to select for the dropdown option, and the SelectOptions parameter is an optional parameter that specifies additional select options.
+
+8. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
 
 Refer to the [Types](#types) section below for more information on the optional parameters.
 
