@@ -1,11 +1,13 @@
-import { deliveryDetails } from "../../../testdata/trektestdata/userdetails";
+import { clickAndNavigate, fill, selectByValue } from '@ActionUtils';
+import { getLocatorByTestId } from '@LocatorUtils';
+import { deliveryDetails } from '../../../testdata/trektestdata/userdetails';
+
 import {
-  clickAndNavigate,
-  fill,
-  getLocatorByTestId,
-  selectByValue,
-} from "@TestUtils";
-import { expectElementToHaveValue, expectElementValueNotToBeEmpty, expectElementValueToBeEmpty, expectPageToHaveURL } from "@AssertUtils";
+  expectElementToHaveValue,
+  expectElementValueNotToBeEmpty,
+  expectElementValueToBeEmpty,
+  expectPageToHaveURL,
+} from '@AssertUtils';
 
 const firstName = `#firstName`;
 const lastName = `#lastName`;
@@ -70,5 +72,5 @@ async function verifyDeliveryDetailsAreEmptyOnPageLoad() {
 
 export async function navigateToDeliveryMethodPage() {
   await clickAndNavigate(getLocatorByTestId(`choose-delivery-method-button`));
-  await expectPageToHaveURL(new RegExp("delivery-method/choose"));
+  await expectPageToHaveURL(new RegExp('delivery-method/choose'));
 }

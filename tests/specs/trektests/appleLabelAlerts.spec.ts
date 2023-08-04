@@ -1,11 +1,29 @@
-import { test } from "@PageSetup";
-import { click } from "@ActionUtils";
-import { clickMyAccountIcon, clicklogInText, navigateToHomepage } from "tests/pages/TrekPages/TrekHomePage";
-import { logInSuccessfullyAsB2BUser, verifyLogInFieldsAreEmptyAndUnchecked } from "tests/pages/TrekPages/TrekLoginPage";
-import { clickAppleLabelsTab, clickingOnAppleLabelToggleToMakeActive, updateAppleLabelDescription, acceptAppleLabelAlert, dismissAppleLabelAlert, verifyAppleLabelsSaveButtonEnabled } from "tests/pages/TrekPages/TrekAppleLabels";
-import { navigateToPLP, expandSkuGrid,clickGridViewIcon } from "tests/pages/TrekPages/TrekProductListingPage"
+import { test } from '@PageSetup';
+import { click } from '@ActionUtils';
+import {
+  clickMyAccountIcon,
+  clicklogInText,
+  navigateToHomepage,
+} from 'tests/pages/TrekPages/TrekHomePage';
+import {
+  logInSuccessfullyAsB2BUser,
+  verifyLogInFieldsAreEmptyAndUnchecked,
+} from 'tests/pages/TrekPages/TrekLoginPage';
+import {
+  acceptAppleLabelAlert,
+  clickAppleLabelsTab,
+  clickingOnAppleLabelToggleToMakeActive,
+  dismissAppleLabelAlert,
+  updateAppleLabelDescription,
+  verifyAppleLabelsSaveButtonEnabled,
+} from 'tests/pages/TrekPages/TrekAppleLabels';
+import {
+  clickGridViewIcon,
+  expandSkuGrid,
+  navigateToPLP,
+} from 'tests/pages/TrekPages/TrekProductListingPage';
 
-test("Apple labels assertion", async () => {
+test('Apple labels assertion', async () => {
   //navigating to site
   await navigateToHomepage();
 
@@ -16,7 +34,7 @@ test("Apple labels assertion", async () => {
   await logInSuccessfullyAsB2BUser();
   //navigating to PLP
   await navigateToPLP('Allant');
-  await clickGridViewIcon()
+  await clickGridViewIcon();
   await expandSkuGrid(1);
   //Apple labels tab
   await clickAppleLabelsTab();
@@ -36,19 +54,6 @@ test("Apple labels assertion", async () => {
   //dismissing the alert stays on the same page
   await verifyAppleLabelsSaveButtonEnabled();
 
-  
-  
-
-
-
-  
-
-  
-
-  
-
- 
-
   // await appleLabelDescriptionInputLocator.nth(0).fill("apple");
   // //Cancel or dismissing the alert to stay on the apple labels
   // page.on("dialog", async (dialog) => {
@@ -66,5 +71,3 @@ test("Apple labels assertion", async () => {
   //   "apple"
   // );
 });
-
-

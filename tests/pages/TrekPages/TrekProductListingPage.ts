@@ -1,17 +1,14 @@
-import { expectElementToBeVisible } from "@AssertUtils";
-import {
-  click,
-  clickAndNavigate,
-  getLocator,
-  isElementVisible,
-} from "@TestUtils";
+import { click, clickAndNavigate } from '@ActionUtils';
+import { expectElementToBeVisible } from '@AssertUtils';
+import { isElementVisible } from '@ElementUtils';
+import { getLocator } from '@LocatorUtils';
 
 //navigating to PLP
 export async function navigateToPLP(category: string) {
   const category1 = category.toLowerCase();
   await click(`id=bikesNavLinkB2B-large`);
   await clickAndNavigate(
-    `id='nav-link-'${category1}PlusFamilyNavLinkB2B-large`
+    `id='nav-link-'${category1}PlusFamilyNavLinkB2B-large`,
   );
   // await expectElementToBeVisible(
   //   getLocatorByTestId(`plpListViewItemContainer`).or(
@@ -20,8 +17,8 @@ export async function navigateToPLP(category: string) {
   // );
   await expectElementToBeVisible(
     getLocator(
-      `//*[@id='search-results__products']//*[@id='b2b-off-canvas-facet']`
-    )
+      `//*[@id='search-results__products']//*[@id='b2b-off-canvas-facet']`,
+    ),
   );
 }
 
@@ -29,14 +26,14 @@ export async function navigateToPLP(category: string) {
 export async function clickGridViewIcon() {
   await click(
     getLocator(
-      `//*[@id='search-results__products']//*[@qaid='toggleButton-listview']`
-    ).nth(0)
+      `//*[@id='search-results__products']//*[@qaid='toggleButton-listview']`,
+    ).nth(0),
   );
 
   await expectElementToBeVisible(
     getLocator(
-      `//*[@id='search-results__products']//*[@qaid='plpListViewItemContainer']`
-    ).nth(0)
+      `//*[@id='search-results__products']//*[@qaid='plpListViewItemContainer']`,
+    ).nth(0),
   );
 }
 
@@ -46,14 +43,14 @@ export async function expandSkuGrid(gridNo: number): Promise<void> {
     getLocator(
       `//*[@id='search-results__products']//*[@qaid='listViewExpandGroup${
         gridNo - 1
-      }ChevronCollapsed']`
+      }ChevronCollapsed']`,
     );
   if (await isElementVisible(collapsedLocator())) {
     await click(collapsedLocator());
     await expectElementToBeVisible(
       `//*[@id='search-results__products']//*[@qaid='listViewExpandGroup${
         gridNo - 1
-      }Expanded']`
+      }Expanded']`,
     );
   }
 }

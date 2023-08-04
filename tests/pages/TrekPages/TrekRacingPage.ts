@@ -1,5 +1,5 @@
-import { expectElementToBeVisible } from "@AssertUtils";
+import { expectElementToBeVisible } from '@AssertUtils';
 
 export async function verifyPostInRacingPage() {
-    await expectElementToBeVisible(`//*[@class='posts-wrapper']`);
-  }
+  await expectElementToBeVisible(`//*[@class='posts-wrapper']`);
+}

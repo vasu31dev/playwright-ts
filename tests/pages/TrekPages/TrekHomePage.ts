@@ -1,20 +1,18 @@
-import { expectElementToBeVisible } from "@AssertUtils";
+import { click, clickAndNavigate, gotoURL } from '@ActionUtils';
+import { expectElementToBeVisible } from '@AssertUtils';
+import { isElementVisible } from '@ElementUtils';
 import {
-  getLocatorByRole,
-  gotoURL,
-  click,
-  getLocatorByTestId,
-  clickAndNavigate,
   getLocator,
-  isElementVisible,
-} from "@TestUtils";
+  getLocatorByRole,
+  getLocatorByTestId,
+} from '@LocatorUtils';
 
 export async function navigateToHomepage(): Promise<void> {
-  await gotoURL("https://test.trekbikes.com/us/en_US");
+  await gotoURL('https://test.trekbikes.com/us/en_US');
 }
 
 export async function clickBikeArchiveFooterLunk() {
-  await click(getLocatorByRole("link", { name: "Bike archive" }));
+  await click(getLocatorByRole('link', { name: 'Bike archive' }));
 }
 
 export async function verifyHomePageMarquee() {
@@ -27,7 +25,7 @@ export async function clickUserManualsFooterLink() {
 
 export async function clickShopsNavheader() {
   await clickAndNavigate(
-    getLocatorByTestId(`nav-categories-link-viewRetailerLocator-large`)
+    getLocatorByTestId(`nav-categories-link-viewRetailerLocator-large`),
   );
 }
 
@@ -45,7 +43,7 @@ export async function clicklogInText() {
 
 export async function clickTrekLogoIfDisplayed() {
   const trekLogo = `#logo-go-to-home-large`;
-  if(await isElementVisible(trekLogo)) {
-    await clickAndNavigate(trekLogo, {loadState: "load"});
+  if (await isElementVisible(trekLogo)) {
+    await clickAndNavigate(trekLogo, { loadState: 'load' });
   }
 }

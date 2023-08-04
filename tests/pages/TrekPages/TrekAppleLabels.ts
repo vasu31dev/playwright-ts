@@ -1,11 +1,11 @@
-import { click, fill, acceptAlert, dismissAlert } from "@ActionUtils";
+import { acceptAlert, click, dismissAlert, fill } from '@ActionUtils';
 import {
-  expectElementToContainAttribute,
   expectElementToBeEditable,
   expectElementToBeEnabled,
-} from "@AssertUtils";
-import { getAttribute } from "@ElementUtils";
-import { getLocatorByTestId, getLocator } from "@LocatorUtils";
+  expectElementToContainAttribute,
+} from '@AssertUtils';
+import { getAttribute } from '@ElementUtils';
+import { getLocator, getLocatorByTestId } from '@LocatorUtils';
 
 export async function clickAppleLabelsTab() {
   const AppleLabelsTab = () =>
@@ -13,20 +13,20 @@ export async function clickAppleLabelsTab() {
   await click(AppleLabelsTab());
   await expectElementToContainAttribute(
     getLocator(`#tab-1`).nth(0),
-    "class",
-    "active"
+    'class',
+    'active',
   );
 }
 
 //making apple label toggle active for first sku
 export async function clickingOnAppleLabelToggleToMakeActive(): Promise<void> {
   const toggleLabelLocator = getLocator(
-    `//*[@qaid='apple-label-item.row-0']//input[@type='checkbox']/..`
+    `//*[@qaid='apple-label-item.row-0']//input[@type='checkbox']/..`,
   );
-  if (!(await getAttribute(toggleLabelLocator, "class"))?.includes("toggled")) {
+  if (!(await getAttribute(toggleLabelLocator, 'class'))?.includes('toggled')) {
     await click(toggleLabelLocator);
   } else {
-    console.log("Apple label toggle is already active");
+    console.log('Apple label toggle is already active');
   }
 }
 
@@ -34,10 +34,10 @@ export async function clickingOnAppleLabelToggleToMakeActive(): Promise<void> {
 export async function updateAppleLabelDescription() {
   const appleLabelDescriptionInputLocator = () =>
     getLocator(
-      `//*[@qaid='apple-label-item.input-retailLabelDescription']//input`
+      `//*[@qaid='apple-label-item.input-retailLabelDescription']//input`,
     );
   await expectElementToBeEditable(appleLabelDescriptionInputLocator().nth(0));
-  await fill(appleLabelDescriptionInputLocator().nth(0), "apple");
+  await fill(appleLabelDescriptionInputLocator().nth(0), 'apple');
 }
 
 export async function acceptAppleLabelAlert() {
@@ -50,6 +50,6 @@ export async function dismissAppleLabelAlert() {
 
 export async function verifyAppleLabelsSaveButtonEnabled() {
   await expectElementToBeEnabled(
-    getLocatorByTestId(`apple-label-button.save`).nth(0)
+    getLocatorByTestId(`apple-label-button.save`).nth(0),
   );
 }

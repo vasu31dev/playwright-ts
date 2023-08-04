@@ -1,17 +1,16 @@
-import { test } from "@PageSetup";
-import * as ProductPage from "../../pages/TrekPages/TrekProductPage";
-import * as CartPage from "../../pages/TrekPages/TrekCartPage";
-import * as GuestLoginPage from "../../pages/TrekPages/TrekGuestLogin";
-import * as DeliveryDetailsPage from "../../pages/TrekPages/TrekDeliveryDetails";
-import * as DeliveryMethodPage from "../../pages/TrekPages/TrekDeliveryMethodPage";
-import * as BillingDetailsPage from "../../pages/TrekPages/TrekBillingDetailsPage";
-import * as ReviewOrderPage from "../../pages/TrekPages/TrekReviewOrderPage";
-import { assertAllSoftAssertions } from "@AssertUtils";
+import { test } from '@PageSetup';
+import * as ProductPage from '../../pages/TrekPages/TrekProductPage';
+import * as CartPage from '../../pages/TrekPages/TrekCartPage';
+import * as GuestLoginPage from '../../pages/TrekPages/TrekGuestLogin';
+import * as DeliveryDetailsPage from '../../pages/TrekPages/TrekDeliveryDetails';
+import * as DeliveryMethodPage from '../../pages/TrekPages/TrekDeliveryMethodPage';
+import * as BillingDetailsPage from '../../pages/TrekPages/TrekBillingDetailsPage';
+import * as ReviewOrderPage from '../../pages/TrekPages/TrekReviewOrderPage';
+import { assertAllSoftAssertions } from '@AssertUtils';
 
-
-test("TREK End to end testing as Guest using Functions", async () => {
+test('TREK End to end testing as Guest using Functions', async () => {
   await ProductPage.navigateToproductPage(
-    "https://test.trekbikes.com/us/en_US/p/31929/"
+    'https://test.trekbikes.com/us/en_US/p/31929/',
     // "https://vvemulapalli:1180%40Bikkina@test.trekbikes.com/us/en_US/p/31929/"
   );
   await ProductPage.addProductToCart();
@@ -20,8 +19,8 @@ test("TREK End to end testing as Guest using Functions", async () => {
   await CartPage.incrementItemQtyInCart();
   await CartPage.navigateToCheckout();
 
-  await GuestLoginPage.enterGuestEmail("abc@gmail.com");
-  await GuestLoginPage.navigateToCheckoutAsGuest()
+  await GuestLoginPage.enterGuestEmail('abc@gmail.com');
+  await GuestLoginPage.navigateToCheckoutAsGuest();
 
   await DeliveryDetailsPage.fillDeliveryDetails();
   await DeliveryDetailsPage.navigateToDeliveryMethodPage();
@@ -37,5 +36,4 @@ test("TREK End to end testing as Guest using Functions", async () => {
 
   await ReviewOrderPage.checkPrivacyPolicyLink();
   await ReviewOrderPage.placeOrder();
-
 });
