@@ -295,11 +295,11 @@ In this example, we're using various functions from LocatorUtils:
 
 1.  `getLocator(selector: string)`: This function returns a Locator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the element you want to locate.
 
-2.  `getLocatorByTestId(testId: string)`: This function returns a Locator object for the element with the given test ID. The testId parameter is a string representing the test ID of the element you want to locate. test ID is a qaid attribute that can be added to any web element in page html. test ID attribute can be configured in `playwright.config.ts` file using `testIdAttribute` property
+2.  `getLocatorByTestId(testId: string)`: This function returns a Locator object for the element with the given test ID. The testId parameter is a string representing the test ID of the element you want to locate. test ID is a qaid attribute that can be added to any web element in the page html. test ID attribute can be configured in `playwright.config.ts` file using `testIdAttribute` property
 
-        `Ex:  testIdAttribute: 'qa-target'`
+        Ex:  testIdAttribute: 'qa-target'
 
-    With this configuration, we can directly pass `qa-target` value directly in `getLocatorByTestId` function without need for any CSS or Xpath
+    With this configuration, we can directly pass `qa-target` value directly to `getLocatorByTestId` function without need for any CSS or Xpath
 
 3.  `getLocatorByText(text: string)`: This function returns a Locator object for the element with the given text. The text parameter is a string representing the text of the element you want to locate.
 
