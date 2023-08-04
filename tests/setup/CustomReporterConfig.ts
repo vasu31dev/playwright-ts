@@ -30,7 +30,7 @@ export const logger = winston.createLogger({
 
 export default class CustomReporterConfig implements Reporter {
   onTestBegin(test: TestCase): void {
-    logger.info(`Test Case Started : ${test.title}`); 
+    logger.info(`Test Case Started : ${test.title}`);
   }
 
   onTestEnd(test: TestCase, result: TestResult): void {
