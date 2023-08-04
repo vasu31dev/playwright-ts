@@ -531,7 +531,15 @@ Running tests with plugin:
 
 2. Clicking on the `Play` button will execute the test. We can either execute individual tests or all tests together within the spec file
 
-3.SCREENSHOT
+3. SCREENSHOT
+
+### Parallel execution
+
+1. In order to execute the tests in parallel in multiple workers, please add the below command in the spec file above the `test` block
+
+`test.describe.configure({ mode: 'parallel' });`
+
+2. `workers` can be configured either from `playwright.config` file or from commnad-line interface
 
 ### Run tests using Command-line interface
 
