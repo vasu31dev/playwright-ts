@@ -67,8 +67,11 @@ Prettier
 
 ### Prerequisites
 
-- Node.js (v18.0.0 or later)
+- Node.js (v18.0.0 or later) , install from here if you don't have one, [Node.js Installation Page](https://nodejs.org/en/download)
 - npm (v9.0.0 or later)
+- VSCode settings
+  - `typescript.preferences.quoteStyle: single`
+  - `Format On Save Mode: file`
 
 ### Installation
 
