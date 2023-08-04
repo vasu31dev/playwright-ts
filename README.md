@@ -601,11 +601,11 @@ npx playwright test -c playwright.config.ts -g "logo is present @reg" --headed -
 - `-j` -> number of workers
 - `--retries` -> retry count for failed tests
 - `--headed` -> run in headed mode (default is headless)
-- `--project=chromium`
-- `--repeat-each 3` -> repeat each test 3 times
+- `--project=chromium` -> run the tests in Playwright Chromium browser
+- `--repeat-each 3` -> repeat each test 3 times, mostly useful when we want to test the stability of the test or any intermittent issue fixes so it should pass for all the given number of times
 - `--grep-invert` -> opposite of `-g` or grep
 - `--max-failures 4` -> Stop after the first 4 test failures. This includes a count of failures in the retry test as well
-- `--list` -> List all the tests, but do not run them.
+- `--list` -> Lists all the tests, but do not run them.
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
