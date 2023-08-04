@@ -223,7 +223,7 @@ export async function isLoginSuccessful() {
 
 In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
 
-Refer [LocatorUtils](#locatorutils) section for more information on locators.
+Refer [Utilities](#utilities) section for more information on Utilities.
 
 Refer to the [Running Tests](#running-tests) section below on how to run tests.
 
@@ -246,9 +246,9 @@ test('successful login', async () => {
 });
 ```
 
-In this example, we are setting the page state by importing `test` from `@pageSetup` and writing the spec file
+In this example, we are setting the page state by importing `test` from `@PageSetup` and writing the spec file
 
-1. Import `test` from @pageSetup instead from `@playwright/test`. This is customised like this for this framework
+1. Import `test` from `@PageSetup` instead from `@playwright/test`. `@PageSetup` is customised for this framework to set the page state.
 
 2. `setPage` function from `Pagesetup` file will set the page state before each test and is imported to our spec files while excuting the tests. If you want to use Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
@@ -293,17 +293,21 @@ const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'sub
 
 In this example, we're using various functions from LocatorUtils:
 
-1. `getLocator(selector: string)`: This function returns a Locator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the element you want to locate.
+1.  `getLocator(selector: string)`: This function returns a Locator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the element you want to locate.
 
-2. `getLocatorByTestId(testId: string)`: This function returns a Locator object for the element with the given test ID. The testId parameter is a string representing the test ID of the element you want to locate.
+2.  `getLocatorByTestId(testId: string)`: This function returns a Locator object for the element with the given test ID. The testId parameter is a string representing the test ID of the element you want to locate. test ID is a qaid attribute that can be added to any web element in page html. test ID attribute can be configured in `playwright.config.ts` file using `testIdAttribute` property
 
-3. `getLocatorByText(text: string)`: This function returns a Locator object for the element with the given text. The text parameter is a string representing the text of the element you want to locate.
+        `Ex:  testIdAttribute: 'qa-target'`
 
-4. `getLocatorByRole(role: string)`: This function returns a Locator object for the element with the given ARIA role. The role parameter is a string representing the ARIA role of the element you want to locate.
+    With this configuration, we can directly pass `qa-target` value directly in `getLocatorByTestId` function without need for any CSS or Xpath
 
-5. `getLocatorByLabel(label: string)`: This function returns a Locator object for the element with the given label. The label parameter is a string representing the label of the element you want to locate.
+3.  `getLocatorByText(text: string)`: This function returns a Locator object for the element with the given text. The text parameter is a string representing the text of the element you want to locate.
 
-6. These locator functions can also be easily used with Locator operators( `and`, `or`) and filters(`filter`). For more information on Locator operators and filter, please refer to [Playwright Locator documentation](https://playwright.dev/docs/locators#filtering-locators)
+4.  `getLocatorByRole(role: string)`: This function returns a Locator object for the element with the given ARIA role. The role parameter is a string representing the ARIA role of the element you want to locate.
+
+5.  `getLocatorByLabel(label: string)`: This function returns a Locator object for the element with the given label. The label parameter is a string representing the label of the element you want to locate.
+
+6.  These locator functions can also be easily used with Locator operators( `and`, `or`) and filters(`filter`). For more information on Locator operators and filter, please refer to [Playwright Locator documentation](https://playwright.dev/docs/locators#filtering-locators)
 
 Here is some more information about `LocatorUtilis` usage as this is a unique POM design pattern
 
