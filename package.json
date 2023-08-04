@@ -1,27 +1,37 @@
 {
   "devDependencies": {
     "@playwright/test": "^1.36.2",
-    "eslint-config-prettier": "^8.9.0",
-    "eslint-plugin-prettier": "^5.0.0"
-  },
-  "scripts": {
-    "test": "playwright test",
-    "test:chromium-headed": "playwright test -j 1 --retries 0 --headed --project=chromium",
-    "reg": "playwright test --project=chromium",
-    "report": "playwright show-report playwright-report",
-    "ui": "playwright test --ui-port 0",
-    "trace": "playwright show-trace --port 0",
-    "allure": "npx allure generate ./allure-results --clean && npx allure open ./allure-report",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
-  },
-  "dependencies": {
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "allure-commandline": "^2.23.1",
     "allure-playwright": "^2.4.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.46.0",
-    "eslint-plugin-playwright": "^0.15.3"
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-playwright": "^0.15.3",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "winston": "^3.10.0"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --retries 0 --project=chromium",
+    "test:chromium-headed": "playwright test -j 1 --retries 0 --headed --project=chromium",
+    "reg": "playwright test --project=chromium -g '@reg'",
+    "smoke": "playwright test --project=chromium -g '@smoke'",
+    "report": "playwright show-report playwright-report",
+    "ui": "playwright test --ui-port 0",
+    "trace": "playwright show-trace --port 0",
+    "allure": "npx allure generate ./allure-results --clean && npx allure open ./allure-report",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
