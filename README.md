@@ -513,7 +513,29 @@ In this example, we're using some Types optional parameters with some utility fu
 
 ## Running Tests
 
-To run the tests, use the following commands:
+### Run tests using Playwright plugin
+
+To run the tests, using Playwrgit plugin, please follow the below instructions:
+
+Playwright plugin installation:
+
+1. Click on `Extensions` icon in VSCode and search for `Playwright`
+
+2. Select and install `Playwright Test for VSCode` plugin
+
+3. SCREENSHOT
+
+Running tests with plugin:
+
+1. Once the plugin is installed, we can see small green `Play` button on every test under the `specs` file
+
+2. Clicking on the `Play` button will execute the test. We can either execute individual tests or all tests together within the spec file
+
+3.SCREENSHOT
+
+### Run tests using Command-line interface
+
+To run the tests, using the commnad-line interface, please follow the below commands:
 
 #### npm run commands
 
