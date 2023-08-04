@@ -371,8 +371,7 @@ In this example, we're using various functions from ActionUtils:
 
 4. `type(input: string | Locator,value: string,options?: TypeOptions,)`: This function is used to type into the field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional type options.
 
-`To find more info on 'fill' vs 'type, please refer to [Playwright type documentation](#https://playwright.dev/docs/input#type-characters)`.
-Generally `fill` will work in most of the cases
+Generally `fill` will work in most of the cases and to find more info on 'fill' vs 'type, please refer to [Playwright type documentation](#https://playwright.dev/docs/input#type-characters).
 
 5. `check(input: string | Locator, options?: CheckOptions)`: This function is used to check a checkbox or radio button. The input parameter is a string or Locator representing the checkbox or radio button you want to check, and the options parameter is an optional parameter that specifies additional check options.
 
