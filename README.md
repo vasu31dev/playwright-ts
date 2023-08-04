@@ -179,30 +179,6 @@ await closePage(); // close the current page and then switch to the default page
 
 ## Usage
 
-### Writing Tests in spec file
-
-Tests are written in the tests directory. Each test file should correspond to a specific feature or functionality of the application under test.
-
-Here's an example of a test file under the `specs` package:
-
-```typescript
-login.spec.ts;
-//import Page object from PageSetup.ts which sets up the page before each test
-import { test } from '@PageSetup';
-import * as LoginPage from '../pages/LoginPage';
-
-test('successful login', async () => {
-  await LoginPage.gotoHomePage();
-  await LoginPage.loginSuccessfully();
-});
-```
-
-In this example, we are setting the page state and writing the spec file
-
-1. `setPage` function from `Pagesetup` file will set the page state before each test and is imported to our spec files while excuting the tests. If you want to use Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
-
-2. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
-
 ### Page Objects
 
 Page objects are utilized to encapsulate information about the elements present on each page of your application. They also provide a structured way to write action and assertion functions for various functionalities on each page. This approach promotes code reusability and makes the tests easier to maintain and understand. Page objects can be found in the `pages` directory.
@@ -211,6 +187,7 @@ Here's an example of a page object under `pages` package:
 
 ```typescript
 LoginPage.ts;
+//importing utility functions
 import {
   getLocatorByTestId,
   getLocatorByLabel,
@@ -244,11 +221,38 @@ export async function isLoginSuccessful() {
 }
 ```
 
-In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the page, perform a login action, and check if the login was successful.
+In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
 
-Refer [LocatorUtils](#locatorutils) section for more info on locators.
+Refer [LocatorUtils](#locatorutils) section for more information on locators.
 
-Refer to the [Running Tests](#running-tests) section below on how to run tests using the command-line interface (CLI).
+Refer to the [Running Tests](#running-tests) section below on how to run tests.
+
+### Writing Tests in spec file
+
+Tests are written in the `specs` directory. Each test file should correspond to a specific feature or functionality of the application under test. Tests are constructed using Page objects
+
+Here's an example of a test file under the `specs` directory:
+
+```typescript
+login.spec.ts;
+//import test from PageSetup.ts which sets up the page before each test
+import { test } from '@PageSetup';
+//importing page objects to use all functions with in that page to construct the tests
+import * as LoginPage from '../pages/LoginPage';
+
+test('successful login', async () => {
+  await LoginPage.gotoHomePage();
+  await LoginPage.loginSuccessfully();
+});
+```
+
+In this example, we are setting the page state by importing `test` from `@pageSetup` and writing the spec file
+
+1. Import `test` from @pageSetup instead from `@playwright/test`. This is customised like this for this framework
+
+2. `setPage` function from `Pagesetup` file will set the page state before each test and is imported to our spec files while excuting the tests. If you want to use Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
+
+3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
 ## Utilities
 
