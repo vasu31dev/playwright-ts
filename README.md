@@ -36,8 +36,9 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Project Update Guide](#project-update-guide)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
-  - [Writing Tests](#writing-tests)
   - [Page Objects](#page-objects)
+  - [Writing Tests](#writing-tests)
+  - [Test annotations](#test-annotations)
 - [Utilities](#utilities)
   - [LocatorUtils](#locatorutils)
   - [Frames](#frames)
@@ -253,6 +254,26 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 2. `setPage` function from `Pagesetup` file will set the page state before each test and is imported to our spec files while excuting the tests. If you want to use Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
+
+### Test annotations
+
+Playwright Test supports test annotations to deal with failures, flakiness, skip, focus, tag and group tests
+
+```typescript
+import { test } from '@PageSetup';
+
+test.fixme('Skip this test', async () => {});
+test.slow('Skip this test', async () => {});
+test.skip('Skip this test', async () => {});
+```
+
+1. `fixme`: marks the test as failing. Playwright Test will not run this test. Use fixme when running the test is slow, crashes or need any fixes
+
+2. `slow`: marks the test as slow and triples the timeout
+
+3. `skip`: marks the test as irerevelant. Playwright Test does not run such a test. Use this annotation when the test is not applicable in some configuration.
+
+For more info on test annotations, please refer [Playwright Test Annotations Document](https://playwright.dev/docs/test-annotations)
 
 ## Utilities
 
