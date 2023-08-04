@@ -67,9 +67,9 @@ Prettier
 
 ### Prerequisites
 
-- Node.js (v18.0.0 or later) , install from here if you don't have one, [Node.js Installation Page](https://nodejs.org/en/download)
+- Node.js (v18.0.0 or later) => install it from here if you don't have one [Node.js Installation Page](https://nodejs.org/en/download)
 - npm (v9.0.0 or later)
-- VSCode settings
+- VSCode settings => Please save the following settings as given in VSCode settings(Cmd+ ,)
   - `typescript.preferences.quoteStyle: single`
   - `Format On Save Mode: file`
 
