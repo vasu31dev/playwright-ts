@@ -630,6 +630,21 @@ npx playwright test -c playwright.config.ts -g "logo is present @reg" --headed -
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
+## Best practices
+
+Here are the some good practices with the current framework
+
+- try to use utility functions wherever possible instead of directly using Playwright methods
+- use Playwright method combined with `getPage` from `@PageSetup`, incase if you don't find the utility function. `Please send feedback to us for which functionality you didn't find the utility function so we can add that and improve our frame work`
+- always use back ticks for Xpath & css so that you can include single & double quotes together inside them as needed
+- always use Playwright inbuilt features as need
+- use `ClickandNavigate` utility function incase click action performs navigation. This function has in built checks for frame navigation and content loaded
+- use `fill` utility function to fill the form field and use `type` when you want to type char by char like when you are looking for autosearch suggestions, autofill etc
+- webfirst assertions
+- always use soft assertions where you still want to execute the test without termination in case of a failure
+
+In addition to above, Playwright also recommends best practices to follow in here, [Playwright Best practices Documentation](https://playwright.dev/docs/best-practices)
+
 ## Contributing
 
 Contributions are welcome! Please read the contributing guidelines first.
