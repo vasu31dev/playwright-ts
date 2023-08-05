@@ -1,17 +1,15 @@
 ![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts) ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts)
 
-# Playwright TypeScript Framework: Streamlining Web and API Testing - "Your one-stop solution for efficient and comprehensive testing"
+# Playwright TypeScript Framework: Streamlining Desktop & Mobile Web, Electron and API Testing - "Your one-stop solution for efficient and comprehensive testing"
 
-Welcome to the Playwright TypeScript Framework, a unique and comprehensive automation framework designed to simplify and streamline the process of writing and managing automated tests for web applications and APIs. Built on [Playwright](https://playwright.dev/), a powerful browser automation library, and [TypeScript](https://www.typescriptlang.org/), a statically typed superset of JavaScript, this framework provides a robust and efficient environment for end-to-end testing.
+Welcome to the Playwright TypeScript Framework, a unique and comprehensive automation framework designed to simplify and streamline the process of writing and managing automated tests for Desktop and mobile web applications, Electron Desktop applications and APIs. Built on [Playwright](https://playwright.dev/), a powerful browser automation library, and [TypeScript](https://www.typescriptlang.org/), a statically typed superset of JavaScript, this framework provides a robust and efficient environment for end-to-end testing.
 
 This framework is ideal for QA professionals, developers, and business analysts looking to improve their testing practices and efficiency. It's equipped with utilities that simplify test creation and maintenance, allowing you to focus on writing your tests out of the box.
 
 ## Key Features:
 
 - **Unique Page Object Model Design Pattern**: Our Page Object Model (POM) design is not just another POM. It's a unique approach that significantly reduces complexity and accelerates coding, making it easier and faster to write scripts compared to traditional POMs. This means less time spent on setup and more time spent on creating effective tests. [See how we differ from the traditional Playwright POM](https://playwright.dev/docs/pom).
-    
 - **Ease of Use**: Designed to be intuitive and user-friendly, making it an excellent choice for beginners to understand and write scripts. This means less time spent on learning the tool and more time spent on creating effective tests.
-    
 - **User-Friendly for All Roles**: This framework is not just for QA professionals. Developers, manual QA, and even Business Analysts can contribute to end-to-end testing, promoting collaboration across different departments and roles.
 
 - **Utility Functions**: Simplifies common actions and assertions, such as clicking buttons, filling forms, and checking elements. It also includes inbuilt methods for conditional statements and maintains a default LoadState across applications.
@@ -31,10 +29,13 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+  - [Languages and Frameworks](#languages-and-frameworks)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Project Update Guide](#project-update-guide)
 - [Project Structure](#project-structure)
+- [Framework Setup](#framework-setup)
+  - [Switching Pages](#pagefactory)
 - [Usage](#usage)
   - [Page Objects](#page-objects)
   - [Spec File](#writing-tests-in-a-spec-file)
@@ -47,9 +48,10 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [ElementUtils](#elementutils)
   - [AssertUtils](#assertutils)
   - [Types](#types)
-- [Framework Setup](#framework-setup)
-  - [Switching Pages](#pagefactory)
 - [Running Tests](#running-tests)
+  - [Playwright plugin](#run-tests-using-the-playwright-plugin)
+  - [CLI](#running-tests-via-the-command-line-interface)
+- [Best Practices](#best-practices)
 - [Contributing](#contributing)
 
 ## Getting Started
@@ -64,6 +66,8 @@ This project uses the following languages and frameworks:
 - [Allure Report](https://docs.qameta.io/allure/) as the testing report strategy
 - [ESLint](https://eslint.org/) for linting
 - [Prettier](https://prettier.io/) for code formatting
+- [Logger](https://www.npmjs.com/package/winston) to generate log file and colored console output
+- [Pre-Commit Lint check](https://www.npmjs.com/package/husky) for blocking commits with linting errors
 
 ### Prerequisites
 
@@ -108,7 +112,7 @@ npx playwright install
    ```
 
    Replace `<USERNAME>` with your GitHub username and `<SECRETTOKEN>` with your GitHub personal access token. If you don't have a personal access token, you can create one in your GitHub account settings following this [GitHub guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
-   
+
 ### Project Update Guide
 
 To pull the latest changes and install the latest packages, follow these steps:
@@ -176,12 +180,15 @@ The PageFactory provides functions for managing Page objects during tests. Here 
 
 ```typescript
 import { switchPage, switchToDefaultPage, closePage } from '@PageFactory';
+
 // Switch to the second tab/window. Useful when a test involves interacting with multiple pages.
 await switchPage(2);
+
 // Switch to the initial page that was launched or the first tab/window. Useful when you want to return to the starting context after interacting with other pages.
 switchToDefaultPage();
+
 // Close the current page and then switch to the default page if it exists. Useful for cleaning up after a test that opens additional pages.
-await closePage(); 
+await closePage();
 ```
 
 ## Usage
@@ -192,8 +199,9 @@ Page objects are utilized to encapsulate information about the elements present 
 
 Here's an example of a page object under the `pages` package:
 
-```typescript
 LoginPage.ts;
+
+```typescript
 //importing utility functions
 import {
   getLocatorByTestId,
@@ -228,7 +236,7 @@ export async function isLoginSuccessful() {
 }
 ```
 
-In this example, the `LoginPage`  represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
+In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
 
 Refer [Utilities](#utilities) section for more information on Utilities.
 
@@ -240,10 +248,12 @@ Tests are written in the `specs` directory. Each test file should correspond to 
 
 Here's an example of a test file under the `specs` directory:
 
-```typescript
 login.spec.ts;
+
+```typescript
 //import test from PageSetup.ts which sets up the page before each test
 import { test } from '@PageSetup';
+
 //importing page objects to use all functions within that page to construct the tests
 import * as LoginPage from '../pages/LoginPage';
 
@@ -261,7 +271,7 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
-  In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
+In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
 
 Refer [Utilities](#utilities) section for more information on Utilities.
 
@@ -276,7 +286,10 @@ Here are some examples of how to use test annotations:
 ```typescript
 import { test } from '@PageSetup';
 
-test.fixme('This test will fail and needs to be fixed so it will be skipped', async () => {});
+test.fixme(
+  'This test will fail and needs to be fixed so it will be skipped',
+  async () => {},
+);
 test.slow('Triples the default timeouts for this test', async () => {});
 test.skip('Skip this test', async () => {});
 ```
@@ -335,10 +348,10 @@ In this example, we're using various functions from LocatorUtils:
     For example, if you have the following configuration in your `playwright.config.ts` file:
 
     ```typescript
-    testIdAttribute: 'qa-target'
+    testIdAttribute: 'qa-target';
     ```
 
-    With this configuration, you can directly pass the `qa-target` value to the `getLocatorByTestId` function without the need for any CSS or XPath. This simplifies the process of locating elements on the page, especially when dealing with complex or dynamic content. For more information please refer to [Playwright test id documentation](https://playwright.dev/docs/locators#locate-by-test-id) 
+    With this configuration, you can directly pass the `qa-target` value to the `getLocatorByTestId` function without the need for any CSS or XPath. This simplifies the process of locating elements on the page, especially when dealing with complex or dynamic content. For more information please refer to [Playwright test id documentation](https://playwright.dev/docs/locators#locate-by-test-id)
 
 3.  `getLocatorByText(text: string)`: This function returns a Locator object for the element with the given text. The text parameter is a string representing the text of the element you want to locate.
 
@@ -387,7 +400,7 @@ In this example, we're using various functions from LocatorUtils to handle frame
 
 2. `getLocatorInFrame(frameInput: string | FrameLocator, input: string | Locator):`: This function returns a Locator object inside the frame. The frameInput parameter is a string or Locator representing the frame that you want to locate the element with and the input parameter is a string or Locator of the element you want to locate inside the frame.
 
-These Locator functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests. 
+These Locator functions make it easier to locate elements on the page, and they provide a more readable and maintainable way to define locators in your tests.
 
 For more information, please refer to [Playwright FrameLocator documentation](https://playwright.dev/docs/api/class-framelocator)
 
@@ -439,7 +452,7 @@ In this example, we're using various functions from ActionUtils:
 
 3. `fill(input: string | Locator, value: string, options?: FillOptions)`: This function fills a form field with a specific value. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional fill options.
 
-4. `type(input: string | Locator,value: string,options?: TypeOptions,)`: This function types into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional type options.
+4. `type(input: string | Locator, value: string, options?: TypeOptions)`: This function types into a field character by character, as if it was a user with a real keyboard. The input parameter is a string or Locator representing the form field you want to fill, the value parameter is the value you want to fill the form field with, and the options parameter is an optional parameter that specifies additional type options.
 
 Generally `fill` will work in most cases and has better performance. Generally 'type' is used when we have to enter text in a search box that has autosuggestions. To find more info on `fill` vs `type`, please refer to [Playwright type documentation](https://playwright.dev/docs/input#type-characters).
 
@@ -455,7 +468,7 @@ Refer to the [Types](#types) section below for more information on the optional 
 
 ### Alerts
 
-The `ActionUtils` module provides utility functions to handle alerts in Playwright. These functions are designed to make your tests more readable,  maintainable and to reduce the amount of boilerplate code you need to write.
+The `ActionUtils` module provides utility functions to handle alerts in Playwright. These functions are designed to make your tests more readable, maintainable and to reduce the amount of boilerplate code you need to write.
 
 Here's an example of how to use the `ActionUtils` functions to handle alerts:
 
@@ -479,7 +492,7 @@ In this example, we're using various functions from ActionUtils to handle alerts
 2. `dismissAlert(input: string | Locator)`: This function is used to dismiss an alert dialog. The `input` parameter is a string or Locator representing the element that triggers the alert.
 
 3. `getAlertText(input: string | Locator)`: This function is used to get the text from an alert dialog. The `input` parameter is a string or Locator representing the element that triggers the alert.
-   
+
 These functions make it easier to handle alerts in your tests, and they provide a more readable and maintainable way to define alert handling in your tests.
 For more information, please refer to [Playwright Alerts documentation](https://playwright.dev/docs/dialogs#alert-confirm-prompt-dialogs)
 
@@ -544,11 +557,14 @@ await expectElementToHaveText(successfulMessage(), 'Login is successful', {
 await expectElementNotToBeChecked(agreeCheckbox(), {
   timeout: INSTANT_TIMEOUT,
 });
+
 //with 'soft' optional parameter 'true' we are making this assertion as soft assertion
 await expectElementNotToContainText(successfulMessage(), '404 error', {
   soft: true,
 });
-assertAllSoftAssertions(test.info()); // use this in the spec file to stop the test if there are failures for any soft assertions
+
+// use this in the spec file to stop the test if there are failures for any soft assertions
+assertAllSoftAssertions(test.info());
 ```
 
 In this example, we're using various functions from AssertUtils:
@@ -595,7 +611,7 @@ await expectElementToHaveText(
 );
 ```
 
-In this example, we're using some Types optional parameters with some utility functions:
+In this example, we're using some Types optional parameters with utility functions:
 
 1. `Locator options`: `hasText` is used as an optional parameter to locate the element that has the given text.
 
@@ -603,8 +619,7 @@ In this example, we're using some Types optional parameters with some utility fu
 
 3. `Action Options(TypeOptions)`: `delay` is used to simulate the delay between the key presses with the given time, `noWaitAfter` is used to specify not to wait after the action `type`.
 
-4. `ExpectOptions(ExpectTextOptions)`: `useInnerText` is used to assert the inner text, `ignoreCase` is used to ignore case while asserting, and `timeout` is used to wait until the specified time before failing the test.
-
+4. `ExpectOptions(ExpectTextOptions)`: `useInnerText` is used to assert the inner text, `ignoreCase` is used to ignore the case while asserting, and `timeout` is used to wait until the specified time before failing the test.
 
 ## Running Tests
 
@@ -624,7 +639,7 @@ To run the tests using the Playwright plugin in Visual Studio Code, please follo
 
 2. Clicking on the `Play` button will execute the test. You can either execute individual tests or all tests together within the spec file.
 
-  ![Running Tests](https://blog.jetbrains.com/wp-content/uploads/2023/06/OpenProject.png)
+![Running Tests](https://blog.jetbrains.com/wp-content/uploads/2023/06/OpenProject.png)
 
 The Playwright plugin for Visual Studio Code provides a convenient way to run your tests directly from your code editor, without having to switch to the terminal.
 
@@ -682,6 +697,7 @@ npm run test:chromium-headed -- nucleus.spec.ts --debug
 
 ```bash
 npm run test -- -g '@smoke'
+```
 
 - To run all tests in headless mode for all the projects:
 
@@ -712,13 +728,13 @@ Here's what each option does:
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
-## Best practices
+## Best Practices
 
 Here are some recommended best practices when using this framework:
 
 - `Use Utility Functions`: Whenever possible, use the utility functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable.
 
-- `Feedback on Utility Functions`: If you find that a utility function for a specific action or assertion is missing, please provide feedback so we can continue to improve and expand our utility Functions. Meanwhile, temporarily use the corresponding Playwright method combined with `getPage` from `@PageSetup` for a specific task, the utility function is not available. Replace these with newly added utility functions once they are available. 
+- `Feedback on Utility Functions`: If you find that a utility function for a specific action or assertion is missing, please provide feedback so we can continue to improve and expand our utility Functions. Meanwhile, temporarily use the corresponding Playwright method combined with `getPage` from `@PageSetup` for a specific task, the utility function is not available. Replace these with newly added utility functions once they are available.
 
 - `Playwright's Inbuilt Features`: Playwright comes with a wide range of inbuilt features. Make sure to utilize these as needed.
 
