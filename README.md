@@ -164,6 +164,10 @@ npx playwright install
 
 The project is structured into several packages and files, each serving a specific purpose:
 
+- `.husky`: Husky is a tool that allows us to easily wrangle Git hooks and run the scripts we want at those stages. This framework is configured to avoid commits with any linting errors. Husky runs `npm run lint` command before every commit, where `lint` is configured to `eslint . --ext .ts` in `package.json` file under `scripts` section. This hook prevents commiting the changes if there are any linting erros.
+
+  Note: users can easily fix linting erros by running `npm run lint:fix` command via the commnad-line interface. Once the lint erros are fixed, user can commit the changes if husky hook is a `pass`
+
 - `tests`: This directory contains all the framework set up, end-to-end test files, API tests, and related utilities for testing the application. Tests are organized by
 
   - `setup`: This directory contains [Framework and Page setup](#framework-setup).
