@@ -53,6 +53,7 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
 - [Running Tests](#running-tests)
   - [Playwright plugin](#run-tests-using-the-playwright-plugin)
   - [CLI](#running-tests-via-the-command-line-interface)
+  - [Viewing reports](#viewing-reports)
 - [Best Practices](#best-practices)
 - [Contributing](#contributing)
 
@@ -188,7 +189,7 @@ The project is structured into several packages and files, each serving a specif
 
 - `tsconfig.json`: This file specifies the root files and the compiler options required to compile the project.
 
-- `playwright-report`: This directory will get auto-generated with the configured [Playwright reporters](https://playwright.dev/docs/test-reporters) on the intial execution of the tests.
+- `playwright-report`: This directory will get auto-generated with the configured [Playwright reporters](https://playwright.dev/docs/test-reporters) on the intial execution of the tests and the report file will be updated everytime as the test executes. More information on how to view the reports can be found [here](#viewing-reports)
 
 ## Framework Setup
 
@@ -757,6 +758,25 @@ Here's what each option does:
 - `--list`: Lists all the tests, but does not run them.
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
+
+## Viewing reports
+
+Playwright Test comes with a few built-in reporters for different needs and ability to provide custom reporters. Reporters can be configured via command-line or from playwright.config.ts. Here is the link to the documentation of [Playwright in-built reporters](https://playwright.dev/docs/test-reporters)
+
+### Viewing reports via the Command-Line Interface
+
+- To view the reports after test execution
+
+```bash
+npx playwright show-report <path to the report>
+```
+
+- To view the reports after test execution as configured with this framework in `package.json` under `scripts`,
+  ` "report": "playwright show-report playwright-report",`
+
+```bash
+npm run report
+```
 
 ## Best Practices
 
