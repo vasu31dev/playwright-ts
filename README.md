@@ -74,19 +74,11 @@ This project uses the following tools and frameworks:
 
 ### Prerequisites
 
-<<<<<<< HEAD
-- Node.js (v18.0.0 or later) => install it from here if you don't have one [Node.js Installation Page](https://nodejs.org/en/download)
-- npm (v9.0.0 or later)
-- VSCode settings => Please save the following settings as given in VSCode settings(Cmd+ ,)
-  - `typescript.preferences.quoteStyle: single`
-  - `Format On Save Mode: file`
-=======
 - npm (v9.0.0 or later) - Check your current version with `npm -v`. If you don't have npm installed, you can follow this [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Node.js](https://nodejs.org/en/download) (v18.0.0 or later) - You can check your current version with the command `node -v`
 - VSCode settings: Please save the following settings in VSCode settings (Cmd + ,) to be in sync with prettier format settings:
   - `typescript.preferences.quoteStyle: single` - This setting ensures consistency in quote style throughout your code.
-  - `Format On Save Mode: file` - This setting automatically formats your code whenever you save a file, helping to maintain code readability and consistency.
->>>>>>> 4ab364373acc6598e4d6d33a0649c2f3fd6caa48
+  - `Format On Save Mode: file` - This setting automatically formats your code whenever you save a file, helping to maintain the code readability and consistency.
 
 ### Installation
 
@@ -159,7 +151,17 @@ npx playwright install
 
 The project is structured into several packages and files, each serving a specific purpose:
 
-- `tests`: This directory contains all the end-to-end test files, API tests, and related utilities for testing the application. Tests are organized by [describe your organization strategy here].
+- `tests`: This directory contains all the framework set up, end-to-end test files, API tests, and related utilities for testing the application. Tests are organized by
+
+  - **setup**: This directory contains [Framework and Page setup](#framework-setup).
+
+  - **pages**: This directory contains [page objects](#page-objects).
+
+  - **testdata**: This directory contains necessary testdata as json objects for our tests.
+
+  - **specs**: This directory contains all [spec files](#writing-tests-in-a-spec-file).
+
+  - **utils**: This directory contains all tests related [utility functions](#utilities).
 
 - `.eslintrc`: This file contains the configuration for ESLint, a tool for identifying and reporting patterns in JavaScript.
 
@@ -172,6 +174,10 @@ The project is structured into several packages and files, each serving a specif
 - `playwright.config.ts`: This file contains the configuration for Playwright, including settings for different browsers and devices, such as viewport sizes, user agent strings, and launch options.
 
 - `tsconfig.json`: This file specifies the root files and the compiler options required to compile the project.
+
+### `tests` directory
+
+Little more about `tests` directory, as this is our main directory where we setup the frame work and, specify and construct our tests. This directory also contains Page objects, Utility functions and Test data objects that are necessary for the construction of the tests.
 
 ## Framework Setup
 
