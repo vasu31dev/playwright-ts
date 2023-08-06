@@ -76,7 +76,18 @@ This project uses the following tools and frameworks:
 
 - npm (v9.0.0 or later) - Check your current version with `npm -v`. If you don't have npm installed, you can follow this [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Node.js](https://nodejs.org/en/download) (v18.0.0 or later) - You can check your current version with the command `node -v`
+
+- VSCode Plugins:
+
+  - `Prettier - Code formatter` for code formatting
+    1. Click on the Extensions icon in Visual Studio Code and search for `Prettier`.
+    2. Select and install the `Prettier - Code formatter`.
+  - `ESLint` - for linting errors
+    1. Click on the Extensions icon in Visual Studio Code and search for `ESlint`.
+    2. Select and install the `ESlint`.
+
 - VSCode settings: Please save the following settings in VSCode settings (Cmd + ,) to be in sync with prettier format settings:
+
   - `typescript.preferences.quoteStyle: single` - This setting ensures consistency in quote style throughout your code.
   - `Format On Save Mode: file` - This setting automatically formats your code whenever you save a file, helping to maintain the code readability and consistency.
 
