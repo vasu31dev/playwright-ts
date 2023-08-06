@@ -54,6 +54,7 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Playwright plugin](#run-tests-using-the-playwright-plugin)
   - [CLI](#running-tests-via-the-command-line-interface)
   - [Viewing reports](#viewing-reports)
+- [Additional playwright features](#additional-playwright-features)
 - [Best Practices](#best-practices)
 - [Contributing](#contributing)
 
@@ -778,24 +779,13 @@ npx playwright show-report <path to the report>
 npm run report
 ```
 
-## Viewing reports
+## Additional playwright features
 
-Playwright Test comes with a few built-in reporters for different needs and ability to provide custom reporters. Reporters can be configured via command-line or from playwright.config.ts. Here is the link to the documentation of [Playwright in-built reporters](https://playwright.dev/docs/test-reporters)
+- `UI Mode` - with UI mode, Playwright lets us to explore, run and debug tests in watch mode. Click [here](https://playwright.dev/docs/test-ui-mode) for more information.
 
-### Viewing reports via the Command-Line Interface
+- `Test generator` - Playwright has the ability to generate tests by looking at the page and figure out the best locator, prioritizing role, text and test id locators. More information on test generation by running Codegen can be found [here](https://playwright.dev/docs/codegen).
 
-- To view the reports after test execution
-
-```bash
-npx playwright show-report <path to the report>
-```
-
-- To view the reports after test execution as configured with this framework in `package.json` under `scripts`,
-  ` "report": "playwright show-report playwright-report",`
-
-```bash
-npm run report
-```
+- `Trace viewer` - Playwright Trace Viewer is a GUI tool that helps you explore recorded Playwright traces after the script has ran. Click [here](https://playwright.dev/docs/trace-viewer) for more information.
 
 ## Best Practices
 
