@@ -153,17 +153,19 @@ The project is structured into several packages and files, each serving a specif
 
 - `tests`: This directory contains all the framework set up, end-to-end test files, API tests, and related utilities for testing the application. Tests are organized by
 
-  - **setup**: This directory contains [Framework and Page setup](#framework-setup).
+  - `setup`: This directory contains [Framework and Page setup](#framework-setup).
 
-  - **pages**: This directory contains [page objects](#page-objects).
+  - `pages`: This directory contains [page objects](#page-objects).
 
-  - **testdata**: This directory contains necessary testdata as json objects for our tests.
+  - `testdata`: This directory contains necessary testdata as json objects for our tests.
 
-  - **specs**: This directory contains all [spec files](#writing-tests-in-a-spec-file).
+  - `specs`: This directory contains all [spec files](#writing-tests-in-a-spec-file).
 
-  - **utils**: This directory contains all tests related [utility functions](#utilities).
+  - `utils`: This directory contains all tests related [utility functions](#utilities).
 
 - `.eslintrc`: This file contains the configuration for ESLint, a tool for identifying and reporting patterns in JavaScript.
+
+- `.prettierrc`: This file contains the configuration for Prettier, a tool for code formatting.
 
 - `.gitignore`: This file specifies intentionally untracked files that Git should ignore.
 
@@ -175,9 +177,7 @@ The project is structured into several packages and files, each serving a specif
 
 - `tsconfig.json`: This file specifies the root files and the compiler options required to compile the project.
 
-### `tests` directory
-
-Little more about `tests` directory, as this is our main directory where we setup the frame work and, specify and construct our tests. This directory also contains Page objects, Utility functions and Test data objects that are necessary for the construction of the tests.
+- `playwright-report`: This directory will get auto-generated with the configured [Playwright reporters](https://playwright.dev/docs/test-reporters) on the intial execution of the tests.
 
 ## Framework Setup
 
