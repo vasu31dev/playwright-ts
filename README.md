@@ -1,15 +1,17 @@
 ![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts) ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts)
 
-# Playwright TypeScript Framework: Streamlining Desktop & Mobile Web, Electron and API Testing - "Your one-stop solution for efficient and comprehensive testing"
+# Playwright TypeScript Framework: Streamlining Web (Desktop & Mobile), API and Electron Testing - "Your one-stop solution for efficient and comprehensive testing"
 
-Welcome to the Playwright TypeScript Framework, a unique and comprehensive automation framework designed to simplify and streamline the process of writing and managing automated tests for Desktop and mobile web applications, Electron Desktop applications and APIs. Built on [Playwright](https://playwright.dev/), a powerful browser automation library, and [TypeScript](https://www.typescriptlang.org/), a statically typed superset of JavaScript, this framework provides a robust and efficient environment for end-to-end testing.
+Welcome to the Playwright TypeScript Framework, a unique and comprehensive automation framework designed to simplify and streamline the process of writing and managing automated tests for Desktop & mobile web applications, APIs, and Electron Desktop applications. Built on [Playwright](https://playwright.dev/), a powerful browser automation library, and [TypeScript](https://www.typescriptlang.org/), a statically typed superset of JavaScript, this framework provides a robust and efficient environment for end-to-end testing.
 
 This framework is ideal for QA professionals, developers, and business analysts looking to improve their testing practices and efficiency. It's equipped with utilities that simplify test creation and maintenance, allowing you to focus on writing your tests out of the box.
 
 ## Key Features:
 
 - **Unique Page Object Model Design Pattern**: Our Page Object Model (POM) design is not just another POM. It's a unique approach that significantly reduces complexity and accelerates coding, making it easier and faster to write scripts compared to traditional POMs. This means less time spent on setup and more time spent on creating effective tests. [See how we differ from the traditional Playwright POM](https://playwright.dev/docs/pom).
+
 - **Ease of Use**: Designed to be intuitive and user-friendly, making it an excellent choice for beginners to understand and write scripts. This means less time spent on learning the tool and more time spent on creating effective tests.
+
 - **User-Friendly for All Roles**: This framework is not just for QA professionals. Developers, manual QA, and even Business Analysts can contribute to end-to-end testing, promoting collaboration across different departments and roles.
 
 - **Utility Functions**: Simplifies common actions and assertions, such as clicking buttons, filling forms, and checking elements. It also includes inbuilt methods for conditional statements and maintains a default LoadState across applications.
@@ -58,22 +60,23 @@ In essence, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 ### Languages and Frameworks
 
-This project uses the following languages and frameworks:
+This project uses the following tools and frameworks:
 
 - [TypeScript](https://www.typescriptlang.org/) as the programming language
-- [Playwright Test Runner](https://playwright.dev/docs/intro) for executing tests
+- [Playwright Test framework](https://playwright.dev/docs/test-configuration) for [Running tests](https://playwright.dev/docs/running-tests), [Writing tests](https://playwright.dev/docs/api/class-test), [Fixtures](https://playwright.dev/docs/test-fixtures), and [Reports](https://playwright.dev/docs/test-reporters)
 - [Playwright Web First Assertions](https://playwright.dev/docs/assertions) for assertions
 - [Allure Report](https://docs.qameta.io/allure/) as the testing report strategy
 - [ESLint](https://eslint.org/) for linting
 - [Prettier](https://prettier.io/) for code formatting
-- [Logger](https://www.npmjs.com/package/winston) to generate log file and colored console output
+- [Logger](https://www.npmjs.com/package/winston) to generate a log file and colored console output
 - [Pre-Commit Lint check](https://www.npmjs.com/package/husky) for blocking commits with linting errors
+- [Github Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to trigger tests on each PR as part of the CI/CD setup. [(Playwright CI Intro)](https://playwright.dev/docs/ci-intro)
 
 ### Prerequisites
 
 - npm (v9.0.0 or later) - Check your current version with `npm -v`. If you don't have npm installed, you can follow this [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Node.js](https://nodejs.org/en/download) (v18.0.0 or later) - You can check your current version with the command `node -v`
-- VSCode settings: Please save the following settings in VSCode settings (Cmd + ,):
+- VSCode settings: Please save the following settings in VSCode settings (Cmd + ,) to be in sync with prettier format settings:
   - `typescript.preferences.quoteStyle: single` - This setting ensures consistency in quote style throughout your code.
   - `Format On Save Mode: file` - This setting automatically formats your code whenever you save a file, helping to maintain code readability and consistency.
 
@@ -300,7 +303,7 @@ test.skip('Skip this test', async () => {});
 
 3. `skip`: marks the test as irrelevant. Playwright Test does not run such a test. Use skip when a test is not applicable in some configurations. This allows you to exclude certain tests based on specific conditions or configurations.
 
-For more info on test annotations, please refer to [Playwright Test Annotations Documentation](https://playwright.dev/docs/test-annotations)
+For more info on test annotations, please refer to [Playwright Test Annotations documentation](https://playwright.dev/docs/test-annotations)
 
 ## Utilities
 
@@ -464,7 +467,9 @@ Generally `fill` will work in most cases and has better performance. Generally '
 
 8. Similarly, we have `selectByText()` and `selectByIndex()` functions for selecting options by text or index, and `selectByValues()` for multi-select dropdowns.
 
-Refer to the [Types](#types) section below for more information on the optional parameters.
+For more information on actions refer to the [Playwright Actions documentation](https://playwright.dev/docs/input) and regarding auto waits refer to [Playwright Auto waiting documentation](https://playwright.dev/docs/actionability)
+
+For more information on the optional parameters refer to the [Types](#types) section below.
 
 ### Alerts
 
@@ -732,23 +737,32 @@ For more information, please refer to the [Playwright CLI documentation](https:/
 
 Here are some recommended best practices when using this framework:
 
-- `Use Utility Functions`: Whenever possible, use the utility functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable.
+- `Use Utility Functions`: Whenever possible, use the utility functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable. [Utilities](#utilities)
 
 - `Feedback on Utility Functions`: If you find that a utility function for a specific action or assertion is missing, please provide feedback so we can continue to improve and expand our utility Functions. Meanwhile, temporarily use the corresponding Playwright method combined with `getPage` from `@PageSetup` for a specific task, the utility function is not available. Replace these with newly added utility functions once they are available.
 
-- `Playwright's Inbuilt Features`: Playwright comes with a wide range of inbuilt features. Make sure to utilize these as needed.
-
 - `clickandNavigate and click`: If a click action triggers page navigation, use the `clickandNavigate` utility function instead of the `click` function. `clickandNavigate` function includes built-in checks for frame navigation and waits for a new page to load. Use the `click` function if it is an Ajax call when you don't navigate to a different page.
 
-- `Fill and Type`: Use the fill utility function to fill form fields. Use type when you want to simulate typing character by character, such as when testing auto-search suggestions or autofill features.
+- `Fill and Type`: Use the fill utility function to fill form fields. Use type when you want to simulate typing character by character, such as when testing auto-search suggestions or autofill features. [Playwright type documentation](https://playwright.dev/docs/input#type-characters)
 
-- `Web-First Assertions`: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions Documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions)
+- `Web-First Assertions`: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions)
 
-- `Soft Assertions for Non-Critical Checks`: If a test check is not critical and you want the test to continue execution even if it fails, use soft assertions.
+- `Soft Assertions for Non-Critical Checks`: Use a soft assertion when a test assertion isn't critical, allowing the test to continue and fail at the end. For critical assertions, use a hard assertion i.e. the default assertion. [Playwright Soft Assertions documentation](https://playwright.dev/docs/test-assertions#soft-assertions)
 
-- `Backticks for Xpath & CSS`: Always use backticks for Xpath & CSS so that you can include single & double quotes together inside them as needed.
+- `Backticks for Xpath & CSS`: Always use backticks for Xpath & CSS selectors so that you can use single & double quotes together if needed without any escape characters.
 
-In addition to these, Playwright also recommends following certain best practices. You can find more details in the [Playwright Best Practices Documentation](https://playwright.dev/docs/best-practices)
+- `Playwright's Inbuilt Features`: Playwright comes with a wide range of inbuilt features. Make sure to utilize these as needed.
+  - [Local Webserver](https://playwright.dev/docs/test-webserver)
+  - [Mocking](https://playwright.dev/docs/mock)
+  - [Parallelism and sharding](https://playwright.dev/docs/test-parallel)
+  - [Playwright Configuration](https://playwright.dev/docs/test-configuration)
+    - [use Options](https://playwright.dev/docs/test-use-options)
+    - [TestConfig](https://playwright.dev/docs/api/class-testconfig)
+  - [Mobile Emulation](https://playwright.dev/docs/emulation)
+  - [Playwright Test methods](https://playwright.dev/docs/api/class-test)
+  - [Debugging](https://playwright.dev/docs/debug)
+
+In addition to these, Playwright also recommends following certain best practices. You can find more details in the [Playwright Best Practices documentation](https://playwright.dev/docs/best-practices)
 
 ## Contributing
 
