@@ -202,7 +202,7 @@ Page objects are utilized to encapsulate information about the elements present 
 
 Here's an example of a page object under the `pages` package:
 
-LoginPage.ts;
+**LoginPage.ts**
 
 ```typescript
 //importing utility functions
@@ -251,7 +251,7 @@ Tests are written in the `specs` directory. Each test file should correspond to 
 
 Here's an example of a test file under the `specs` directory:
 
-login.spec.ts;
+**login.spec.ts**
 
 ```typescript
 //import test from PageSetup.ts which sets up the page before each test
@@ -737,21 +737,25 @@ For more information, please refer to the [Playwright CLI documentation](https:/
 
 Here are some recommended best practices when using this framework:
 
-- `Use Utility Functions`: Whenever possible, use the utility functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable. [Utilities](#utilities)
+- **Use Utility Functions**: Whenever possible, use the [Utilities](#utilities) functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable.
 
-- `Feedback on Utility Functions`: If you find that a utility function for a specific action or assertion is missing, please provide feedback so we can continue to improve and expand our utility Functions. Meanwhile, temporarily use the corresponding Playwright method combined with `getPage` from `@PageSetup` for a specific task, the utility function is not available. Replace these with newly added utility functions once they are available.
+- **Feedback on Utility Functions**: If you find that a utility function for a specific action or assertion is missing, please provide feedback so we can continue to improve and expand our utility Functions. Meanwhile, temporarily use the corresponding Playwright method combined with `getPage` from `@PageSetup` for a specific task, the utility function is not available. Replace these with newly added utility functions once they are available.
 
-- `clickandNavigate and click`: If a click action triggers page navigation, use the `clickandNavigate` utility function instead of the `click` function. `clickandNavigate` function includes built-in checks for frame navigation and waits for a new page to load. Use the `click` function if it is an Ajax call when you don't navigate to a different page.
+- **Conditional Statements**: Instead of manually implementing waits, use functions like `isElementVisible`, `isElementChecked` from [ElementUtils](#elementutils). These functions automatically wait for the element to become visible, with customizable timeout options. It's advisable to avoid using these for assertions; instead, utilize [AssertUtils](#assertutils) wherever possible.
 
-- `Fill and Type`: Use the fill utility function to fill form fields. Use type when you want to simulate typing character by character, such as when testing auto-search suggestions or autofill features. [Playwright type documentation](https://playwright.dev/docs/input#type-characters)
+- **Retrieving Text and Input Values**: To fetch texts or input values, consider functions like `getAllTexts` and `getAllInputValues` from [ElementUtils](#elementutils). These methods come with built-in waits, ensuring they only proceed once an element is available, preventing premature returns of an empty Array<string>.
 
-- `Web-First Assertions`: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions)
+- **clickandNavigate vs click**: If a click action triggers page navigation, use the `clickandNavigate` utility function instead of the `click` function. `clickandNavigate` function includes built-in checks for frame navigation and waits for a new page to load. Use the `click` function if it is an Ajax call when you don't navigate to a different page.
 
-- `Soft Assertions for Non-Critical Checks`: Use a soft assertion when a test assertion isn't critical, allowing the test to continue and fail at the end. For critical assertions, use a hard assertion i.e. the default assertion. [Playwright Soft Assertions documentation](https://playwright.dev/docs/test-assertions#soft-assertions)
+- **Fill vs Type**: Use the fill utility function as default to fill form fields. Use type when you want to simulate typing character by character, such as when testing auto-search suggestions or autofill features. [Playwright type documentation](https://playwright.dev/docs/input#type-characters)
 
-- `Backticks for Xpath & CSS`: Always use backticks for Xpath & CSS selectors so that you can use single & double quotes together if needed without any escape characters.
+- **Web-First Assertions**: Prioritize using playwright web-first assertions in your tests instead of jest or other library assertions. [Playwright Web First Assertions documentation](https://playwright.dev/docs/best-practices#use-web-first-assertions)
 
-- `Playwright's Inbuilt Features`: Playwright comes with a wide range of inbuilt features. Make sure to utilize these as needed.
+- **Soft Assertions for Non-Critical Checks**: Use a soft assertion when a test assertion isn't critical, allowing the test to continue and fail at the end. For critical assertions, use a hard assertion i.e. the default assertion. [Playwright Soft Assertions documentation](https://playwright.dev/docs/test-assertions#soft-assertions)
+
+- **Backticks for Xpath & CSS**: Always use backticks for Xpath & CSS selectors so that you can use single & double quotes together if needed without any escape characters.
+
+- **Playwright's Inbuilt Features**: Playwright comes with a wide range of inbuilt features. Make sure to utilize these as needed.
   - [Local Webserver](https://playwright.dev/docs/test-webserver)
   - [Mocking](https://playwright.dev/docs/mock)
   - [Parallelism and sharding](https://playwright.dev/docs/test-parallel)
