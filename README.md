@@ -775,7 +775,7 @@ npx playwright show-report <path to the report>
   ` "report": "playwright show-report playwright-report",`
 
 ```bash
-npx run report
+npm run report
 ```
 
 ## Viewing reports
