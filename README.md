@@ -595,6 +595,7 @@ await expectElementToBeVisible(logoutButton(), 'Login should be successful', {
 await expectElementToBeHidden(signInButton(), 'signInButton should not be displayed');
 await expectElementToHaveText(successfulMessage(), 'Login is successful', {
   ignoreCase: false,
+  message: 'Login should be Successful',
 });
 await expectElementNotToBeChecked(agreeCheckbox(), {
   timeout: INSTANT_TIMEOUT,
@@ -630,22 +631,23 @@ Refer to the [Types](#types) section below for more information on the optional 
 The `Types` module provides a set of options for utility modules.
 
 ```typescript
-import { getLocator } from '@LocatorUtils';
+import { getLocator, getLocatorByTestId } from '@LocatorUtils';
 import { clickAndNavigate, type } from '@ActionUtils';
 import { expectElementToHaveText } from '@AssertUtils';
-import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from '@Timeouts';
+import { STANDARD_TIMEOUT } from '@TimeoutConstants';
 
 const loginpage = () => getLocator(`#loginpage`, { hasText: 'login' });
-await clickAndNavigate(loginpage, { button: 'right' }, { force: true }, { clickCount: 1 });
-await type(`#username`, 'testuser', { delay: 2 }, { noWaitAfter: false });
-await expectElementToHaveText(
-  successfulMessage(),
-  { useInnerText: true },
-  {
+const successfulMessage = () => getLocatorByTestId(`sucess-message`);
+
+export async function verifyLoginPageisDisplayed() {
+  await clickAndNavigate(loginpage(), { button: 'right', force: true, clickCount: 1 });
+  await type(`#username`, 'testuser', { delay: 2, noWaitAfter: false });
+  await expectElementToHaveText(successfulMessage(), 'Login is Successful', {
+    useInnerText: true,
     ignoreCase: false,
-  },
-  { timeout: STANDARD_TIMEOUT },
-);
+    timeout: STANDARD_TIMEOUT,
+  });
+}
 ```
 
 In this example, we're using some Types optional parameters with utility functions:
