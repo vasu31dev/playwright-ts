@@ -242,44 +242,50 @@ Page objects are utilized to encapsulate information about the elements present 
 
 Here's an example of a page object under the `pages` package:
 
-**LoginPage.ts**
+**sauceDemo.ts**
 
 ```typescript
 //importing utility functions
+import { click, clickAndNavigate, fill, gotoURL } from '@ActionUtils';
 import {
-  getLocatorByTestId,
-  getLocatorByLabel,
-  getLocatorByText,
+  failureLoginCredentials,
+  successLoginCredentials,
+} from '../testdata/SauceDemoTestData';
+import { expectElementToBeVisible } from '@AssertUtils';
+import {
+  getLocator,
+  getLocatorByPlaceholder,
+  getLocatorByRole,
 } from '@LocatorUtils';
-import { gotoURL, click, fill, clickAndNavigate } from '@ActionUtils';
-import { expectElementToBeHidden } from '@AssertUtils';
-import { isElementVisible } from '@ElementUtils';
 
-const signInLink = () =>
-  getLocatorByTestId('sign-in-button').or(getLocatorByTestId('sign-in-link'));
-const email = () => getLocatorByTestId('email-input');
-const password = `//*[@id="password"]/input`;
-const signInButton = () => getLocatorByLabel('sign-in-button');
-const successfulMessage = () => getLocatorByText('Login successful');
+const userName = () => getLocator(`#user-name`);
+const password = () =>
+  getLocatorByPlaceholder('Password', { exact: true }).nth(0);
+const login = () => getLocatorByRole('button', { name: 'Login' });
+const errorMessage = () => getLocator(`//*[contains(@class,'error-message')]`);
 
-export async function gotoHomePage() {
-  gotoURL('/', { waitUntil: 'domcontentloaded', timeout: 60000 });
+export async function navigateToSauceDemoLoginPage() {
+  await gotoURL('https://www.saucedemo.com/');
 }
 
-export async function login(username: string, password: string) {
-  await click(signInLink());
-  await fill(email(), 'username');
-  await fill(password, 'password');
-  await clickAndNavigate(signInButton());
+export async function logInSuccessfully() {
+  await fill(userName(), successLoginCredentials.username);
+  await fill(password(), successLoginCredentials.password);
+  await clickAndNavigate(login());
 }
 
-export async function isLoginSuccessful() {
-  await expectElementToBeHidden(signInButton(), 'Login should be successful');
-  return isElementVisible(successfulMessage());
+export async function failureLogin() {
+  await fill(userName(), failureLoginCredentials.username);
+  await fill(password(), failureLoginCredentials.password);
+  await click(login());
+}
+
+export async function verifyErrorMessageForFailureLogin() {
+  await expectElementToBeVisible(errorMessage());
 }
 ```
 
-In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
+In this example, the `SauceDemoLoginPage` represents a login page in the application. It has methods to navigate to the Saucedemo homepage, perform a success and failure login action, check if the login was successful in successful login case and check if the error message displayed in failure login case
 
 Refer [Utilities](#utilities) section for more information on Utilities.
 
@@ -291,18 +297,31 @@ Tests are written in the `specs` directory. Each test file should correspond to 
 
 Here's an example of a test file under the `specs` directory:
 
-**login.spec.ts**
+**sauceDemo.spec.ts**
 
 ```typescript
 //import test from PageSetup.ts which sets up the page before each test
 import { test } from '@PageSetup';
 
 //importing page objects to use all functions within that page to construct the tests
-import * as LoginPage from '../pages/LoginPage';
+import * as LoginPage from 'tests/pages/SauceDemoLoginPage';
+import * as MiniCart from 'tests/pages/SauceDemoMiniCart';
+import * as ProductsPage from 'tests/pages/SauceDemoProductsPage';
 
-test('successful login', async () => {
-  await LoginPage.gotoHomePage();
-  await LoginPage.loginSuccessfully();
+test.describe('Sauce demotests for successful login and add products to cart', () => {
+  test('Saucedemo tests - successful login', async () => {
+    await LoginPage.navigateToSauceDemoLoginPage();
+    await LoginPage.logInSuccessfully();
+    //verifying products page is displayed on successful login
+    await ProductsPage.verifyProductsPageDisplayed();
+  });
+
+  test('Saucedemo tests - Add product to cart', async () => {
+    await LoginPage.navigateToSauceDemoLoginPage();
+    await LoginPage.logInSuccessfully();
+    await ProductsPage.addGivenProductToCart(1);
+    await MiniCart.verifyMiniCartCount('1');
+  });
 });
 ```
 
@@ -314,7 +333,7 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
-In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful.
+In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful. Similarly, `ProductsPage` and `MiniCart` are also the page objects that has the functions for the respective pages.
 
 Refer [Utilities](#utilities) section for more information on Utilities.
 
@@ -333,7 +352,9 @@ test.fixme(
   'This test will fail and needs to be fixed so it will be skipped',
   async () => {},
 );
+
 test.slow('Triples the default timeouts for this test', async () => {});
+
 test.skip('Skip this test', async () => {});
 ```
 
@@ -350,9 +371,13 @@ For more info on test annotations, please refer to [Playwright Test Annotations 
 The framework provides a set of utility functions that simplify common actions and assertions in Playwright. These functions are located in the `tests/utils` directory and include:
 
 - `LocatorUtils.ts`: This file contains functions for locating web elements in different ways, such as by test ID, label, text, CSS, or XPath.
+
 - `ActionUtils.ts`: This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
+
 - `ElementUtils.ts`: This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
+
 - `AssertUtils.ts`: This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
+
 - `Timeouts.ts`: This file contains static timeout values that can be used along with different functions.
 
 These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
