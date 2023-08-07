@@ -32,6 +32,6 @@ export async function failureLogin() {
   await click(login());
 }
 
-export async function verifyErrorMessageForLogin() {
+export async function verifyErrorMessageForFailureLogin() {
   await expectElementToBeVisible(errorMessage());
 }
