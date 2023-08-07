@@ -1,18 +1,18 @@
 ![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts) ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts)
 
-# Playwright TypeScript Framework: Streamlining Web (Desktop & Mobile), API and Electron Testing - "Your one-stop solution for efficient and comprehensive testing"
+# Playwright TypeScript Framework: Streamlining Web (Desktop & Mobile), API, and Electron Testing - "Your One-Stop Solution for Efficient and Comprehensive Testing"
 
-Welcome to the Playwright TypeScript Framework, a unique and comprehensive automation framework designed to simplify and streamline the process of writing and managing automated tests for Desktop & mobile web applications, APIs, and Electron Desktop applications. Built on [Playwright](https://playwright.dev/), a powerful browser automation library, and [TypeScript](https://www.typescriptlang.org/), a statically typed superset of JavaScript, this framework provides a robust and efficient environment for end-to-end testing.
+Welcome to the Playwright TypeScript Framework. This unique and comprehensive automation framework is designed to simplify and streamline the process of writing and managing automated tests for Web (Desktop & Mobile), APIs, and Electron Desktop applications. It's built on [Playwright](https://playwright.dev/), a powerful browser automation library, and [TypeScript](https://www.typescriptlang.org/), a statically typed superset of JavaScript, offering a robust and efficient environment for end-to-end testing.
 
 This framework is ideal for QA professionals, developers, and business analysts looking to improve their testing practices and efficiency. It's equipped with utilities that simplify test creation and maintenance, allowing you to focus on writing your tests out of the box.
 
 ## Key Features:
 
-- **Unique Page Object Model Design Pattern**: Our Page Object Model (POM) design is not just another POM. It's a unique approach that significantly reduces complexity and accelerates coding, making it easier and faster to write scripts compared to traditional POMs. This means less time spent on setup and more time spent on creating effective tests. [See how we differ from the traditional Playwright POM](https://playwright.dev/docs/pom).
+- **Unique Page Object Model Design Pattern**: Our Page Object Model (POM) design stands apart from traditional POMs. It's a unique approach that significantly reduces complexity and accelerates coding, making it easier and faster to write scripts compared to traditional POMs. This means less time spent on setup and more time spent on creating effective tests. [Discover how our approach differs with the traditional POM](https://playwright.dev/docs/pom).
 
 - **Ease of Use**: Designed to be intuitive and user-friendly, making it an excellent choice for beginners to understand and write scripts. This means less time spent on learning the tool and more time spent on creating effective tests.
 
-- **User-Friendly for All Roles**: This framework is not just for QA professionals. Developers, manual QA, and even Business Analysts can contribute to end-to-end testing, promoting collaboration across different departments and roles.
+- **User-Friendly for All Roles**: This framework is not just for QA Automation professionals. Developers, Manual QA, and Business Analysts can also contribute to end-to-end testing, promoting collaboration across different departments and roles.
 
 - **Utility Functions**: Simplifies common actions and assertions, such as clicking buttons, filling forms, and checking elements. It also includes inbuilt methods for conditional statements and maintains a default LoadState across applications.
 
@@ -20,78 +20,76 @@ This framework is ideal for QA professionals, developers, and business analysts 
 
 - **Inbuilt CI/CD Support with GitHub Actions**: Facilitates continuous integration and continuous delivery with inbuilt support for GitHub actions, automating your testing process from code integration to delivery.
 
-- **Versatile Support**: Supports testing for Web in Desktop and Mobile, Electron Desktop applications, and APIs, allowing comprehensive testing across different platforms and applications.
+- **Versatile Support**: It facilitates testing across Web (Desktop & Mobile),APIs and, Electron Desktop apps, allowing comprehensive testing across different platforms and applications.
 
 - **Detailed Reporting**: Provides screenshots, videos, and traces of test failures, making it easier to understand and fix issues.
 
-- **Local Web Server**: Allows you to test UI code changes directly on your local machine or on a VM by easily setting up a local web server, eliminating the need for a separate testing environment.
+- **Local Web Server**: Allows you to test UI code changes directly on your local machine or on a VM by effortlessly initializing a local web server, eliminating the need for a separate testing environment.
 
-In essence, the Playwright TypeScript Framework is a powerful, flexible, and user-friendly tool that leverages the power of Playwright and TypeScript. It's an excellent choice for teams looking to improve their testing practices and efficiency.
+In summary, the Playwright TypeScript Framework is a powerful, flexible, and user-friendly tool that leverages the power of Playwright and TypeScript. It's an excellent choice for teams looking to improve their testing practices and efficiency.
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-  - [Languages and Frameworks](#languages-and-frameworks)
+- [**Getting Started**](#getting-started)
+  - [Tools & Frameworks](#tools--frameworks)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Project Update Guide](#project-update-guide)
-- [Project Structure](#project-structure)
-- [Framework Setup](#framework-setup)
+  - [Guide to Updating the Project](#project-update-guide)
+- [**Project Structure**](#project-structure)
+- [**Framework Setup**](#framework-setup)
   - [Switching Pages](#pagefactory)
-- [Usage](#usage)
-  - [Page Objects](#page-objects)
-  - [Spec File](#writing-tests-in-a-spec-file)
-  - [Test annotations](#test-annotations)
-- [Utilities](#utilities)
-  - [LocatorUtils](#locatorutils)
-  - [Frames](#frames)
-  - [ActionUtils](#actionutils)
-  - [Alerts](#alerts)
-  - [ElementUtils](#elementutils)
-  - [AssertUtils](#assertutils)
-  - [Types](#types)
-- [Running Tests](#running-tests)
-  - [Playwright plugin](#run-tests-using-the-playwright-plugin)
-  - [CLI](#running-tests-via-the-command-line-interface)
-  - [Viewing reports](#viewing-reports)
-- [Additional playwright features](#additional-playwright-features)
-- [Best Practices](#best-practices)
-- [Contributing](#contributing)
+- [**Usage**](#usage)
+  - [Working with Page Objects](#page-objects)
+  - [Creating a Spec File](#writing-tests-in-a-spec-file)
+  - [Using Test Annotations](#test-annotations)
+- [**Utilities**](#utilities)
+  - [Locator Utilities](#locatorutils)
+  - [Handling Frames](#frames)
+  - [Action Utilities](#actionutils)
+  - [Managing Alerts](#alerts)
+  - [Element Utilities](#elementutils)
+  - [Assertion Utilities](#assertutils)
+  - [Optional Parameter Objects](#types)
+- [**Executing Tests**](#running-tests)
+  - [Using the Playwright Plugin](#run-tests-using-the-playwright-plugin)
+  - [Command-Line Execution](#running-tests-via-the-command-line-interface)
+  - [Report Generation and Viewing](#viewing-reports)
+- [**Exploring Additional Playwright Features**](#additional-playwright-features)
+- [**Best Practices**](#best-practices)
+- [**Contributing to the Project**](#contributing)
 
 ## Getting Started
 
-### Languages and Frameworks
+### Tools & Frameworks
 
-This project uses the following tools and frameworks:
-
-- [TypeScript](https://www.typescriptlang.org/) as the programming language
-- [Playwright Test framework](https://playwright.dev/docs/test-configuration) for [Running tests](https://playwright.dev/docs/running-tests), [Writing tests](https://playwright.dev/docs/api/class-test), [Fixtures](https://playwright.dev/docs/test-fixtures), and [Reports](https://playwright.dev/docs/test-reporters)
-- [Playwright Web First Assertions](https://playwright.dev/docs/assertions) for assertions
-- [Allure Report](https://docs.qameta.io/allure/) as the testing report strategy
-- [ESLint](https://eslint.org/) for linting
-- [Prettier](https://prettier.io/) for code formatting
-- [Logger](https://www.npmjs.com/package/winston) to generate a log file and colored console output
-- [Pre-Commit Lint check](https://www.npmjs.com/package/husky) for blocking commits with linting errors
-- [Github Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions) to trigger tests on each PR as part of the CI/CD setup. [(Playwright CI Intro)](https://playwright.dev/docs/ci-intro)
+- **[TypeScript](https://www.typescriptlang.org/)**: A statically typed superset of JavaScript programming language, enhancing code quality and understandability.
+- **[Playwright Test](https://playwright.dev/docs/test-configuration)**: A modern end-to-end testing framework, facilitating [test creation](https://playwright.dev/docs/api/class-test), [execution](https://playwright.dev/docs/running-tests), [fixture management](https://playwright.dev/docs/test-fixtures), and [report generation](https://playwright.dev/docs/test-reporters).
+- **[Playwright Assertions](https://playwright.dev/docs/assertions)**: Provides robust assertion capabilities for validating test outcomes.
+- **[Allure Report](https://docs.qameta.io/allure/)**: A flexible and visually appealing reporting tool, offering clarity on test results.
+- **[ESLint](https://eslint.org/)**: A pluggable linting utility for JavaScript and TypeScript, ensuring code consistency and detecting potential errors.
+- **[Prettier](https://prettier.io/)**: An opinionated code formatter, ensuring consistent code style across the project.
+- **[Logger (Winston)](https://www.npmjs.com/package/winston)**: A versatile logging library, producing both file-based logs and color-coded console outputs.
+- **[Husky](https://www.npmjs.com/package/husky)**: Manages Git hooks to enforce quality checks, such as linting, before commits.
+- **[Github Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)**: A CI/CD platform integrated with GitHub, automating workflows like test execution on pull requests. Enhanced with [Playwright's CI guide](https://playwright.dev/docs/ci-intro).
 
 ### Prerequisites
 
-- npm (v9.0.0 or later) - Check your current version with `npm -v`. If you don't have npm installed, you can follow this [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [Node.js](https://nodejs.org/en/download) (v18.0.0 or later) - You can check your current version with the command `node -v`
+Ensure you have the following software installed on your machine:
 
-- VSCode Plugins:
-
-  - `Prettier - Code formatter` for code formatting
-    1. Click on the Extensions icon in Visual Studio Code and search for `Prettier`.
-    2. Select and install the `Prettier - Code formatter`.
-  - `ESLint` - for linting errors
-    1. Click on the Extensions icon in Visual Studio Code and search for `ESlint`.
-    2. Select and install the `ESlint`.
-
-- VSCode settings: Please save the following settings in VSCode settings (Cmd + ,) to be in sync with prettier format settings:
-
-  - `typescript.preferences.quoteStyle: single` - This setting ensures consistency in quote style throughout your code.
-  - `Format On Save Mode: file` - This setting automatically formats your code whenever you save a file, helping to maintain the code readability and consistency.
+- **[npm (v8.0.0 or later)](https://docs.npmjs.com/cli/v9/configuring-npm)**: Package manager for JavaScript, used to install and manage software packages.
+  - To verify your current version, use the command `npm -v`.
+  - If npm isn't installed, follow the [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- **[Node.js (v16.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
+  - To verify your current version, use the command `node -v`.
+- **[Git](https://git-scm.com/downloads)**: Distributed version control system used to track changes in source code during software development.
+  - To check if Git is installed, run the command `git --version`.
+  - If Git isn't installed, download and install it from the [official Git website](https://git-scm.com/downloads).
+- **VSCode Plugins**:
+  - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting.
+  - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues.
+- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use Cmd + , to access settings):
+  - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
+  - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
 
 ### Installation
 
@@ -162,39 +160,40 @@ npx playwright install
 
 ## Project Structure
 
-The project is structured into several packages and files, each serving a specific purpose:
+This project is meticulously organized into distinct packages and files, each tailored for a specific purpose:
 
-- `.husky`: Husky is a tool that allows us to easily wrangle Git hooks and run the scripts we want at those stages. This framework is configured to avoid commits with any linting errors. Husky runs `npm run lint` command before every commit, where `lint` is configured to `eslint . --ext .ts` in `package.json` file under `scripts` section. This hook prevents commiting the changes if there are any linting erros.
+- **.husky**: Husky streamlines the management of Git hooks, allowing for the execution of specific scripts during various Git stages. In this framework, Husky is configured to prevent commits with linting errors by running the `npm run lint` command (which maps to `eslint . --ext .ts` as defined in `package.json` under the `scripts` section) before every commit. If linting errors are detected, commits are halted until the issues are addressed.
 
-  Note: users can easily fix linting erros by running `npm run lint:fix` command via the commnad-line interface. Once the lint erros are fixed, user can commit the changes if husky hook is a `pass`
+  > **Tip**: Quickly rectify linting errors by running the `npm run lint:fix` command. Once resolved, you can proceed with commits if the Husky hook is successful.
 
-- `tests`: This directory contains all the framework set up, end-to-end test files, API tests, and related utilities for testing the application. Tests are organized by
+- **tests**: This directory houses the framework setup, end-to-end test files, API tests, and associated utilities. The tests are organized as:
 
-  - `setup`: This directory contains [Framework and Page setup](#framework-setup).
+- **setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](#framework-setup) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
 
-  - `pages`: This directory contains [page objects](#page-objects).
+- **pages**: This is where the [page objects](#page-objects) reside. Page Object Model (POM) is a design pattern that allows for better test maintenance and reduces code duplication. Each file in this directory typically represents a page or a component of the application, encapsulating the elements and actions specific to that page or component.
 
-  - `testdata`: This directory contains necessary testdata as json objects for our tests.
+- **testdata**: This directory is dedicated to storing test data, which is often externalized from test scripts to allow for easier management and data-driven testing. The data is primarily formatted as JSON objects, making it easily readable and modifiable without delving into the test scripts themselves.
 
-  - `specs`: This directory contains all [spec files](#writing-tests-in-a-spec-file).
+- **specs**: Here, you'll find all the [spec files](#writing-tests-in-a-spec-file). These are the actual test scripts, written to test specific functionalities or features of the application. Each spec file usually corresponds to a feature or functionality, containing one or multiple test scenarios related to it.
 
-  - `utils`: This directory contains all tests related [utility functions](#utilities).
+- **utils**: A crucial directory that encompasses all test-related [utility functions](#utilities). These are reusable functions or methods written to perform common tasks, be it related to data manipulation, element interaction, or any other recurrent actions or assertions in the test scripts.
 
-- `.eslintrc`: This file contains the configuration for ESLint, a tool for identifying and reporting patterns in JavaScript.
+- **.eslintrc**: This file is the heart of the ESLint configuration. ESLint is a static code analysis tool that identifies problematic patterns found in Typescript code. The configurations in `.eslintrc` dictate the rules and standards the code should adhere to, ensuring consistency and best practices across the codebase.
 
-- `.prettierrc`: This file contains the configuration for Prettier, a tool for code formatting.
+- **.prettierrc**: Prettier is an opinionated code formatter, ensuring that the code adheres to a consistent style. The `.prettierrc` file contains the specific formatting rules, like line length, indentation, and more, ensuring that every developer working on the project produces code with a consistent style.
 
-- `.gitignore`: This file specifies intentionally untracked files that Git should ignore.
+- **.gitignore**: This file ensures the repository's cleanliness by listing files and directories that Git should not track. It typically excludes node modules, build folders, and temporary files, ensuring only essential code and files are versioned.
 
-- `README.md`: This file provides information about the project and instructions on how to use it.
+- **README.md**: The initial file seen in a repository, the `README.md` offers a snapshot of the project. It details the project's purpose, setup instructions, and usage. A well-structured README aids in onboarding new developers and offers clarity to stakeholders.
 
-- `package-lock.json` and `package.json`: These files contain the project's npm dependencies.
+- **package.json**: Acts as the manifest for your project, detailing metadata like the project's name, version, and description. More importantly, it lists the project's dependencies and devDependencies, scripts that can be run, and other configurations.
+- **package-lock.json**: This is an auto-generated file that provides a detailed versioning of each package and its dependencies. It ensures that every install results in the exact same file structure in `node_modules` across all setups, leading to consistent behavior and builds.
 
-- `playwright.config.ts`: This file contains the configuration for Playwright, including settings for different browsers and devices, such as viewport sizes, user agent strings, and launch options.
+- **playwright.config.ts**: This configuration file is pivotal for the Playwright testing framework. It centralizes settings specific to Playwright, detailing configurations for various browsers (like Chrome, Firefox, Safari) and devices. Within this file, you can specify configurations such as viewport sizes, user agent strings, launch options, and more. These settings ensure that tests run consistently across different environments and scenarios, replicating real-world conditions.
 
-- `tsconfig.json`: This file specifies the root files and the compiler options required to compile the project.
+- **tsconfig.json**: This configuration file is essential for TypeScript projects. It specifies the root files and the compiler options required to compile the TypeScript project. It can dictate various settings, from target JavaScript version, module system, source map options, to including or excluding specific files or directories.
 
-- `playwright-report`: This directory will get auto-generated with the configured [Playwright reporters](https://playwright.dev/docs/test-reporters) on the intial execution of the tests and the report file will be updated everytime as the test executes. More information on how to view the reports can be found [here](#viewing-reports)
+- **playwright-report**: This directory is auto-generated during the initial test run, based on the [Playwright reporters](https://playwright.dev/docs/test-reporters) configuration. The report file is updated after each test run. For more on viewing the reports, see [here](#viewing-reports).
 
 ## Framework Setup
 
@@ -764,32 +763,37 @@ Here's what each option does:
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
-## Viewing reports
+## Viewing Reports
 
-Playwright Test comes with a few built-in reporters for different needs and ability to provide custom reporters. Reporters can be configured via command-line or from playwright.config.ts. Here is the link to the documentation of [Playwright in-built reporters](https://playwright.dev/docs/test-reporters)
+Playwright Test offers several built-in reporters tailored for various requirements, along with the flexibility to integrate custom reporters. You can configure these reporters either through the command line or within the `playwright.config.ts` file. For a comprehensive guide on Playwright's in-built reporters, refer to the official [documentation](https://playwright.dev/docs/test-reporters).
 
-### Viewing reports via the Command-Line Interface
+### Accessing Reports via Command-Line Interface (CLI)
 
-- To view the reports after test execution
+- **Playwright command**: After executing tests, you can view the reports using the following command:
 
 ```bash
 npx playwright show-report <path to the report>
 ```
 
-- To view the reports after test execution as configured with this framework in `package.json` under `scripts`,
-  ` "report": "playwright show-report playwright-report",`
+- **Framework Configured script**: This framework's configuration for viewing reports is defined in the `package.json` under the `scripts` section:
+
+```json
+"report": "playwright show-report playwright-report"
+```
+
+To access the reports post-test execution using this configuration, run:
 
 ```bash
 npm run report
 ```
 
-## Additional playwright features
+## Additional Playwright Features
 
-- `UI Mode` - with UI mode, Playwright lets us to explore, run and debug tests in watch mode. Click [here](https://playwright.dev/docs/test-ui-mode) for more information.
+- **UI Mode**: Playwright's UI mode allows you to explore, run, and debug tests in a watch mode. Dive deeper into this feature [here](https://playwright.dev/docs/test-ui-mode).
 
-- `Test generator` - Playwright has the ability to generate tests by looking at the page and figure out the best locator, prioritizing role, text and test id locators. More information on test generation by running Codegen can be found [here](https://playwright.dev/docs/codegen).
+- **Test Generator**: With Playwright, you can automatically generate tests. It inspects the page to determine the optimal locator, prioritizing by role, text, and test ID locators. Learn more about test generation using Codegen [here](https://playwright.dev/docs/codegen).
 
-- `Trace viewer` - Playwright Trace Viewer is a GUI tool that helps you explore recorded Playwright traces after the script has ran. Click [here](https://playwright.dev/docs/trace-viewer) for more information.
+- **Trace Viewer**: The Playwright Trace Viewer offers a graphical interface to review recorded traces post-execution. Get more details [here](https://playwright.dev/docs/trace-viewer).
 
 ## Best Practices
 
