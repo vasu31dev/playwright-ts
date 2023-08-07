@@ -1,6 +1,16 @@
 ![Last Commit](https://img.shields.io/github/last-commit/vasu31dev/playwright-ts) ![Pull Requests](https://img.shields.io/github/issues-pr-raw/vasu31dev/playwright-ts)
 
-# Playwright TypeScript Framework: Streamlining Web (Desktop & Mobile), API, and Electron Testing - "Your One-Stop Solution for Efficient and Comprehensive Testing"
+---
+
+<div align="center">
+
+# 🚀 Elevate Your Automation: Redefining the Future of Testing, Where Precision Meets Efficiency.
+
+## Playwright TypeScript Framework: "Your One-Stop Solution for Web (Desktop & Mobile), API, and Electron Testing"
+
+</div>
+
+---
 
 Welcome to the Playwright TypeScript Framework. This unique and comprehensive automation framework is designed to simplify and streamline the process of writing and managing automated tests for Web (Desktop & Mobile), APIs, and Electron Desktop applications. It's built on [Playwright](https://playwright.dev/), a powerful browser automation library, and [TypeScript](https://www.typescriptlang.org/), a statically typed superset of JavaScript, offering a robust and efficient environment for end-to-end testing.
 
