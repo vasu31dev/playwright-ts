@@ -247,20 +247,12 @@ Here's an example of a page object under the `pages` package:
 ```typescript
 //importing utility functions
 import { click, clickAndNavigate, fill, gotoURL } from '@ActionUtils';
-import {
-  failureLoginCredentials,
-  successLoginCredentials,
-} from '../testdata/SauceDemoTestData';
+import { failureLoginCredentials, successLoginCredentials } from '../testdata/SauceDemoTestData';
 import { expectElementToBeVisible } from '@AssertUtils';
-import {
-  getLocator,
-  getLocatorByPlaceholder,
-  getLocatorByRole,
-} from '@LocatorUtils';
+import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from '@LocatorUtils';
 
 const userName = () => getLocator(`#user-name`);
-const password = () =>
-  getLocatorByPlaceholder('Password', { exact: true }).nth(0);
+const password = () => getLocatorByPlaceholder('Password', { exact: true }).nth(0);
 const login = () => getLocatorByRole('button', { name: 'Login' });
 const errorMessage = () => getLocator(`//*[contains(@class,'error-message')]`);
 
@@ -348,10 +340,7 @@ Here are some examples of how to use test annotations:
 ```typescript
 import { test } from '@PageSetup';
 
-test.fixme(
-  'This test will fail and needs to be fixed so it will be skipped',
-  async () => {},
-);
+test.fixme('This test will fail and needs to be fixed so it will be skipped', async () => {});
 
 test.slow('Triples the default timeouts for this test', async () => {});
 
@@ -479,15 +468,7 @@ The `ActionUtils` module provides a set of utility functions that simplify commo
 Here's an example of how to use the `ActionUtils` functions:
 
 ```typescript
-import {
-  gotoURL,
-  click,
-  fill,
-  type,
-  check,
-  uploadFiles,
-  selectByValue,
-} from '@ActionUtils';
+import { gotoURL, click, fill, type, check, uploadFiles, selectByValue } from '@ActionUtils';
 import { MAX_TIMEOUT } from '@Timeouts';
 
 // Navigate to a URL
@@ -571,13 +552,7 @@ For more information, please refer to [Playwright Alerts documentation](https://
 The `ElementUtils` module provides utility functions for extracting values from web elements and performing condition checks. These functions are designed to handle common tasks related to web elements, such as retrieving text or attribute values, checking visibility, and more.
 
 ```typescript
-import {
-  getText,
-  getAllTexts,
-  getInputValue,
-  getAttribute,
-  attribute,
-} from '@ElementUtils';
+import { getText, getAllTexts, getInputValue, getAttribute, attribute } from '@ElementUtils';
 const text = await getText(textLocator());
 const allTexts = await getAllTexts(textLocator());
 const inputValue = await getInputValue(userName());
@@ -617,10 +592,7 @@ import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from '@Timeouts';
 await expectElementToBeVisible(logoutButton(), 'Login should be successful', {
   timeout: STANDARD_TIMEOUT,
 });
-await expectElementToBeHidden(
-  signInButton(),
-  'signInButton should not be displayed',
-);
+await expectElementToBeHidden(signInButton(), 'signInButton should not be displayed');
 await expectElementToHaveText(successfulMessage(), 'Login is successful', {
   ignoreCase: false,
 });
@@ -664,12 +636,7 @@ import { expectElementToHaveText } from '@AssertUtils';
 import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from '@Timeouts';
 
 const loginpage = () => getLocator(`#loginpage`, { hasText: 'login' });
-await clickAndNavigate(
-  loginpage,
-  { button: 'right' },
-  { force: true },
-  { clickCount: 1 },
-);
+await clickAndNavigate(loginpage, { button: 'right' }, { force: true }, { clickCount: 1 });
 await type(`#username`, 'testuser', { delay: 2 }, { noWaitAfter: false });
 await expectElementToHaveText(
   successfulMessage(),

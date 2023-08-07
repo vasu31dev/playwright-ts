@@ -34,6 +34,4 @@ export type GetByTextOptions = Parameters<Locator['getByText']>[1];
 export type GetByRoleTypes = Parameters<Locator['getByRole']>[0];
 export type GetByRoleOptions = Parameters<Locator['getByRole']>[1];
 export type GetByLabelOptions = Parameters<Locator['getByLabel']>[1];
-export type GetByPlaceholderOptions = Parameters<
-  Locator['getByPlaceholder']
->[1];
+export type GetByPlaceholderOptions = Parameters<Locator['getByPlaceholder']>[1];

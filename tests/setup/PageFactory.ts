@@ -19,10 +19,7 @@ export function setPage(pageInstance: Page): void {
  */
 export async function switchPage(winNum: number): Promise<void> {
   const startTime = Date.now();
-  while (
-    page.context().pages().length < winNum &&
-    Date.now() - startTime < 5000
-  ) {
+  while (page.context().pages().length < winNum && Date.now() - startTime < 5000) {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   if (page.context().pages().length < winNum) {

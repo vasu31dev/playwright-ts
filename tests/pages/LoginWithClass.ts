@@ -1,8 +1,5 @@
 import { click, clickAndNavigate, fill, gotoURL } from '@ActionUtils';
-import {
-  expectElementToBeEditable,
-  expectElementToBeHidden,
-} from '@AssertUtils';
+import { expectElementToBeEditable, expectElementToBeHidden } from '@AssertUtils';
 import { getLocatorByLabel, getLocatorByRole } from '@LocatorUtils';
 
 export default class LoginWithClass {
