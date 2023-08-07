@@ -6,9 +6,7 @@ export class SauceDemoMinicart {
 
   constructor(page: Page) {
     this.page = page;
-    this.miniCartCount = this.page.locator(
-      `//*[@id='shopping_cart_container']//span`,
-    );
+    this.miniCartCount = this.page.locator(`//*[@id='shopping_cart_container']//span`);
   }
 
   async verifyMiniCartCount(expMiniCartCount: string) {

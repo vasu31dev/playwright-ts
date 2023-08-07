@@ -18,10 +18,6 @@ export class SauceDemoProductsPage {
   }
 
   async addGivenProductToCart(productNo: number) {
-    await this.page
-      .locator(
-        `(//*[@class='inventory_item'])[${productNo}]//*[contains(@id,'add-to-cart')]`,
-      )
-      .click();
+    await this.page.locator(`(//*[@class='inventory_item'])[${productNo}]//*[contains(@id,'add-to-cart')]`).click();
   }
 }
