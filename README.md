@@ -44,7 +44,7 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Tools & Frameworks](#tools--frameworks)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Guide to Updating the Project](#project-update-guide)
+  - [Project Update Guide](#project-update-guide)
 - [**Project Structure**](#project-structure)
 - [**Framework Setup**](#framework-setup)
   - [Switching Pages](#pagefactory)
@@ -53,20 +53,20 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Creating a Spec File](#writing-tests-in-a-spec-file)
   - [Using Test Annotations](#test-annotations)
 - [**Utilities**](#utilities)
-  - [Locator Utilities](#locatorutils)
-  - [Handling Frames](#frames)
-  - [Action Utilities](#actionutils)
-  - [Managing Alerts](#alerts)
-  - [Element Utilities](#elementutils)
-  - [Assertion Utilities](#assertutils)
-  - [Optional Parameter Objects](#types)
-- [**Executing Tests**](#running-tests)
+  - [Locator Utilities](#locator-utilities)
+  - [Handling Frames](#handling-frames)
+  - [Action Utilities](#action-utilities)
+  - [Managing Alerts](#managing-alerts)
+  - [Element Utilities](#element-utilities)
+  - [Assertion Utilities](#assert-utilities)
+  - [Optional Parameter Objects](#optional-parameter-objects)
+- [**Executing Tests**](#executing-tests)
   - [Using the Playwright Plugin](#run-tests-using-the-playwright-plugin)
   - [Command-Line Execution](#running-tests-via-the-command-line-interface)
-  - [Report Generation and Viewing](#viewing-reports)
-- [**Exploring Additional Playwright Features**](#additional-playwright-features)
+  - [Report Generation and Viewing](#report-generation-and-viewing)
+- [**Additional Playwright Features**](#additional-playwright-features)
 - [**Best Practices**](#best-practices)
-- [**Contributing to the Project**](#contributing)
+- [**Contribution guide**](#contribution-guide)
 
 ## Getting Started
 
@@ -389,7 +389,7 @@ These utilities are designed to make your tests more readable and maintainable a
 
 Here are a few examples of how to use the utility functions:
 
-### LocatorUtils
+### Locator Utilities
 
 The `LocatorUtils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators are used to identify elements on a web page. They are essential for interacting with web elements and performing actions on them, such as clicking a button or entering text into a form field.
 
@@ -459,7 +459,7 @@ Here is some more information about `LocatorUtilis` usage as this is a unique PO
 
 Refer to the [Types](#types) section below for more information on the optional parameters.
 
-#### Frames
+#### Handling Frames
 
 The `LocatorUtils` module provides utility functions to handle frames in Playwright. Frames are used in web development to divide the content of a page into multiple, scrollable regions. With Playwright, you can interact with frames in a similar way as you do with separate pages.
 
@@ -492,7 +492,7 @@ These Locator functions make it easier to locate elements on the page, and they 
 
 For more information, please refer to [Playwright FrameLocator documentation](https://playwright.dev/docs/api/class-framelocator)
 
-### ActionUtils
+### Action Utilities
 
 The `ActionUtils` module provides a set of utility functions that simplify common actions in Playwright. These functions are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
@@ -548,7 +548,7 @@ For more information on actions refer to the [Playwright Actions documentation](
 
 For more information on the optional parameters refer to the [Types](#types) section below.
 
-### Alerts
+### Managing Alerts
 
 The `ActionUtils` module provides utility functions to handle alerts in Playwright. These functions are designed to make your tests more readable, maintainable and to reduce the amount of boilerplate code you need to write.
 
@@ -578,7 +578,7 @@ In this example, we're using various functions from ActionUtils to handle alerts
 These functions make it easier to handle alerts in your tests, and they provide a more readable and maintainable way to define alert handling in your tests.
 For more information, please refer to [Playwright Alerts documentation](https://playwright.dev/docs/dialogs#alert-confirm-prompt-dialogs)
 
-### ElementUtils
+### Element Utilities
 
 The `ElementUtils` module provides utility functions for extracting values from web elements and performing condition checks. These functions are designed to handle common tasks related to web elements, such as retrieving text or attribute values, checking visibility, and more.
 
@@ -616,7 +616,7 @@ In this example, we're using various functions from ElementUtils:
 
 5. `isElementVisible(input: string | Locator, options?: TimeoutOption)`: This function checks whether the given input parameter is visible and returns a boolean value. TimeoutOption is an optional parameter for timeout.
 
-## AssertUtils
+## Assert Utilities
 
 The `AssertUtils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable.
 
@@ -674,7 +674,7 @@ These functions make it easier to write assertions in your tests, and they provi
 
 Refer to the [Types](#types) section below for more information on the optional parameters.
 
-## Types
+## Optional Parameter Objects
 
 The `Types` module provides a set of options for utility modules.
 
@@ -713,7 +713,7 @@ In this example, we're using some Types optional parameters with utility functio
 
 4. `ExpectOptions(ExpectTextOptions)`: `useInnerText` is used to assert the inner text, `ignoreCase` is used to ignore the case while asserting, and `timeout` is used to wait until the specified time before failing the test.
 
-## Running Tests
+## Executing Tests
 
 ### Run tests using the Playwright plugin
 
@@ -820,7 +820,7 @@ Here's what each option does:
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
-## Viewing Reports
+## Report Generation and Viewing
 
 Playwright Test offers several built-in reporters tailored for various requirements, along with the flexibility to integrate custom reporters. You can configure these reporters either through the command line or within the `playwright.config.ts` file. For a comprehensive guide on Playwright's in-built reporters, refer to the official [documentation](https://playwright.dev/docs/test-reporters).
 
@@ -887,6 +887,6 @@ Here are some recommended best practices when using this framework:
 
 In addition to these, Playwright also recommends following certain best practices. You can find more details in the [Playwright Best Practices documentation](https://playwright.dev/docs/best-practices)
 
-## Contributing
+## Contribution guide
 
 Contributions are welcome! Please read the contributing guidelines first. (In progress)
