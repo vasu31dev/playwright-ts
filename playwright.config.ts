@@ -23,7 +23,7 @@ export default defineConfig({
   workers: process.env.CI ? 3 : 6,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //allure-playwright
-  reporter: process.env.CI ? 'dot' : [['./tests/setup/CustomReporterConfig.ts'], ['html', { open: 'never' }], ['dot']],
+  reporter: process.env.CI ? 'dot' : [['./tests/setup/CustomLogger.ts'], ['html', { open: 'never' }], ['dot']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   globalSetup: require.resolve('./tests/setup/GlobalSetup.ts'),
   globalTeardown: require.resolve('./tests/setup/GlobalTeardown.ts'),

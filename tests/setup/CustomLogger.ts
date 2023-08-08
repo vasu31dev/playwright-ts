@@ -1,11 +1,24 @@
+/**
+ * This module provides a custom logger for Playwright tests. It implements the Reporter interface from Playwright
+ * and uses the Winston logging library to provide detailed logs for test execution. The logger includes custom colors
+ * for different log levels and can be configured to log to the console or a file.
+ */
+
 import { Reporter, TestCase, TestError, TestResult, TestStep } from '@playwright/test/reporter';
 import winston from 'winston';
 
+/**
+ * Custom colors for the logger
+ */
 const customColors = {
   info: 'blue',
   error: 'red',
 };
 winston.addColors(customColors);
+
+/**
+ * Logger configuration
+ */
 export const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
@@ -22,11 +35,23 @@ export const logger = winston.createLogger({
   ],
 });
 
-export default class CustomReporterConfig implements Reporter {
+/**
+ * CustomLogger class that implements the Reporter interface from Playwright
+ */
+export default class CustomLogger implements Reporter {
+  /**
+   * Logs the start of a test case
+   * @param {TestCase} test - The test case that is starting
+   */
   onTestBegin(test: TestCase): void {
     logger.info(`Test Case Started : ${test.title}`);
   }
 
+  /**
+   * Logs the end of a test case
+   * @param {TestCase} test - The test case that ended
+   * @param {TestResult} result - The result of the test case
+   */
   onTestEnd(test: TestCase, result: TestResult): void {
     if (result.status === 'passed') {
       logger.info(`\x1b[32mTest Case Passed : ${test.title}\x1b[0m`); // Green color
@@ -40,12 +65,23 @@ export default class CustomReporterConfig implements Reporter {
     }
   }
 
+  /**
+   * Logs the start of a test step
+   * @param {TestCase} test - The test case
+   * @param {TestResult} result - The result of the test case
+   * @param {TestStep} step - The test step that is starting
+   * Note: The onStepBegin function work is still in progress.
+   */
   onStepBegin(test: TestCase, result: TestResult, step: TestStep): void {
     if (step.category === `test.step`) {
       logger.info(`Executing Step : ${step.title}`);
     }
   }
 
+  /**
+   * Logs an error
+   * @param {TestError} error - The error
+   */
   onError(error: TestError): void {
     logger.error(error.message);
   }

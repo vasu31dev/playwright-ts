@@ -22,7 +22,7 @@
       "@ElementUtils": ["tests/utils/ElementUtils.ts"],
       "@TimeoutConstants": ["tests/utils/TimeoutConstants.ts"],
       "@Types": ["tests/setup/Types.ts"],
-      "@CustomReporterConfig": ["tests/setup/CustomReporterConfig.ts"]
+      "@CustomLogger": ["tests/setup/CustomLogger.ts"]
     }
   },
   "include": ["tests/**/*.ts", "index.ts", "playwright.config.ts"],
