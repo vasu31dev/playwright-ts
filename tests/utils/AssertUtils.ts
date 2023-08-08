@@ -133,7 +133,7 @@ export async function expectElementToBeEditable(input: string | Locator, options
 
 /**
  * Asserts that the element equals the provided string or string array or regular expression.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from wehere we retrieve the text to assert.
  * @param {string | string[] | RegExp} text - The string, string array or regular expression to match against the element's text.
  * @param {ExpectOptions & ExpectTextOptions} options - The options to pass to the expect function.
  */
@@ -148,7 +148,7 @@ export async function expectElementToHaveText(
 
 /**
  * Asserts that the element does not equal the provided string or string array or regular expression.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the text to assert.
  * @param {string | string[] | RegExp} text - The string, string array or regular expression to match against the element's text.
  * @param {ExpectOptions & ExpectTextOptions} options - The options to pass to the expect function.
  */
@@ -163,7 +163,7 @@ export async function expectElementNotToHaveText(
 
 /**
  * Asserts that the element contains the provided string or string array or regular expression.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the text to assert.
  * @param {string | string[] | RegExp} text - The string, string array or regular expression to match against the element's text.
  * @param {ExpectOptions & ExpectTextOptions} options - The options to pass to the expect function.
  */
@@ -178,7 +178,7 @@ export async function expectElementToContainText(
 
 /**
  * Asserts that the element does not contain the provided string or string array or regular expression.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the text to assert.
  * @param {string | string[] | RegExp} text - The string, string array or regular expression to match against the element's text.
  * @param {ExpectOptions & ExpectTextOptions} options - The options to pass to the expect function.
  */
@@ -193,7 +193,7 @@ export async function expectElementNotToContainText(
 
 /**
  * Asserts that the given element points to an input text box with the given text or Regex.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the input value to assert.
  * @param {string | RegExp} text - The string or regular expression to match against the element's value.
  * @param {ExpectOptions} options - The options to pass to the expect function.
  */
@@ -208,7 +208,7 @@ export async function expectElementToHaveValue(
 
 /**
  * Asserts that the given element points to a multi-select/combobox (i.e. a select with the multiple attribute) and the specified values are selected.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the input value to assert.
  * @param {Array<string | RegExp>} text - The array of strings or regular expressions to match against the element's values.
  * @param {ExpectOptions} options - The options to pass to the expect function.
  */
@@ -223,7 +223,7 @@ export async function expectElementToHaveValues(
 
 /**
  * Asserts that the given element points to an empty editable element or to a DOM node that has no text.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the input value to assert.
  * @param {ExpectOptions} options - The options to pass to the expect function.
  */
 export async function expectElementValueToBeEmpty(input: string | Locator, options?: ExpectOptions): Promise<void> {
@@ -233,7 +233,7 @@ export async function expectElementValueToBeEmpty(input: string | Locator, optio
 
 /**
  * Asserts that the given element points to a non-empty editable element or to a DOM node that has text.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the input value to assert.
  * @param {ExpectOptions} options - The options to pass to the expect function.
  */
 export async function expectElementValueNotToBeEmpty(input: string | Locator, options?: ExpectOptions): Promise<void> {
@@ -277,7 +277,7 @@ export async function expectElementToContainAttribute(
 
 /**
  * Asserts that the given element has the specified count.
- * @param {string | Locator} input - Either a string (selector) or a Locator object.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object to get the element count.
  * @param {number} count - The count to match against the element's count.
  * @param {ExpectOptions} options - The options to pass to the expect function.
  */
@@ -313,6 +313,8 @@ export async function expectPageToContainURL(url: string, options?: ExpectOption
 /**
  * This method will be used for future stories validations Asserts that the current page Title
  * matches exactly the provided title or regular expression.
+ * @param {string | RegExp} titleOrRegExp - The title or regular expression to match against the current page title.
+ * @param {ExpectOptions} options - The options to pass to the expect function.
  */
 export async function expectPageToHaveTitle(titleOrRegExp: string | RegExp, options?: ExpectOptions): Promise<void> {
   const assert = getExpectWithSoftOption(options);
