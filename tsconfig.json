@@ -11,6 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
       "@PageSetup": ["tests/setup/PageSetup.ts"],
@@ -21,9 +22,9 @@
       "@ElementUtils": ["tests/utils/ElementUtils.ts"],
       "@TimeoutConstants": ["tests/utils/TimeoutConstants.ts"],
       "@Types": ["tests/setup/Types.ts"],
-      "@CustomReporterConfig": ["tests/setup/CustomReporterConfig.ts"],
+      "@CustomReporterConfig": ["tests/setup/CustomReporterConfig.ts"]
     }
   },
-  "include": ["tests/**/*.ts"],
+  "include": ["tests/**/*.ts", "index.ts", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }

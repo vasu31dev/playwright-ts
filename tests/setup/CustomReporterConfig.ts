@@ -1,10 +1,4 @@
-import {
-  Reporter,
-  TestCase,
-  TestError,
-  TestResult,
-  TestStep,
-} from '@playwright/test/reporter';
+import { Reporter, TestCase, TestError, TestResult, TestStep } from '@playwright/test/reporter';
 import winston from 'winston';
 
 const customColors = {

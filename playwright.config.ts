@@ -1,9 +1,4 @@
-import {
-  ACTION_TIMEOUT,
-  EXPECT_TIMEOUT,
-  NAVIGATION_TIMEOUT,
-  TEST_TIMEOUT,
-} from '@TimeoutConstants';
+import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from '@TimeoutConstants';
 import { WaitForLoadStateOptions } from 'tests/setup/Types';
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
@@ -28,13 +23,7 @@ export default defineConfig({
   workers: process.env.CI ? 3 : 6,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   //allure-playwright
-  reporter: process.env.CI
-    ? 'dot'
-    : [
-        ['./tests/setup/CustomReporterConfig.ts'],
-        ['html', { open: 'never' }],
-        ['dot'],
-      ],
+  reporter: process.env.CI ? 'dot' : [['./tests/setup/CustomReporterConfig.ts'], ['html', { open: 'never' }], ['dot']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   globalSetup: require.resolve('./tests/setup/GlobalSetup.ts'),
   globalTeardown: require.resolve('./tests/setup/GlobalTeardown.ts'),

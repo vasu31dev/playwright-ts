@@ -3,9 +3,9 @@
   "trailingComma": "all",
   "singleQuote": true,
   "quoteProps": "as-needed",
-  "printWidth": 80,
+  "printWidth": 120,
   "tabWidth": 2,
   "bracketSpacing": true,
   "arrowParens": "avoid",
-  "endOfLine": "auto"
+  "endOfLine": "lf"
 }

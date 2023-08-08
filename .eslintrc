@@ -30,6 +30,8 @@
     ],
     "@typescript-eslint/no-unsafe-assignment": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
     "@typescript-eslint/no-unsafe-member-access": "off", // Consider revisiting this setting later to change it to either 'warn' or 'error'.
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
     "import/no-unresolved": "error",
     "require-await": "error",
     "complexity": ["warn", { "max": 11 }],
