@@ -1,5 +1,5 @@
 /**
- * TimeoutConstants.ts: This module provides Timeout constants that can be used to over ride various actions, conditional statements and assertions.
+ * TimeoutConstants.ts: This module provides Timeout constants that can be used to override various actions, conditional statements and assertions.
  * Instead of hard coding the timeout when overriding any utility functions, use these Timeout constants.
  */
 
