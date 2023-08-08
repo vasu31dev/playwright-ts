@@ -590,11 +590,7 @@ const text = await getText(textLocator());
 //getting all inner texts
 const allTexts = await getAllTexts(textLocator());
 
-<<<<<<< HEAD
 //getting input value
-=======
-//getting inout value
->>>>>>> 3fe926f2fd5f1f5c600795af875a322c2ea6a3a3
 const inputValue = await getInputValue(userName());
 
 //getting 'class' attribute value
