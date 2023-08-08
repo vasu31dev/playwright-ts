@@ -25,6 +25,6 @@
       "@CustomReporterConfig": ["tests/setup/CustomReporterConfig.ts"]
     }
   },
-  "include": ["tests/**/*.ts"],
+  "include": ["tests/**/*.ts", "index.ts", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }
