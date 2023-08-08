@@ -1,5 +1,5 @@
 /**
- * This module contains utility functions for assertions in tests.
+ * AssertUtils.ts: This module contains utility functions for assertions in tests.
  * All expect assertions will dynamically wait until either the expect timeout specified in the
  * playwright.config is reached or the condition becomes true.
  * @module AssertUtils
@@ -39,7 +39,10 @@ export function assertAllSoftAssertions(testInfo: TestInfo) {
   expect(testInfo.errors).toHaveLength(0);
 }
 
-/* Locator Assertions */
+/**
+ * 1. Locator Assertions: This section contains functions that perform assertions on specific locators.
+ * These functions check for various conditions such as visibility, presence in the DOM, text content, etc.
+ */
 
 /**
  * Asserts that the given element is not present in the DOM or is Hidden.
@@ -133,7 +136,7 @@ export async function expectElementToBeEditable(input: string | Locator, options
 
 /**
  * Asserts that the element equals the provided string or string array or regular expression.
- * @param {string | Locator} input - Either a string (selector) or a Locator object from wehere we retrieve the text to assert.
+ * @param {string | Locator} input - Either a string (selector) or a Locator object from where we retrieve the text to assert.
  * @param {string | string[] | RegExp} text - The string, string array or regular expression to match against the element's text.
  * @param {ExpectOptions & ExpectTextOptions} options - The options to pass to the expect function.
  */
@@ -290,7 +293,10 @@ export async function expectElementToHaveCount(
   await assert(locator, options).toHaveCount(count, options);
 }
 
-/* Page Assertions */
+/**
+ * 2. Page Assertions: This section contains functions that perform assertions on the entire page.
+ * These functions check for conditions such as URL, title, etc.
+ */
 
 /**
  * Asserts that the current page URL matches exactly the provided URL or regular expression.

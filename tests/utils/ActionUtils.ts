@@ -1,5 +1,5 @@
 /**
- * This module provides a set of utility functions for performing various actions in Playwright tests.
+ * ActionUtils.ts: This module provides a set of utility functions for performing various actions in Playwright tests.
  * These actions include navigation, interaction with page elements, handling of dialogs, and more.
  */
 import { Dialog, Locator, Response } from '@playwright/test';
@@ -26,7 +26,7 @@ import { LOADSTATE } from 'playwright.config';
 import { getLocator } from '@LocatorUtils';
 
 /**
- * This Navigating section contains functions for navigating within a web page or between web pages.
+ * 1. Navigations: This section contains functions for navigating within a web page or between web pages.
  * These functions include going to a URL, waiting for a page to load, reloading a page, and going back to a previous page.
  */
 
@@ -86,7 +86,7 @@ export async function wait(ms: number): Promise<void> {
 }
 
 /**
- * This Actions contains functions for interacting with elements on a web page.
+ * 2. Actions: This section contains functions for interacting with elements on a web page.
  * These functions include clicking, filling input fields, typing, clearing input fields, checking and unchecking checkboxes, selecting options in dropdowns, and more.
  */
 
@@ -238,7 +238,7 @@ export async function selectByIndex(input: string | Locator, index: number, opti
 }
 
 /**
- * This Alerts section contains functions for handling alert dialogs.
+ * 3. Alerts: This section contains functions for handling alert dialogs.
  * These functions include accepting and dismissing alerts, and getting the text of an alert.
  * Note: These functions currently have some repetition and could be optimized by applying the DRY (Don't Repeat Yourself) principle.
  */
@@ -389,7 +389,7 @@ export async function scrollLocatorIntoView(input: string | Locator, options?: T
 }
 
 /**
- * This JS section contains functions that use JavaScript to interact with elements on a web page.
+ * 4. JS: This section contains functions that use JavaScript to interact with elements on a web page.
  * These functions include clicking on an element using JavaScript.
  */
 

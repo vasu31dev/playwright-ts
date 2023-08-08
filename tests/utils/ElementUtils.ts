@@ -1,3 +1,10 @@
+/**
+ * ElementUtils.ts: This module provides utility functions for retrieving text from web elements in web page and conditional statements with in Playwright.
+ * These utilities include a variety of functions for retrieving text, input values, URLs, and checking conditions such as
+ * whether an element is visible or checked. It provides a layer of abstraction over Playwright's built-in methods for
+ * interacting with elements, making it easier to perform common tasks and checks on web elements.
+ */
+
 import { Locator } from '@playwright/test';
 import { getPage } from '@PageFactory';
 import { NavigationOptions, TimeoutOption } from '@Types';
@@ -5,8 +12,11 @@ import { getAllLocators, getLocator } from '@LocatorUtils';
 import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from '@TimeoutConstants';
 import { waitForPageLoadState } from '@ActionUtils';
 
-/* Use these to retrieve text/s, values, count and also for checks in the Conditional statements */
-/* These are not for Assertions unless the Web first Assertions don't meet your criteria */
+/**
+ * 1. Retreiving Data: Use these functions to retrieve text, values, and counts from web elements.
+ * These functions can also be used in conditional statements to check the state of web elements.
+ * These functions are not intended for use in assertions, unless the built-in Playwright assertions do not meet your criteria.
+ */
 
 /**
  * Returns the inner text of a Locator object.
@@ -109,7 +119,10 @@ export async function getLocatorCount(input: string | Locator, options?: Timeout
   return 0;
 }
 
-/* Use these checks in the Conditional statements, not for Assertions unless the web first Assertions don't meet your criteria */
+/**
+ * 2. Conditions: Use these checks within conditional statements.
+ * They are not intended for use in assertions, unless the built-in Playwright assertions do not meet your criteria.
+ */
 
 /**
  * Checks if a Locator object is attached to DOM.

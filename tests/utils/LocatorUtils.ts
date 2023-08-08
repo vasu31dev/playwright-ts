@@ -1,8 +1,17 @@
+/**
+ * LocatorUtils.ts: This module provides utility functions for handling and manipulating locators in Playwright.
+ * These utilities make it easier to interact with elements on the page, providing a layer of abstraction over Playwright's built-in locator methods.
+ */
+
 import { FrameLocator, Locator, selectors } from '@playwright/test';
 import { getPage } from '@PageFactory';
 import { GetByPlaceholderOptions, GetByRoleOptions, GetByRoleTypes, GetByTextOptions, LocatorOptions } from '@Types';
 
-// Locators
+/**
+ * 1. Locators: This section contains functions and definitions related to locators.
+ * Locators are used to find and interact with elements on the page.
+ */
+
 /**
  * Returns a Locator object based on the input provided.
  * @param {string | Locator} input - The input to create the Locator from.
@@ -76,7 +85,11 @@ export async function getAllLocators(input: string | Locator, options?: LocatorO
   return typeof input === 'string' ? await getPage().locator(input, options).all() : await input.all();
 }
 
-//Frames
+/**
+ * 2. Frames: This section contains functions and definitions related to frames.
+ * Frames are used to handle and interact with iframes or frames within the web page.
+ */
+
 /**
  * Returns a FrameLocator object based on the input provided.
  * @param {string | FrameLocator} frameInput - The input to create the FrameLocator from.
