@@ -1,14 +1,7 @@
 import { test } from '@PageSetup';
 import { click } from '@ActionUtils';
-import {
-  clickMyAccountIcon,
-  clicklogInText,
-  navigateToHomepage,
-} from 'tests/pages/TrekPages/TrekHomePage';
-import {
-  logInSuccessfullyAsB2BUser,
-  verifyLogInFieldsAreEmptyAndUnchecked,
-} from 'tests/pages/TrekPages/TrekLoginPage';
+import { clickMyAccountIcon, clicklogInText, navigateToHomepage } from 'tests/pages/TrekPages/TrekHomePage';
+import { logInSuccessfullyAsB2BUser, verifyLogInFieldsAreEmptyAndUnchecked } from 'tests/pages/TrekPages/TrekLoginPage';
 import {
   acceptAppleLabelAlert,
   clickAppleLabelsTab,
@@ -17,11 +10,7 @@ import {
   updateAppleLabelDescription,
   verifyAppleLabelsSaveButtonEnabled,
 } from 'tests/pages/TrekPages/TrekAppleLabels';
-import {
-  clickGridViewIcon,
-  expandSkuGrid,
-  navigateToPLP,
-} from 'tests/pages/TrekPages/TrekProductListingPage';
+import { clickGridViewIcon, expandSkuGrid, navigateToPLP } from 'tests/pages/TrekPages/TrekProductListingPage';
 
 test('Apple labels assertion', async () => {
   //navigating to site

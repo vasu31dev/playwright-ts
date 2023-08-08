@@ -6,7 +6,5 @@ export async function enterGuestEmail(email: string) {
 }
 
 export async function navigateToCheckoutAsGuest() {
-  await clickAndNavigate(
-    getLocatorByRole('button', { name: 'Checkout as guest' }),
-  );
+  await clickAndNavigate(getLocatorByRole('button', { name: 'Checkout as guest' }));
 }

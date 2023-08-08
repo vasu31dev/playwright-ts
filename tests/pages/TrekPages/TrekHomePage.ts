@@ -1,11 +1,7 @@
 import { click, clickAndNavigate, gotoURL } from '@ActionUtils';
 import { expectElementToBeVisible } from '@AssertUtils';
 import { isElementVisible } from '@ElementUtils';
-import {
-  getLocator,
-  getLocatorByRole,
-  getLocatorByTestId,
-} from '@LocatorUtils';
+import { getLocator, getLocatorByRole, getLocatorByTestId } from '@LocatorUtils';
 
 export async function navigateToHomepage(): Promise<void> {
   await gotoURL('https://test.trekbikes.com/us/en_US');
@@ -24,9 +20,7 @@ export async function clickUserManualsFooterLink() {
 }
 
 export async function clickShopsNavheader() {
-  await clickAndNavigate(
-    getLocatorByTestId(`nav-categories-link-viewRetailerLocator-large`),
-  );
+  await clickAndNavigate(getLocatorByTestId(`nav-categories-link-viewRetailerLocator-large`));
 }
 
 export async function clickRacingFooterLink() {

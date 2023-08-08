@@ -2,8 +2,7 @@ import { check, clickAndNavigate } from '@ActionUtils';
 import { expectElementToBeChecked, expectPageToContainURL } from '@AssertUtils';
 import { getLocator } from '@LocatorUtils';
 
-const privacyPolicyLabel = () =>
-  getLocator(`//*[@qaid='formGroupundefined']/..`);
+const privacyPolicyLabel = () => getLocator(`//*[@qaid='formGroupundefined']/..`);
 const privacyPolicyLink = () => getLocator(`//*[@name='termsCheck']`);
 
 export async function checkPrivacyPolicyLink() {

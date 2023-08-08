@@ -1,10 +1,6 @@
 import { click, clickAndNavigate, gotoURL, hover } from '@ActionUtils';
 import { expectElementToBeVisible, expectPageToContainURL } from '@AssertUtils';
-import {
-  getLocator,
-  getLocatorByTestId,
-  getLocatorByText,
-} from '@LocatorUtils';
+import { getLocator, getLocatorByTestId, getLocatorByText } from '@LocatorUtils';
 
 const viewCartLink = () => getLocatorByText(`View cart`);
 
@@ -27,7 +23,5 @@ export async function hoverOnPriceInfo() {
 }
 
 export async function verifyPriceInfoMessageDisplayed() {
-  await expectElementToBeVisible(
-    getLocator(`//*[@qaid='buying-zone.price-info'][@aria-describedby]`),
-  );
+  await expectElementToBeVisible(getLocator(`//*[@qaid='buying-zone.price-info'][@aria-describedby]`));
 }

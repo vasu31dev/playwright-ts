@@ -6,8 +6,5 @@ export async function verifyUserManualPageURL() {
 }
 
 export async function verifyUserManualPageHeader() {
-  await expectElementToHaveText(
-    getLocatorByTestId(`editorial-component-header`).nth(0),
-    'Find manuals by category',
-  );
+  await expectElementToHaveText(getLocatorByTestId(`editorial-component-header`).nth(0), 'Find manuals by category');
 }

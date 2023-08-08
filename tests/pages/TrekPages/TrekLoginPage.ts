@@ -36,9 +36,7 @@ export async function logInSuccessfullyAsB2BUser() {
   //entering log in credentials
   await fill(loginEmail(), 'vidya_vemulapalli@trekbikes.com');
   await fill(loginPassword(), 'Test@123');
-  await clickAndNavigate(
-    `//button[@type='submit']//span[contains(text(),'Log in')]`,
-  );
+  await clickAndNavigate(`//button[@type='submit']//span[contains(text(),'Log in')]`);
   //naviating to b2b as logged user
   await expectElementToBeVisible(`(//*[@id='logout-link'])[last()]`);
   await expectPageToHaveURL(new RegExp('/b2b'));

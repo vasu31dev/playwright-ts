@@ -5,19 +5,11 @@ import {
   expectElementToHaveText,
   expectElementValueNotToBeEmpty,
 } from '@AssertUtils';
-import {
-  getLocator,
-  getLocatorByTestId,
-  getLocatorInFrame,
-} from '@LocatorUtils';
+import { getLocator, getLocatorByTestId, getLocatorInFrame } from '@LocatorUtils';
 
 import { STANDARD_TIMEOUT } from '@TimeoutConstants';
 
-const searchLocation = () =>
-  getLocatorInFrame(
-    `#lcly-embedded-iframe-inner-0`,
-    `//*[@aria-label='Search Location']`,
-  );
+const searchLocation = () => getLocatorInFrame(`#lcly-embedded-iframe-inner-0`, `//*[@aria-label='Search Location']`);
 const autoSearchSuggestions = () =>
   getLocatorInFrame(
     `#lcly-embedded-iframe-inner-0`,
@@ -30,19 +22,13 @@ const storeResults = () =>
   ).nth(0);
 
 export async function verifyStoreLocatorPageHeader() {
-  await expectElementToHaveText(
-    getLocatorByTestId(`store-locator__title`),
-    'Find a bike shop',
-  );
+  await expectElementToHaveText(getLocatorByTestId(`store-locator__title`), 'Find a bike shop');
 }
 
 export async function verifyStoreFinderSearchLocationIsAutofilled() {
-  await expectElementToHaveAttribute(
-    searchLocation(),
-    'placeholder',
-    'Ixonia, Wisconsin US',
-    { timeout: STANDARD_TIMEOUT },
-  );
+  await expectElementToHaveAttribute(searchLocation(), 'placeholder', 'Ixonia, Wisconsin US', {
+    timeout: STANDARD_TIMEOUT,
+  });
   await expectElementValueNotToBeEmpty(searchLocation());
 }
 

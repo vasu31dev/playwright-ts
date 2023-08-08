@@ -1,13 +1,6 @@
-import {
-  expectElementToBeDisabled,
-  expectElementToHaveValue,
-  expectPageToContainURL,
-} from '@AssertUtils';
+import { expectElementToBeDisabled, expectElementToHaveValue, expectPageToContainURL } from '@AssertUtils';
 import * as DeliveryDetails from './TrekDeliveryDetails';
-import {
-  amexCardDetails,
-  visaCardDetails,
-} from '../../../testdata/trektestdata/userdetails';
+import { amexCardDetails, visaCardDetails } from '../../../testdata/trektestdata/userdetails';
 
 import { expect } from '@playwright/test';
 import { clickAndNavigate, fill, selectByValue } from '@ActionUtils';
@@ -74,9 +67,7 @@ async function verifyEnteredCardDetails() {
   await expectElementToHaveValue(yearExpiry, cardDetails.expirationDateYear, {
     soft: true,
   });
-  expect((await getInputValue(cardNumber)).replace(/\s/g, '')).toEqual(
-    cardDetails.cardnumber,
-  );
+  expect((await getInputValue(cardNumber)).replace(/\s/g, '')).toEqual(cardDetails.cardnumber);
 }
 
 export async function navigateToReviewOrderPage() {

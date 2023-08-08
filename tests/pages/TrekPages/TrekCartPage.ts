@@ -10,12 +10,7 @@ export async function navigateToCheckout() {
 
 export async function incrementItemQtyInCart() {
   // const qtyBeforeIncrement = parseInt(await getText(qtyText()));
-  const qtyBeforeIncrement = parseInt(
-    await getText(`//*[@qaid='cart-product-quantity']`),
-  );
+  const qtyBeforeIncrement = parseInt(await getText(`//*[@qaid='cart-product-quantity']`));
   await click(`//*[contains(@class,'increase-button')]`);
-  await expectElementToHaveText(
-    `//*[@qaid='cart-product-quantity']`,
-    (qtyBeforeIncrement + 1).toString(),
-  );
+  await expectElementToHaveText(`//*[@qaid='cart-product-quantity']`, (qtyBeforeIncrement + 1).toString());
 }
