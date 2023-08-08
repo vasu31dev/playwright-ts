@@ -34,7 +34,7 @@ import { getLocator } from '@LocatorUtils';
  * Navigates to the specified URL.
  * @param {string} path - The URL to navigate to.
  * @param {GotoOptions} options - The navigation options.
- * @returns {Promise<null | Response>} - The navigation response.
+ * @returns {Promise<null | Response>} - The navigation response or null if no response.
  */
 export async function gotoURL(path: string, options: GotoOptions = { waitUntil: LOADSTATE }): Promise<null | Response> {
   return await getPage().goto(path, options);
@@ -43,7 +43,6 @@ export async function gotoURL(path: string, options: GotoOptions = { waitUntil: 
 /**
  * Waits for a specific page load state.
  * @param {NavigationOptions} options - The navigation options.
- * @returns {Promise<void>}
  */
 export async function waitForPageLoadState(options?: NavigationOptions): Promise<void> {
   let waitUntil: WaitForLoadStateOptions = LOADSTATE;
@@ -58,7 +57,6 @@ export async function waitForPageLoadState(options?: NavigationOptions): Promise
 /**
  * Reloads the current page.
  * @param {NavigationOptions} options - The navigation options.
- * @returns {Promise<void>}
  */
 export async function reloadPage(options?: NavigationOptions): Promise<void> {
   await Promise.all([getPage().reload(options), getPage().waitForEvent('framenavigated')]);
@@ -68,7 +66,6 @@ export async function reloadPage(options?: NavigationOptions): Promise<void> {
 /**
  * Navigates back to the previous page.
  * @param {NavigationOptions} options - The navigation options.
- * @returns {Promise<void>}
  */
 export async function goBack(options?: NavigationOptions): Promise<void> {
   await Promise.all([getPage().goBack(options), getPage().waitForEvent('framenavigated')]);
@@ -78,7 +75,6 @@ export async function goBack(options?: NavigationOptions): Promise<void> {
 /**
  * Waits for a specified amount of time.
  * @param {number} ms - The amount of time to wait in milliseconds.
- * @returns {Promise<void>}
  */
 export async function wait(ms: number): Promise<void> {
   // eslint-disable-next-line playwright/no-wait-for-timeout
@@ -94,7 +90,6 @@ export async function wait(ms: number): Promise<void> {
  * Clicks on a specified element.
  * @param {string | Locator} input - The element to click on.
  * @param {ClickOptions} options - The click options.
- * @returns {Promise<void>}
  */
 export async function click(input: string | Locator, options?: ClickOptions): Promise<void> {
   const locator = getLocator(input);
@@ -105,7 +100,6 @@ export async function click(input: string | Locator, options?: ClickOptions): Pr
  * Clicks on a specified element and waits for navigation.
  * @param {string | Locator} input - The element to click on.
  * @param {ClickOptions} options - The click options.
- * @returns {Promise<void>}
  */
 export async function clickAndNavigate(input: string | Locator, options?: ClickOptions): Promise<void> {
   const timeout = options?.timeout || STANDARD_TIMEOUT;
@@ -120,7 +114,6 @@ export async function clickAndNavigate(input: string | Locator, options?: ClickO
  * @param {string | Locator} input - The element to fill.
  * @param {string} value - The value to fill the element with.
  * @param {FillOptions} options - The fill options.
- * @returns {Promise<void>}
  */
 export async function fill(input: string | Locator, value: string, options?: FillOptions): Promise<void> {
   const locator = getLocator(input);
@@ -128,11 +121,10 @@ export async function fill(input: string | Locator, value: string, options?: Fil
 }
 
 /**
- * Fills a specified element with a value and presses Enter.
+ * Fills a specified element with a value and press Enter.
  * @param {string | Locator} input - The element to fill.
  * @param {string} value - The value to fill the element with.
  * @param {FillOptions} options - The fill options.
- * @returns {Promise<void>}
  */
 export async function fillAndEnter(input: string | Locator, value: string, options?: FillOptions): Promise<void> {
   const locator = getLocator(input);
@@ -145,7 +137,6 @@ export async function fillAndEnter(input: string | Locator, value: string, optio
  * @param {string | Locator} input - The element to type into.
  * @param {string} value - The value to type.
  * @param {TypeOptions} options - The type options.
- * @returns {Promise<void>}
  */
 export async function type(input: string | Locator, value: string, options?: TypeOptions): Promise<void> {
   const locator = getLocator(input);
@@ -156,7 +147,6 @@ export async function type(input: string | Locator, value: string, options?: Typ
  * Clears the value of a specified element.
  * @param {string | Locator} input - The element to clear.
  * @param {ClearOptions} options - The clear options.
- * @returns {Promise<void>}
  */
 export async function clear(input: string | Locator, options?: ClearOptions): Promise<void> {
   const locator = getLocator(input);
@@ -167,7 +157,6 @@ export async function clear(input: string | Locator, options?: ClearOptions): Pr
  * Checks a specified checkbox or radio button.
  * @param {string | Locator} input - The checkbox or radio button to check.
  * @param {CheckOptions} options - The check options.
- * @returns {Promise<void>}
  */
 export async function check(input: string | Locator, options?: CheckOptions): Promise<void> {
   const locator = getLocator(input);
@@ -178,7 +167,6 @@ export async function check(input: string | Locator, options?: CheckOptions): Pr
  * Unchecks a specified checkbox or radio button.
  * @param {string | Locator} input - The checkbox or radio button to uncheck.
  * @param {CheckOptions} options - The uncheck options.
- * @returns {Promise<void>}
  */
 export async function uncheck(input: string | Locator, options?: CheckOptions): Promise<void> {
   const locator = getLocator(input);
@@ -190,7 +178,6 @@ export async function uncheck(input: string | Locator, options?: CheckOptions): 
  * @param {string | Locator} input - The dropdown to select an option in.
  * @param {string} value - The value of the option to select.
  * @param {SelectOptions} options - The select options.
- * @returns {Promise<void>}
  */
 export async function selectByValue(input: string | Locator, value: string, options?: SelectOptions): Promise<void> {
   const locator = getLocator(input);
@@ -198,11 +185,10 @@ export async function selectByValue(input: string | Locator, value: string, opti
 }
 
 /**
- * Selects options in a dropdown by their values.
+ * Selects options in a dropdown by their values (multi select).
  * @param {string | Locator} input - The dropdown to select options in.
  * @param {Array<string>} value - The values of the options to select.
  * @param {SelectOptions} options - The select options.
- * @returns {Promise<void>}
  */
 export async function selectByValues(
   input: string | Locator,
@@ -218,7 +204,6 @@ export async function selectByValues(
  * @param {string | Locator} input - The dropdown to select an option in.
  * @param {string} text - The text of the option to select.
  * @param {SelectOptions} options - The select options.
- * @returns {Promise<void>}
  */
 export async function selectByText(input: string | Locator, text: string, options?: SelectOptions): Promise<void> {
   const locator = getLocator(input);
@@ -230,7 +215,6 @@ export async function selectByText(input: string | Locator, text: string, option
  * @param {string | Locator} input - The dropdown to select an option in.
  * @param {number} index - The index of the option to select.
  * @param {SelectOptions} options - The select options.
- * @returns {Promise<void>}
  */
 export async function selectByIndex(input: string | Locator, index: number, options?: SelectOptions): Promise<void> {
   const locator = getLocator(input);
@@ -302,7 +286,6 @@ export async function getAlertText(input: string | Locator): Promise<string> {
  * Hovers over a specified element.
  * @param {string | Locator} input - The element to hover over.
  * @param {HoverOptions} options - The hover options.
- * @returns {Promise<void>}
  */
 export async function hover(input: string | Locator, options?: HoverOptions): Promise<void> {
   const locator = getLocator(input);
@@ -313,7 +296,6 @@ export async function hover(input: string | Locator, options?: HoverOptions): Pr
  * Focuses on a specified element.
  * @param {string | Locator} input - The element to focus on.
  * @param {TimeoutOption} options - The timeout options.
- * @returns {Promise<void>}
  */
 export async function focus(input: string | Locator, options?: TimeoutOption): Promise<void> {
   const locator = getLocator(input);
@@ -325,7 +307,6 @@ export async function focus(input: string | Locator, options?: TimeoutOption): P
  * @param {string | Locator} input - The element to drag.
  * @param {string | Locator} dest - The destination to drop the element at.
  * @param {DragOptions} options - The drag options.
- * @returns {Promise<void>}
  */
 export async function dragAndDrop(
   input: string | Locator,
@@ -341,7 +322,6 @@ export async function dragAndDrop(
  * Double clicks on a specified element.
  * @param {string | Locator} input - The element to double click on.
  * @param {DoubleClickOptions} options - The double click options.
- * @returns {Promise<void>}
  */
 export async function doubleClick(input: string | Locator, options?: DoubleClickOptions): Promise<void> {
   const locator = getLocator(input);
@@ -352,7 +332,6 @@ export async function doubleClick(input: string | Locator, options?: DoubleClick
  * Downloads a file from a specified element.
  * @param {string | Locator} input - The element to download the file from.
  * @param {string} path - The path to save the downloaded file to.
- * @returns {Promise<void>}
  */
 export async function downloadFile(input: string | Locator, path: string): Promise<void> {
   const locator = getLocator(input);
@@ -370,7 +349,6 @@ export async function downloadFile(input: string | Locator, path: string): Promi
  * @param {string | Locator} input - The element to upload files to.
  * @param {UploadValues} path - The files to upload.
  * @param {UploadOptions} options - The upload options.
- * @returns {Promise<void>}
  */
 export async function uploadFiles(input: string | Locator, path: UploadValues, options?: UploadOptions): Promise<void> {
   const locator = getLocator(input);
@@ -381,7 +359,6 @@ export async function uploadFiles(input: string | Locator, path: UploadValues, o
  * Scrolls a specified element into view.
  * @param {string | Locator} input - The element to scroll into view.
  * @param {TimeoutOption} options - The timeout options.
- * @returns {Promise<void>}
  */
 export async function scrollLocatorIntoView(input: string | Locator, options?: TimeoutOption): Promise<void> {
   const locator = getLocator(input);
@@ -397,7 +374,6 @@ export async function scrollLocatorIntoView(input: string | Locator, options?: T
  * Clicks on a specified element using JavaScript.
  * @param {string | Locator} input - The element to click on.
  * @param {TimeoutOption} options - The timeout options.
- * @returns {Promise<void>}
  */
 export async function clickByJS(input: string | Locator, options?: TimeoutOption): Promise<void> {
   const locator = getLocator(input);
