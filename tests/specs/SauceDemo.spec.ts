@@ -17,6 +17,7 @@ test.describe('Saucedemo tests for successful login and add product to cart', ()
   test('Saucedemo test - Add product to cart', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();
+    await ProductsPage.verifyProductsPageDisplayed();
     await ProductsPage.addToCartByProductNumber(1);
     //verifying mini cart count is updated to 1
     await MiniCart.verifyMiniCartCount('1');

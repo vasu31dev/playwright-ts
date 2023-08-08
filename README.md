@@ -242,7 +242,7 @@ Page objects are utilized to encapsulate information about the elements present 
 
 Here's an example of a page object under the `pages` package:
 
-**sauceDemo.ts**
+**sauceDemoLoginPage.ts**
 
 ```typescript
 //importing utility functions
@@ -251,29 +251,33 @@ import { failureLoginCredentials, successLoginCredentials } from '../testdata/Sa
 import { expectElementToBeVisible } from '@AssertUtils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from '@LocatorUtils';
 
-const userName = () => getLocator(`#user-name`);
-const password = () => getLocatorByPlaceholder('Password', { exact: true }).nth(0);
+const userName = `#user-name`;
+const password = () => getLocator(`#password`).or(getLocatorByPlaceholder('Password', { exact: true }));
 const login = () => getLocatorByRole('button', { name: 'Login' });
-const errorMessage = () => getLocator(`//*[contains(@class,'error-message')]`);
+const errorMessage = `//*[contains(@class,'error-message')]`;
 
 export async function navigateToSauceDemoLoginPage() {
   await gotoURL('https://www.saucedemo.com/');
 }
 
 export async function logInSuccessfully() {
-  await fill(userName(), successLoginCredentials.username);
+  await fill(userName, successLoginCredentials.username);
   await fill(password(), successLoginCredentials.password);
   await clickAndNavigate(login());
 }
 
 export async function failureLogin() {
-  await fill(userName(), failureLoginCredentials.username);
+  await fill(userName, failureLoginCredentials.username);
   await fill(password(), failureLoginCredentials.password);
   await click(login());
 }
 
 export async function verifyErrorMessageForFailureLogin() {
-  await expectElementToBeVisible(errorMessage());
+  await expectElementToBeVisible(errorMessage);
+}
+
+export async function verifyLoginPageisDisplayed() {
+  await expectElementToBeVisible(userName);
 }
 ```
 
@@ -300,19 +304,31 @@ import * as LoginPage from 'tests/pages/SauceDemoLoginPage';
 import * as MiniCart from 'tests/pages/SauceDemoMiniCart';
 import * as ProductsPage from 'tests/pages/SauceDemoProductsPage';
 
-test.describe('Sauce demotests for successful login and add products to cart', () => {
-  test('Saucedemo tests - successful login', async () => {
+test.describe('Saucedemo tests for successful login and add product to cart', () => {
+  test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();
     //verifying products page is displayed on successful login
     await ProductsPage.verifyProductsPageDisplayed();
   });
 
-  test('Saucedemo tests - Add product to cart', async () => {
+  test('Saucedemo test - Add product to cart', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();
-    await ProductsPage.addGivenProductToCart(1);
+    await ProductsPage.verifyProductsPageDisplayed();
+    await ProductsPage.addToCartByProductNumber(1);
+    //verifying mini cart count is updated to 1
     await MiniCart.verifyMiniCartCount('1');
+  });
+
+  test('Saucedemo test - When login is unsuccessful will not display Products Page', async () => {
+    await LoginPage.navigateToSauceDemoLoginPage();
+    await LoginPage.failureLogin();
+    await LoginPage.verifyErrorMessageForFailureLogin();
+    //verifying Login is still displayed
+    await LoginPage.verifyLoginPageisDisplayed();
+    //verifying Products Page is not displayed
+    await ProductsPage.verifyProductsPageNotDisplayed();
   });
 });
 ```
@@ -386,13 +402,28 @@ import {
   getLocatorByLabel,
 } from '@LocatorUtils';
 
+//Locator with CSS
 const locator = () => getLocator(`button#submit`);
+
+//Locator with testIdAttribute
 const testIdLocator = () => getLocatorByTestId('submit-button');
+
+//Locator by text
 const textLocator = () => getLocatorByText('Submit');
+
+//Locator by role
 const roleLocator = () => getLocatorByRole('button');
+
+//Locator by label
 const labelLocator = () => getLocatorByLabel('Submit Button');
+
+//Locator with 'and' operator
 const locatorWithAnd = () => getLocator(`button#submit`).and.(getLocator(`button#Enabled`));
+
+//Locator with 'or' operator
 const locatorWithOr = () => getLocator(`button#gridview`).or.(getLocator(`button#listview`));
+
+//Locator with filter
 const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'submit'});
 ```
 
@@ -553,10 +584,19 @@ The `ElementUtils` module provides utility functions for extracting values from 
 
 ```typescript
 import { getText, getAllTexts, getInputValue, getAttribute, attribute } from '@ElementUtils';
+// getting inner text
 const text = await getText(textLocator());
+
+//getting all inner texts
 const allTexts = await getAllTexts(textLocator());
+
+//getting inout value
 const inputValue = await getInputValue(userName());
+
+//getting 'class' attribute value
 const attribute = await getAttribute(labelLocator(), 'class');
+
+//element visibility conditional check
 if (isElementVisible(logoutButton())) {
   console.log('Login is successful');
 } else {
@@ -589,14 +629,22 @@ import {
   expectElementNotToContainText,
 } from '@AssertUtils';
 import { INSTANT_TIMEOUT, STANDARD_TIMEOUT } from '@Timeouts';
+
+//asserting elemnt to be visible
 await expectElementToBeVisible(logoutButton(), 'Login should be successful', {
   timeout: STANDARD_TIMEOUT,
 });
+
+//asserting element to be invisible
 await expectElementToBeHidden(signInButton(), 'signInButton should not be displayed');
+
+//asserting element to have the text
 await expectElementToHaveText(successfulMessage(), 'Login is successful', {
   ignoreCase: false,
   message: 'Login should be Successful',
 });
+
+//asserting check box is not checked
 await expectElementNotToBeChecked(agreeCheckbox(), {
   timeout: INSTANT_TIMEOUT,
 });
@@ -640,8 +688,13 @@ const loginpage = () => getLocator(`#loginpage`, { hasText: 'login' });
 const successfulMessage = () => getLocatorByTestId(`sucess-message`);
 
 export async function verifyLoginPageisDisplayed() {
+  //ClickOptions
   await clickAndNavigate(loginpage(), { button: 'right', force: true, clickCount: 1 });
+
+  //TypeOptions
   await type(`#username`, 'testuser', { delay: 2, noWaitAfter: false });
+
+  //ExpectTextOptions
   await expectElementToHaveText(successfulMessage(), 'Login is Successful', {
     useInnerText: true,
     ignoreCase: false,
