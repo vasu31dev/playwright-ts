@@ -57,7 +57,7 @@ export function getLocatorByRole(role: GetByRoleTypes, options?: GetByRoleOption
 
 /**
  * Returns a Locator object with a specific label.
- * @param {string | RegExp} text - The text to create the Locator from.
+ * @param {string | RegExp} text - The label text to create the Locator from.
  * @param {GetByRoleOptions} options - Optional parameters for the Locator.
  * @returns {Locator} - The created Locator object.
  */
@@ -67,7 +67,7 @@ export function getLocatorByLabel(text: string | RegExp, options?: GetByRoleOpti
 
 /**
  * Returns a Locator object with a specific placeholder.
- * @param {string | RegExp} text - The text to create the Locator from.
+ * @param {string | RegExp} text - The place holder text to create the Locator from.
  * @param {GetByPlaceholderOptions} options - Optional parameters for the Locator.
  * @returns {Locator} - The created Locator object.
  */
@@ -101,8 +101,8 @@ export function getFrameLocator(frameInput: string | FrameLocator): FrameLocator
 
 /**
  * Returns a Locator object within a specific frame based on the input provided.
- * @param {string | FrameLocator} frameInput - The frame to create the Locator from.
- * @param {string | Locator} input - The input to create the Locator from.
+ * @param {string | FrameLocator} frameInput - The input to create the FrameLocator from.
+ * @param {string | Locator} input - The input to create the Locator from, within the frame.
  * @returns {Locator} - The created Locator object.
  */
 export function getLocatorInFrame(frameInput: string | FrameLocator, input: string | Locator): Locator {
