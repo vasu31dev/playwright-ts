@@ -5,7 +5,8 @@ import { getAllLocators, getLocator } from '@LocatorUtils';
 import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from '@TimeoutConstants';
 import { waitForPageLoadState } from '@ActionUtils';
 
-/* Use these to retrieve text/s in Conditional statements, not for Assertions unless the Web first Assertions don't meet your criteria */
+/* Use these to retrieve text/s, values, count and also for checks in the Conditional statements */
+/* These are not for Assertions unless the Web first Assertions don't meet your criteria */
 
 /**
  * Returns the inner text of a Locator object.
@@ -55,7 +56,7 @@ export async function getAllInputValues(input: string | Locator, options?: Timeo
  * @param {string | Locator} input - The input to create the Locator from.
  * @param {string} attributeName - The name of the attribute to get.
  * @param {TimeoutOption} [options] - Optional timeout options.
- * @returns {Promise<null | string>} - The attribute of the Locator.
+ * @returns {Promise<null | string>} - The attribute of the Locator if present or null if absent.
  */
 export async function getAttribute(
   input: string | Locator,
@@ -94,7 +95,7 @@ export async function getURL(options: NavigationOptions = { waitUntil: 'load' })
  * Returns the count of Locator objects.
  * @param {string | Locator} input - The input to create the Locator from.
  * @param {TimeoutOption} [options] - Optional timeout options.
- * @returns {Promise<number>} - The count of Locator objects.
+ * @returns {Promise<number>} - The count of the Locator objects.
  */
 export async function getLocatorCount(input: string | Locator, options?: TimeoutOption): Promise<number> {
   const timeoutInMs = options?.timeout || INSTANT_TIMEOUT;
@@ -108,7 +109,7 @@ export async function getLocatorCount(input: string | Locator, options?: Timeout
   return 0;
 }
 
-/* Use these in Conditional statements, not for Assertions unless the web first Assertions don't meet your criteria */
+/* Use these checks in the Conditional statements, not for Assertions unless the web first Assertions don't meet your criteria */
 
 /**
  * Checks if a Locator object is attached to DOM.
