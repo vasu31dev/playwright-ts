@@ -1,36 +1,46 @@
+import { SMALL_TIMEOUT } from '@TimeoutConstants';
 import { Page } from '@playwright/test';
 
 let page: Page;
 
-/** Returns the current Page */
+/**
+ * Returns the current Page.
+ * @returns {Page} The current Page.
+ */
 export function getPage(): Page {
   return page;
 }
 
-/** Sets the current Page */
+/**
+ * Sets the current Page.
+ * @param {Page} pageInstance - The Page instance to set as the current Page.
+ */
 export function setPage(pageInstance: Page): void {
   page = pageInstance;
 }
 
 /**
- * Switch to a different page by its index (1-based)
- * If the desired page isn't immediately available, this function will wait and retry for up to 5 seconds
- * @throws {Error} If the desired page isn't found within 5 seconds
+ * Switches to a different page by its index (1-based).
+ * If the desired page isn't immediately available, this function will wait and retry for up to 'SMALL_TIMEOUT' seconds.
+ * @param {number} winNum - The index of the page to switch to.
+ * @throws {Error} If the desired page isn't found within 'SMALL_TIMEOUT' seconds.
  */
 export async function switchPage(winNum: number): Promise<void> {
   const startTime = Date.now();
-  while (page.context().pages().length < winNum && Date.now() - startTime < 5000) {
+  while (page.context().pages().length < winNum && Date.now() - startTime < SMALL_TIMEOUT) {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   if (page.context().pages().length < winNum) {
-    throw new Error(`Page number ${winNum} not found after 5 seconds`);
+    throw new Error(`Page number ${winNum} not found after ${SMALL_TIMEOUT} seconds`);
   }
   const pageInstance = page.context().pages()[winNum - 1];
   await pageInstance.waitForLoadState();
   setPage(pageInstance);
 }
 
-/** Switch back to the default page (the first one) */
+/**
+ * Switches back to the default page (the first one).
+ */
 export async function switchToDefaultPage(): Promise<void> {
   const pageInstance = page.context().pages()[0];
   if (pageInstance) {
@@ -39,6 +49,12 @@ export async function switchToDefaultPage(): Promise<void> {
   }
 }
 
+/**
+ * Closes a page by its index (1-based).
+ * If no index is provided, the current page is closed.
+ * If there are other pages open, it will switch back to the default page.
+ * @param {number} winNum - The index of the page to close.
+ */
 export async function closePage(winNum: number): Promise<void> {
   if (!winNum) {
     await page.close();
