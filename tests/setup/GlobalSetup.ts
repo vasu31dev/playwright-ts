@@ -1,7 +1,7 @@
-// import * as dotenv from 'dotenv';
-
-/* Read environment variables from the .env file */
+/**
+ * Global setup function to be executed before all tests start.
+ * You can add any initialization setup code here.
+ */
 export default () => {
   // console.log("Add any initialization setup here");
-  // dotenv.config({ path: ".env" });
 };
