@@ -3,7 +3,7 @@ import { SauceDemoLoginPage } from 'tests/pages/traditionalPOM/SauceDemoLogInPag
 import { SauceDemoMinicart } from 'tests/pages/traditionalPOM/SauceDemoMiniCart_TraditionalStyle';
 import { SauceDemoProductsPage } from 'tests/pages/traditionalPOM/SauceDemoProductsPage_TraditionalStyle';
 
-test.describe('Saucedemo tests for successful login and add product to cart', () => {
+test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
   let loginPage;
   let productsPage;
   let miniCart;
@@ -24,6 +24,7 @@ test.describe('Saucedemo tests for successful login and add product to cart', ()
     await loginPage.logInSuccessfully();
 
     productsPage = new SauceDemoProductsPage(page);
+    await productsPage.verifyProductsPageDisplayed();
     await productsPage.addGivenProductToCart(1);
 
     miniCart = new SauceDemoMinicart(page);
