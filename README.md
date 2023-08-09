@@ -231,11 +231,34 @@ To run the tests using the Playwright plugin in Visual Studio Code, please follo
 
 2. Select and install the `Playwright Test for VSCode` plugin.
 
+#### Test configuration:
+
+Playwright has many options to configure how to run our tests. We can specify the configurations in the `playwright.config.ts` file. Here is the list of few configurations that we commonly use. For morde detailed information about test configuration, please refer [Playwright Test Configuration Documentation](https://playwright.dev/docs/test-configuration)
+
+1. `testDir: './tests'`: With this property set to `tests` directory, it will run all tests in this directory
+
+2. `retries: process.env.CI ? 2 : 0`: The number of times to retry failed tests. In this example, retries value is set to 2 in CI and none in normal test execution
+
+3. `workers: process.env.CI ? 3 : 1`: The number of worker threads to use for running tests. In this example, workers value is set to 3 in CI and one in normal test execution
+4. `reporter: process.env.CI ? 'dot' : [['./tests/setup/CustomLogger.ts'], ['html', { open: 'never' }], ['dot']],`
+
+5. `headless`: use option, to run the tests in headless or headed browsers. Default value is headless
+
+6. `testIdAttribute`: use option, to set the QAID attribute that is added to any web element on the HTML page to locate it during the test execution
+
+7. `baseURL`: use option, to use in actions like `await page.goto('/')
+
+8. `trace: 'retain-on-failure'`: use option, provides the trace on failure
+
+9. `screenshot: 'only-on-failure'`: use option, provides screenshot on failure
+
+10. `projects`: projects can be configured to web and mobile browsers of Chromium, firefox, webkit with desired view port
+
 #### Running Tests with the Plugin:
 
 1. Once the plugin is installed, you will see a small green `Play` button next to each test in your spec files.
 
-2. Clicking on the `Play` button will execute the test. You can either execute individual tests or all tests together within the spec file.
+2. Clicking on the `Play` button will execute the test as per the configurations set in playwright.config file. You can either execute individual tests or all tests together within the spec file.
 
 ![Running Tests](https://blog.jetbrains.com/wp-content/uploads/2023/06/OpenProject.png)
 
