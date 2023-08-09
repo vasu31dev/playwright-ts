@@ -46,7 +46,7 @@ export default defineConfig({
   workers: process.env.CI ? 3 : 6,
   /*  Note: Add allure-playwright report */
   /**
-   * The reporter to use. This is set to a different value on CI.
+   * The reporter to use. This can be set to use a different value on CI.
    * See https://playwright.dev/docs/test-reporters
    */
   reporter: [['./tests/setup/CustomLogger.ts'], ['html', { open: 'never' }], ['dot']],
