@@ -6,6 +6,8 @@ This project is meticulously organized into distinct packages and files, each ta
 
   > **Tip**: Quickly rectify linting errors by running the `npm run lint:fix` command. Once resolved, you can proceed with commits if the Husky hook is successful.
 
+- **docs**: This directory hosts the images and document files referenced in README.md.
+
 - **tests**: This directory houses the framework setup, end-to-end test files, API tests, and associated utilities. The tests are organized as:
 
 - **setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](FrameworkSetup.md) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
