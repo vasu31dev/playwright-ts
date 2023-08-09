@@ -10,7 +10,7 @@ import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
-const BASE_URL = process.env.URL || 'https://www.amazon.com';
+const BASE_URL = process.env.URL || 'https://www.saucedemo.com/';
 const startLocalHost = process.env.URL && process.env.URL.includes('localhost');
 /**
  * Default load state to be used while loading a URL or performing a click and navigate operation.
