@@ -45,7 +45,7 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Prerequisites](docs/Installation.md)
   - [Installation](docs/Installation.md#installation)
   - [Project Update Guide](docs/Installation.md#project-update-guide)
-- [**Project Structure**](#docs/ProjectStructure.md)
+- [**Project Structure**](docs/ProjectStructure.md)
 - [**Framework Setup**](docs/FrameworkSetup.md)
   - [Switching Pages](docs/FrameworkSetup.md#switching-pages)
 - [**Usage**](#usage)
