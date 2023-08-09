@@ -49,7 +49,7 @@ export default defineConfig({
    * The reporter to use. This is set to a different value on CI.
    * See https://playwright.dev/docs/test-reporters
    */
-  reporter: process.env.CI ? 'dot' : [['./tests/setup/CustomLogger.ts'], ['html', { open: 'never' }], ['dot']],
+  reporter: [['./tests/setup/CustomLogger.ts'], ['html', { open: 'never' }], ['dot']],
   /**
    * Shared settings for all the projects below.
    * See https://playwright.dev/docs/api/class-testoptions
