@@ -237,9 +237,9 @@ Playwright offers various configuration options for customizing test execution. 
 
 1. **`testDir: './tests'`**: Specifies the directory where tests are located. Tests within this directory will be executed.
 
-2. **`retries: process.env.CI ? 2 : 0`**: Determines the number of times to retry failed tests. In this example, the retries value is set to 2 in a continuous integration (CI) environment and 0 during normal test execution.
+2. **`retries: process.env.CI ? 2 : 0`**: Determines the number of times to retry failed tests. In this example, the retries value is set to 2 in a continuous integration (CI) environment and 0 during local test execution.
 
-3. **`workers: process.env.CI ? 3 : 1`**: Sets the number of worker threads for running tests. In this example, the workers value is set to 3 in a CI environment and 1 during regular test execution.
+3. **`workers: process.env.CI ? 3 : 1`**: Sets the number of worker threads for running tests. In this example, the workers value is set to 3 in a CI environment and 1 during local test execution.
 
 4. **`reporter: [['./tests/setup/CustomLogger.ts'], ['html', { open: 'never' }], ['dot']]`**: Configures a custom HTML reporter with a logger. Multiple reporters can be defined.
 
