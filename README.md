@@ -153,7 +153,7 @@ export async function verifyLoginPageisDisplayed() {
 }
 ```
 
-In this example, the `SauceDemoLoginPage` represents a login page in the application. It has methods to navigate to the Saucedemo homepage, perform a success and failure login action, check if the login was successful in successful login case and check if the error message displayed in failure login case
+In this example, the `SauceDemoLoginPage` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
 
 Refer to the [Utilities](docs/Utilities.md) section on how to use the reusable methods.
 
@@ -213,7 +213,7 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
-In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful. Similarly, `ProductsPage` and `MiniCart` are also the page objects that has the functions for the respective pages.
+In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and check if the login was successful. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
 
 ## Utilities
 
@@ -240,6 +240,8 @@ To run the tests using the Playwright plugin in Visual Studio Code, please follo
 ![Running Tests](https://blog.jetbrains.com/wp-content/uploads/2023/06/OpenProject.png)
 
 The Playwright plugin for Visual Studio Code provides a convenient way to run your tests directly from your code editor, without having to switch to the terminal.
+
+[![Playwright Plugin](http://img.youtube.com/vi/5INgwvImzy0/0.jpg)](http://www.youtube.com/watch?v=5INgwvImzy0 'Running Tests with Playwright Plugin')
 
 ### Parallel Execution
 
@@ -323,6 +325,8 @@ Here's what each option does:
 - `--grep-invert`: The opposite of `-g` or grep. It filters out the tests to run.
 - `--max-failures 4`: Stops after the first 4 test failures. This includes a count of failures in the retry test as well.
 - `--list`: Lists all the tests, but does not run them.
+
+[![CLI Parallel Execution](http://img.youtube.com/vi/gtkoLizAsaw/0.jpg)](https://www.youtube.com/watch?v=gtkoLizAsaw 'CLI Parallel Execution')
 
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
