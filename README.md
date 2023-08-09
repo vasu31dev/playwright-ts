@@ -84,27 +84,27 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 ### Prerequisites
 
-Please refer to [Prerequisites section.](docs/Installation.md)
+Before you begin, there are some essential requirements you must meet. Please refer to the [Prerequisites section](docs/Installation.md) for detailed information on the necessary software and tools needed to run this project.
 
 ### Installation
 
-Please refer to [Installation section.](docs/Installation.md#installation)
+Get started with the project by following the step-by-step installation guide. Please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
 
 ### Project Update Guide
 
-Please refer to [Project Update Guide section.](docs/Installation.md#project-update-guide)
+Keeping your project up to date is crucial. Please refer to the [Project Update Guide section](docs/Installation.md#project-update-guide) for guidelines on how to update your project to the latest version.
 
 ## Project Structure
 
-Please refer to [Project Structure section.](docs/ProjectStructure.md)
+Understanding the project's architecture is key to working with the code. Please refer to the [Project Structure section](docs/ProjectStructure.md) for an overview of the directory layout and file organization.
 
 ## Framework Setup
 
-Please refer to [Framework Setup section.](docs/FrameworkSetup.md)
+Learn how to configure and customize the framework to suit your needs. Please refer to the [Framework Setup section](docs/FrameworkSetup.md) for detailed instructions.
 
 ### Switching Pages
 
-Please refer to [Switching Pages section.](docs/FrameworkSetup.md#switching-pages)
+Managing page navigation is a common task in web testing. Please refer to the [Switching Pages section](docs/FrameworkSetup.md#switching-pages) for techniques and examples on how to switch between different pages within your tests.
 
 ## Usage
 
@@ -217,7 +217,14 @@ In this example, the `LoginPage` represents a login page within the application.
 
 ## Utilities
 
-Please refer to [Utilities section.](docs/Utilities.md)
+Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
+
+1. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
+2. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate common actions like clicking, typing, or dragging, providing a more concise way to express these operations in your tests.
+3. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
+4. [Assertion Utilities](docs/Utilities.md#assert-utilities): Helpers that simplify the process of making assertions about the state of the application, enhancing the readability and maintainability of your tests.
+
+Please refer to the [Utilities section](docs/Utilities.md) for a comprehensive guide to the available utilities in this project, including detailed descriptions and examples of how to use them.
 
 ## Executing Tests
 
