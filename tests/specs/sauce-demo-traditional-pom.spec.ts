@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { SauceDemoLoginPage } from 'tests/pages/traditionalPOM/saucedemologinpage_traditionalstyle';
-import { SauceDemoMinicart } from 'tests/pages/traditionalPOM/saucedemominicart_traditionalstyle';
-import { SauceDemoProductsPage } from 'tests/pages/traditionalPOM/saucedemoproductspage';
+import { SauceDemoLoginPage } from 'tests/pages/traditionalPOM/sauceDemoLoginPageTraditionalStyle';
+import { SauceDemoMinicart } from 'tests/pages/traditionalPOM/sauceDemoMiniCartTraditionalStyle';
+import { SauceDemoProductsPage } from 'tests/pages/traditionalPOM/sauceDemoProductsPageTraditionalStyle';
 
 test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
   let loginPage;

@@ -10,7 +10,7 @@ import {
   verifyAnacondaHomePageURL,
   verifyAnacondaPageURL,
   verifySignInPageURL,
-} from 'tests/pages/preferredPOM/anacondahomepage';
+} from 'tests/pages/preferredPOM/anacondaHomePage';
 
 test.describe('Test to switch and navigate to different pages from Anaconda home page nav links', () => {
   test('Switch pages demo from Anaconda nav links', async () => {

@@ -6,7 +6,7 @@
  */
 
 import { Page, test as baseTest } from '@playwright/test';
-import { setPage } from '@PageFactory';
+import { setPage } from 'tests/setup/page-factory';
 
 /**
  * A hook that runs before each test, setting the page context.

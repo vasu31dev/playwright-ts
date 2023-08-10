@@ -1,7 +1,7 @@
 import { test } from '@PageSetup';
-import * as LoginPage from 'tests/pages/preferredPOM/saucedemologinpage';
-import * as MiniCart from 'tests/pages/preferredPOM/saucedemominicart';
-import * as ProductsPage from 'tests/pages/preferredPOM/saucedemoproductspage';
+import * as LoginPage from 'tests/pages/preferredPOM/sauce-demo-login-page';
+import * as MiniCart from 'tests/pages/preferredPOM/sauce-demo-mini-cart';
+import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page';
 
 test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
