@@ -2,15 +2,15 @@
 
 The framework provides a set of utility functions that simplify common actions and assertions in Playwright. These functions are located in the `tests/utils` directory and include:
 
-- [LocatorUtils.ts](#locator-utilities): This file contains functions for locating web elements in different ways, such as by test ID, label, text, CSS, or XPath.
+- [locatorutils.ts](#locator-utilities): This file contains functions for locating web elements in different ways, such as by test ID, label, text, CSS, or XPath.
 
-- [ActionUtils.ts](#action-utilities): This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
+- [actionutils.ts](#action-utilities): This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
 
-- [ElementUtils.ts](#element-utilities): This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
+- [elementutils.ts](#element-utilities): This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
 
-- [AssertUtils.ts](#assert-utilities): This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
+- [assertutils.ts](#assert-utilities): This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
 
-- `TimeoutConstants.ts`: This file contains static timeout values that can be used along with different functions.
+- `timeoutconstants.ts`: This file contains static timeout values that can be used along with different functions.
 
 These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
@@ -18,7 +18,7 @@ Here are a few examples of how to use the utility functions:
 
 ### Locator Utilities
 
-The `LocatorUtils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators are used to identify elements on a web page. They are essential for interacting with web elements and performing actions on them, such as clicking a button or entering text into a form field.
+The `locatorutils` module provides a set of utility functions that identify locators in different ways in Playwright. Locators are used to identify elements on a web page. They are essential for interacting with web elements and performing actions on them, such as clicking a button or entering text into a form field.
 
 ```typescript
 import {
@@ -54,7 +54,7 @@ const locatorWithOr = () => getLocator(`button#gridview`).or.(getLocator(`button
 const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'submit'});
 ```
 
-In this example, we're using various functions from LocatorUtils:
+In this example, we're using various functions from Locatorutils:
 
 1.  `getLocator(selector: string)`: This function returns a Locator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the element you want to locate.
 
@@ -88,9 +88,9 @@ Refer to the [Optional Parameter Objects](#optional-parameter-objects) section f
 
 #### Handling Frames
 
-The `LocatorUtils` module provides utility functions to handle frames in Playwright. Frames are used in web development to divide the content of a page into multiple, scrollable regions. With Playwright, you can interact with frames in a similar way as you do with separate pages.
+The `locatorutils` module provides utility functions to handle frames in Playwright. Frames are used in web development to divide the content of a page into multiple, scrollable regions. With Playwright, you can interact with frames in a similar way as you do with separate pages.
 
-Here's how you can use the `LocatorUtils` functions to handle frames easily:
+Here's how you can use the `locatorutils` functions to handle frames easily:
 
 ```typescript
 import { getFrameLocator, getLocatorInFrame } from '@LocatorUtils';
@@ -109,7 +109,7 @@ const locatorInFrame = () => await getLocatorInFrame(frame, locator());
 const locatorInFrame = () => await getLocatorInFrame(frameLocator(), locator());
 ```
 
-In this example, we're using various functions from LocatorUtils to handle frames:
+In this example, we're using various functions from locatorutils to handle frames:
 
 1. `getFrameLocator(frameInput: string | FrameLocator):`: This function returns a FrameLocator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate
 
@@ -121,9 +121,9 @@ For more information, please refer to [Playwright FrameLocator documentation](ht
 
 ### Action Utilities
 
-The `ActionUtils` module provides a set of utility functions that simplify common actions in Playwright. These functions are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
+The `actionutils` module provides a set of utility functions that simplify common actions in Playwright. These functions are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
-Here's an example of how to use the `ActionUtils` functions:
+Here's an example of how to use the `actionutils` functions:
 
 ```typescript
 import { gotoURL, click, fill, type, check, uploadFiles, selectByValue } from '@ActionUtils';
@@ -151,7 +151,7 @@ await uploadFiles(`input#file`, '/path/to/myfile.jpg');
 await selectByValue(`#dropdown`, 'selectValue');
 ```
 
-In this example, we're using various functions from ActionUtils:
+In this example, we're using various functions from actionutils:
 
 1. `gotoURL(path: string, options: GotoOptions)`: This function navigates to a specific URL. The path parameter is the URL you want to navigate to, and the options parameter is an optional parameter that specifies additional navigation options. Here we have overridden the default navigation timeout with MAX_TIMEOUT optional parameter.
 
@@ -177,9 +177,9 @@ For more information on the optional parameters refer to the [Optional Parameter
 
 ### Managing Alerts
 
-The `ActionUtils` module provides utility functions to handle alerts in Playwright. These functions are designed to make your tests more readable, maintainable and to reduce the amount of boilerplate code you need to write.
+The `actionutils` module provides utility functions to handle alerts in Playwright. These functions are designed to make your tests more readable, maintainable and to reduce the amount of boilerplate code you need to write.
 
-Here's an example of how to use the `ActionUtils` functions to handle alerts:
+Here's an example of how to use the `actionutils` functions to handle alerts:
 
 ```typescript
 import { acceptAlert, dismissAlert, getAlertText } from '@ActionUtils';
@@ -194,7 +194,7 @@ await dismissAlert(outOfStockButton());
 const text = await getAlertText(outOfStockButton());
 ```
 
-In this example, we're using various functions from ActionUtils to handle alerts:
+In this example, we're using various functions from actionutils to handle alerts:
 
 1. `acceptAlert(input: string | Locator, promptText?: string)`: This function is used to accept an alert dialog. The `input` parameter is a string or Locator representing the element that triggers the alert, and the `promptText` parameter is an optional parameter that specifies the text to enter into a prompt dialog.
 
@@ -207,7 +207,7 @@ For more information, please refer to [Playwright Alerts documentation](https://
 
 ### Element Utilities
 
-The `ElementUtils` module provides utility functions for extracting values from web elements and performing condition checks. These functions are designed to handle common tasks related to web elements, such as retrieving text or attribute values, checking visibility, and more.
+The `elementutils` module provides utility functions for extracting values from web elements and performing condition checks. These functions are designed to handle common tasks related to web elements, such as retrieving text or attribute values, checking visibility, and more.
 
 ```typescript
 import { getText, getAllTexts, getInputValue, getAttribute, attribute } from '@ElementUtils';
@@ -231,7 +231,7 @@ if (isElementVisible(logoutButton())) {
 }
 ```
 
-In this example, we're using various functions from ElementUtils:
+In this example, we're using various functions from elementutils:
 
 1. `getText(input: string | Locator, options?: TimeoutOption)`: This function gets the inner text of an element. The input parameter is a string or Locator representing the element from which to get the text. TimeoutOption is an optional parameter for timeout.
 
@@ -245,7 +245,7 @@ In this example, we're using various functions from ElementUtils:
 
 ### Assert Utilities
 
-The `AssertUtils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable.
+The `assertutils` module provides a set of utility functions that simplify common assertions in Playwright. These functions are designed to make your tests more readable and maintainable.
 
 ```typescript
 import {
@@ -285,7 +285,7 @@ await expectElementNotToContainText(successfulMessage(), '404 error', {
 assertAllSoftAssertions(test.info());
 ```
 
-In this example, we're using various functions from AssertUtils:
+In this example, we're using various functions from assertutils:
 
 1. `expectElementToBeVisible(input: string | Locator, options?: ExpectOptions)`: This function checks if a specific element is visible on the page. The input parameter is a string or Locator representing the element you want to check. The options parameter is an optional parameter that specifies additional options like timeout and a custom message to display in the report if the assertion fails.
 
@@ -303,7 +303,7 @@ Refer to the [Optional Parameter Objects](#optional-parameter-objects) section f
 
 ### Optional Parameter Objects
 
-The `Types` module provides a set of options for utility modules.
+The `types` module provides a set of options for utility modules.
 
 ```typescript
 import { getLocator, getLocatorByTestId } from '@LocatorUtils';
@@ -330,7 +330,7 @@ export async function verifyLoginPageisDisplayed() {
 }
 ```
 
-In this example, we're using some Types optional parameters with utility functions:
+In this example, we're using some `types` optional parameters with utility functions:
 
 1. `Locator options`: `hasText` is used as an optional parameter to locate the element that has the given text.
 
