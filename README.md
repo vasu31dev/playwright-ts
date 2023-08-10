@@ -102,9 +102,8 @@ Understanding the project's architecture is key to working with the code. Please
 
 Learn how to configure and customize the framework to suit your needs. Please refer to the [Framework Setup section](docs/FrameworkSetup.md) for detailed instructions.
 
-### Switching Pages
-
-Managing page navigation is a common task in web testing. Please refer to the [Switching Pages section](docs/FrameworkSetup.md#switching-pages) for techniques and examples on how to switch between different pages within your tests.
+### Page set up and Switching Pages
+Managing page navigation is a common task in web testing. Please refer to the [Page section](docs/FrameworkSetup.md#switching-pages) for techniques and examples on how to switch between different pages within your tests.
 
 ## Usage
 
