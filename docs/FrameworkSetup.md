@@ -10,12 +10,15 @@
 
 5. `types.ts`: This file contains type definitions that are used across the framework as optional parameters for the utility methods.
 
-### Switching Pages
+### Page set up and Switching Pages
 
-The `pagefactory.ts` provides functions for managing Page objects during tests. Here are examples of how to switch between pages and close a page:
+The `pagefactory.ts` provides functions for setting up a page and managing Page objects during tests. Here are examples of how to switch between pages and close a page:
 
 ```typescript
-import { switchPage, switchToDefaultPage, closePage } from '@PageFactory';
+import { setupPage, switchPage, switchToDefaultPage, closePage } from '@PageFactory';
+
+//This function is responsible for configuring the page prior to each test and is employed within the pagesetup function using the beforeEach hook.
+setupPage(page);
 
 // Switch to the second tab/window. Useful when a test involves interacting with multiple pages.
 await switchPage(2);
