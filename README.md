@@ -114,7 +114,7 @@ Page objects are utilized to encapsulate information about the elements present 
 
 Here's an example of a page object under the `pages` package:
 
-**sauceDemoLoginPage.ts**
+**saucedemologinpage.ts**
 
 ```typescript
 //importing utility functions
@@ -165,7 +165,7 @@ Tests are written in the `specs` directory. Each test file should correspond to 
 
 Here's an example of a test file under the `specs` directory:
 
-**sauceDemo.spec.ts**
+**saucedemopreferredpom.spec.ts**
 
 ```typescript
 //import test from PageSetup.ts which sets up the page before each test

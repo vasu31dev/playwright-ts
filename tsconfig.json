@@ -14,15 +14,15 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@PageSetup": ["tests/setup/PageSetup.ts"],
-      "@PageFactory": ["tests/setup/PageFactory.ts"],
-      "@ActionUtils": ["tests/utils/ActionUtils.ts"],
-      "@AssertUtils": ["tests/utils/AssertUtils.ts"],
-      "@LocatorUtils": ["tests/utils/LocatorUtils.ts"],
-      "@ElementUtils": ["tests/utils/ElementUtils.ts"],
-      "@TimeoutConstants": ["tests/utils/TimeoutConstants.ts"],
-      "@Types": ["tests/setup/Types.ts"],
-      "@CustomLogger": ["tests/setup/CustomLogger.ts"]
+      "@PageSetup": ["tests/setup/pagesetup.ts"],
+      "@PageFactory": ["tests/setup/pagefactory.ts"],
+      "@ActionUtils": ["tests/utils/actionutils.ts"],
+      "@AssertUtils": ["tests/utils/assertutils.ts"],
+      "@LocatorUtils": ["tests/utils/locatorutils.ts"],
+      "@ElementUtils": ["tests/utils/elementutils.ts"],
+      "@TimeoutConstants": ["tests/utils/timeoutconstants.ts"],
+      "@Types": ["tests/setup/types.ts"],
+      "@CustomLogger": ["tests/setup/customlogger.ts"]
     }
   },
   "include": ["tests/**/*.ts", "index.ts", "playwright.config.ts"],
