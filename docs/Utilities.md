@@ -54,7 +54,7 @@ const locatorWithOr = () => getLocator(`button#gridview`).or.(getLocator(`button
 const locatorWithFilter = () => getLocatorByRole('button').filter({hasText: 'submit'});
 ```
 
-In this example, we're using various functions from Locatorutils:
+In this example, we're using various functions from `locatorutils`:
 
 1.  `getLocator(selector: string)`: This function returns a Locator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the element you want to locate.
 
@@ -109,7 +109,7 @@ const locatorInFrame = () => await getLocatorInFrame(frame, locator());
 const locatorInFrame = () => await getLocatorInFrame(frameLocator(), locator());
 ```
 
-In this example, we're using various functions from locatorutils to handle frames:
+In this example, we're using various functions from `locatorutils` to handle frames:
 
 1. `getFrameLocator(frameInput: string | FrameLocator):`: This function returns a FrameLocator object for the given Xpath or CSS selector. The selector parameter is a string representing the Xpath or CSS selector of the frame you want to locate
 
@@ -231,7 +231,7 @@ if (isElementVisible(logoutButton())) {
 }
 ```
 
-In this example, we're using various functions from elementutils:
+In this example, we're using various functions from `elementutils`:
 
 1. `getText(input: string | Locator, options?: TimeoutOption)`: This function gets the inner text of an element. The input parameter is a string or Locator representing the element from which to get the text. TimeoutOption is an optional parameter for timeout.
 
@@ -285,7 +285,7 @@ await expectElementNotToContainText(successfulMessage(), '404 error', {
 assertAllSoftAssertions(test.info());
 ```
 
-In this example, we're using various functions from assertutils:
+In this example, we're using various functions from `assertutils`:
 
 1. `expectElementToBeVisible(input: string | Locator, options?: ExpectOptions)`: This function checks if a specific element is visible on the page. The input parameter is a string or Locator representing the element you want to check. The options parameter is an optional parameter that specifies additional options like timeout and a custom message to display in the report if the assertion fails.
 
