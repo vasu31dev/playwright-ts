@@ -6,7 +6,7 @@
  */
 
 import { Expect, Locator, TestInfo, expect } from '@playwright/test';
-import { ExpectOptions, ExpectTextOptions, SoftOption } from '@Types';
+import { ExpectOptions, ExpectTextOptions, SoftOption } from '@OptionalParameters';
 import { getLocator } from '@LocatorUtils';
 import { getPage } from '@PageFactory';
 

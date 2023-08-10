@@ -5,7 +5,7 @@
  */
 
 import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from '@TimeoutConstants';
-import { WaitForLoadStateOptions } from '@Types';
+import { WaitForLoadStateOptions } from '@OptionalParameters';
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });

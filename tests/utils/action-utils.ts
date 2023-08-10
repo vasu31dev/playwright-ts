@@ -20,7 +20,7 @@ import {
   UploadOptions,
   UploadValues,
   WaitForLoadStateOptions,
-} from '@Types';
+} from '@OptionalParameters';
 import { STANDARD_TIMEOUT } from '@TimeoutConstants';
 import { LOADSTATE } from 'playwright.config';
 import { getLocator } from '@LocatorUtils';

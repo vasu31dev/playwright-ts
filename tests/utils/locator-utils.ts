@@ -5,7 +5,13 @@
 
 import { FrameLocator, Locator, selectors } from '@playwright/test';
 import { getPage } from '@PageFactory';
-import { GetByPlaceholderOptions, GetByRoleOptions, GetByRoleTypes, GetByTextOptions, LocatorOptions } from '@Types';
+import {
+  GetByPlaceholderOptions,
+  GetByRoleOptions,
+  GetByRoleTypes,
+  GetByTextOptions,
+  LocatorOptions,
+} from '@OptionalParameters';
 
 /**
  * 1. Locators: This section contains functions and definitions related to locators.
