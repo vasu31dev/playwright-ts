@@ -20,7 +20,7 @@ Playwright offers various configuration options for customizing test execution. 
 
 3. **`workers: process.env.CI ? 3 : 1`**: Sets the number of worker threads for running tests. In this example, the workers value is set to 3 in a CI environment and 1 during local test execution.
 
-4. **`reporter: [['./tests/setup/CustomLogger.ts'], ['html', { open: 'never' }], ['dot']]`**: Configures a custom HTML reporter with a logger. Multiple reporters can be defined.
+4. **`reporter: [['./tests/setup/custom-logger.ts'], ['html', { open: 'never' }], ['dot']]`**: Configures a custom HTML reporter with a logger. Multiple reporters can be defined.
 
 5. **`headless`**: Determines whether tests should run in headless or headed browsers. The default value is headless.
 

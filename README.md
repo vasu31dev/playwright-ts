@@ -103,6 +103,7 @@ Understanding the project's architecture is key to working with the code. Please
 Learn how to configure and customize the framework to suit your needs. Please refer to the [Framework Setup section](docs/FrameworkSetup.md) for detailed instructions.
 
 ### Page set up and Switching Pages
+
 Managing page navigation is a common task in web testing. Please refer to the [Pages section](docs/FrameworkSetup.md#switching-pages) for techniques and examples on how to set up a page and switch between different pages within your tests.
 
 ## Usage
@@ -113,12 +114,12 @@ Page objects are utilized to encapsulate information about the elements present 
 
 Here's an example of a page object under the `pages` package:
 
-**saucedemologinpage.ts**
+**sauce-demo-login-page.ts**
 
 ```typescript
 //importing utility functions
 import { click, clickAndNavigate, fill, gotoURL } from '@ActionUtils';
-import { failureLoginCredentials, successLoginCredentials } from '../testdata/SauceDemoTestData';
+import { failureLoginCredentials, successLoginCredentials } from '../../testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from '@AssertUtils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from '@LocatorUtils';
 
@@ -152,7 +153,7 @@ export async function verifyLoginPageisDisplayed() {
 }
 ```
 
-In this example, the `saucedemologinpage` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
+In this example, the `sauce-demo-login-page` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
 
 Refer to the [Utilities](docs/Utilities.md) section on how to use the reusable methods.
 
@@ -164,18 +165,18 @@ Tests are written in the `specs` directory. Each test file should correspond to 
 
 Here's an example of a test file under the `specs` directory:
 
-**saucedemopreferredpom.spec.ts**
+**sauce-demo-preferred-pom.spec.ts**
 
 ```typescript
 //import test from PageSetup.ts which sets up the page before each test
 import { test } from '@PageSetup';
 
 //importing page objects to use all functions within that page to construct the tests
-import * as LoginPage from 'tests/pages/SauceDemoLoginPage';
-import * as MiniCart from 'tests/pages/SauceDemoMiniCart';
-import * as ProductsPage from 'tests/pages/SauceDemoProductsPage';
+import * as LoginPage from 'tests/pages/preferredPOM/sauce-demo-login-page';
+import * as MiniCart from 'tests/pages/preferredPOM/sauce-demo-mini-cart';
+import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page';
 
-test.describe('Saucedemo tests for successful login and add product to cart', () => {
+test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();
@@ -206,9 +207,9 @@ test.describe('Saucedemo tests for successful login and add product to cart', ()
 
 In this example, we are setting the page state by importing `test` from `@PageSetup` and writing the spec file. Here are some important points to note:
 
-1. Import `test` from `@PageSetup` instead from `@playwright/test`. `pagesetup` is customized for this framework to set the page state. This ensures that the page is set up correctly before each test.
+1. Import `test` from `@PageSetup` instead from `@playwright/test`. `page-setup` is customized for this framework to set the page state. This ensures that the page is set up correctly before each test.
 
-2. `setPage` function from `pagesetup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from 'pagefactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
+2. `setPage` function from `page-setup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from 'pagefactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
