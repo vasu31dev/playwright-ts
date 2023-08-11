@@ -1,12 +1,9 @@
 import { test } from '@PageSetup';
-import * as LoginPage from 'tests/pages/SauceDemoLoginPage';
-import * as MiniCart from 'tests/pages/SauceDemoMiniCart';
-import * as ProductsPage from 'tests/pages/SauceDemoProductsPage';
+import * as LoginPage from 'tests/pages/preferredPOM/sauce-demo-login-page';
+import * as MiniCart from 'tests/pages/preferredPOM/sauce-demo-mini-cart';
+import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page';
 
-//If you want to run the tests in parallel, you can use the test.describe.configure() method to set the mode to parallel. By default, tests are run sequentially.
-test.describe.configure({ mode: 'parallel' });
-
-test.describe('Saucedemo tests for successful login and add product to cart', () => {
+test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
   test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();

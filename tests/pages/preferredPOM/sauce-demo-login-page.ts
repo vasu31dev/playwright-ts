@@ -1,5 +1,5 @@
 import { click, clickAndNavigate, fill, gotoURL } from '@ActionUtils';
-import { failureLoginCredentials, successLoginCredentials } from '../testdata/SauceDemoTestData';
+import { failureLoginCredentials, successLoginCredentials } from '../../testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from '@AssertUtils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from '@LocatorUtils';
 

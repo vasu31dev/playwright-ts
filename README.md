@@ -18,7 +18,7 @@ This framework is ideal for QA professionals, developers, and business analysts 
 
 ## Key Features:
 
-- **Unique Page Object Model Design Pattern**: Our Page Object Model (POM) design stands apart from traditional POMs. It's a unique approach that significantly reduces complexity and accelerates coding, making it easier and faster to write scripts compared to traditional POMs. This means less time spent on setup and more time spent on creating effective tests. [Discover how our approach differs with the traditional POM](https://playwright.dev/docs/pom).
+- **Unique Page Object Model Design Pattern**: Our Page Object Model (POM) design stands apart from traditional POMs. It's a unique approach that significantly reduces complexity and accelerates coding, making it easier and faster to write scripts compared to traditional POMs. This means less time spent on setup and more time spent on creating effective tests. [Discover how our approach differs with the traditional POM](docs/POMComparision.md).
 
 - **Ease of Use**: Designed to be intuitive and user-friendly, making it an excellent choice for beginners to understand and write scripts. This means less time spent on learning the tool and more time spent on creating effective tests.
 
@@ -42,31 +42,31 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 - [**Getting Started**](#getting-started)
   - [Tools & Frameworks](#tools--frameworks)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Guide to Updating the Project](#project-update-guide)
-- [**Project Structure**](#project-structure)
-- [**Framework Setup**](#framework-setup)
-  - [Switching Pages](#pagefactory)
+  - [Prerequisites](docs/Installation.md)
+  - [Installation](docs/Installation.md#installation)
+  - [Project Update Guide](docs/Installation.md#project-update-guide)
+- [**Project Structure**](docs/ProjectStructure.md)
+- [**Framework Setup**](docs/FrameworkSetup.md)
+  - [Page set up and Switching Pages](docs/FrameworkSetup.md#page-set-up-and-switching-pages)
 - [**Usage**](#usage)
   - [Working with Page Objects](#page-objects)
   - [Creating a Spec File](#writing-tests-in-a-spec-file)
-  - [Using Test Annotations](#test-annotations)
-- [**Utilities**](#utilities)
-  - [Locator Utilities](#locatorutils)
-  - [Handling Frames](#frames)
-  - [Action Utilities](#actionutils)
-  - [Managing Alerts](#alerts)
-  - [Element Utilities](#elementutils)
-  - [Assertion Utilities](#assertutils)
-  - [Optional Parameter Objects](#types)
-- [**Executing Tests**](#running-tests)
-  - [Using the Playwright Plugin](#run-tests-using-the-playwright-plugin)
+- [**Utilities**](docs/Utilities.md)
+  - [Locator Utilities](docs/Utilities.md#locator-utilities)
+  - [Handling Frames](docs/Utilities.md#handling-frames)
+  - [Action Utilities](docs/Utilities.md#action-utilities)
+  - [Managing Alerts](docs/Utilities.md#managing-alerts)
+  - [Element Utilities](docs/Utilities.md#element-utilities)
+  - [Assertion Utilities](docs/Utilities.md#assert-utilities)
+  - [Optional Parameter Objects](docs/Utilities.md#optional-parameter-objects)
+  - [Test annotations](docs/Utilities.md#test-annotations)
+- [**Executing Tests**](#executing-tests)
+  - [Using the Playwright Plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin)
   - [Command-Line Execution](#running-tests-via-the-command-line-interface)
-  - [Report Generation and Viewing](#viewing-reports)
-- [**Exploring Additional Playwright Features**](#additional-playwright-features)
+  - [Report Generation and Viewing](#report-generation-and-viewing)
+- [**Additional Playwright Features**](#additional-playwright-features)
 - [**Best Practices**](#best-practices)
-- [**Contributing to the Project**](#contributing)
+- [**Contribution guide**](#contribution-guide)
 
 ## Getting Started
 
@@ -84,155 +84,27 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
 
 ### Prerequisites
 
-Ensure you have the following software installed on your machine:
-
-- **[npm (v8.0.0 or later)](https://docs.npmjs.com/cli/v9/configuring-npm)**: Package manager for JavaScript, used to install and manage software packages.
-  - To verify your current version, use the command `npm -v`.
-  - If npm isn't installed, follow the [npm installation guide](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-- **[Node.js (v16.0.0 or later)](https://nodejs.org/en/download)**: JavaScript runtime built on Chrome's V8 JavaScript engine, allowing the execution of JavaScript server-side.
-  - To verify your current version, use the command `node -v`.
-- **[Git](https://git-scm.com/downloads)**: Distributed version control system used to track changes in source code during software development.
-  - To check if Git is installed, run the command `git --version`.
-  - If Git isn't installed, download and install it from the [official Git website](https://git-scm.com/downloads).
-- **VSCode Plugins**:
-  - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)**: A tool for consistent code formatting.
-  - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)**: A tool for identifying and fixing linting issues.
-- **VSCode Settings**: To ensure consistency with the prettier format settings, apply the following configurations in your VSCode settings (use Cmd + , to access settings):
-  - **Quote Style**: Set `typescript.preferences.quoteStyle` to `single` for consistent quote usage across your code.
-  - **Format On Save**: Enable `Format On Save Mode` and set it to `file`. This ensures your code is automatically formatted every time you save, enhancing readability and consistency.
+Before you begin, there are some essential requirements you must meet. Please refer to the [Prerequisites section](docs/Installation.md) for detailed information on the necessary software and tools needed to run this project.
 
 ### Installation
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/vasu31dev/playwright-ts.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd playwright-ts
-```
-
-3. Install the dependencies:
-
-```bash
-npm install
-```
-
-4. Install the Playwright browsers
-
-```bash
-npx playwright install
-```
-
-5. (Optional) Git User setup for the first time. If you are a code/test contributor, set up your user in GIT using the commands:
-
-   ```bash
-   git config user.email "<your-email>"
-   git config user.name "<your-name>"
-   git remote set-url origin https://USERNAME:SECRETTOKEN@github.com/vasu31dev/playwright-ts.git
-   ```
-
-   Replace `<USERNAME>` with your GitHub username and `<SECRETTOKEN>` with your GitHub personal access token. If you don't have a personal access token, you can create one in your GitHub account settings following this [GitHub guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+Get started with the project by following the step-by-step installation guide. Please refer to the [Installation section](docs/Installation.md#installation) for complete instructions on setting up the project on your local machine.
 
 ### Project Update Guide
 
-To pull the latest changes and install the latest packages, follow these steps:
-
-1. Pull the latest changes
-
-```bash
-git pull origin <branchName>
-```
-
-Replace `<branchName>` with the name of the branch that you want to update.
-
-2. Install the latest packages
-
-```bash
-npm install
-```
-
-3. If there are dependency errors while installing packages, you can remove the node_modules folder and install the packages again. This step can help resolve potential conflicts or issues with dependencies.
-
-```bash
-rm -rf node_modules
-npm install
-```
-
-4. Update Playwright browsers as needed
-
-```bash
-npx playwright install
-```
+Keeping your project up to date is crucial. Please refer to the [Project Update Guide section](docs/Installation.md#project-update-guide) for guidelines on how to update your project to the latest version.
 
 ## Project Structure
 
-This project is meticulously organized into distinct packages and files, each tailored for a specific purpose:
-
-- **.husky**: Husky streamlines the management of Git hooks, allowing for the execution of specific scripts during various Git stages. In this framework, Husky is configured to prevent commits with linting errors by running the `npm run lint` command (which maps to `eslint . --ext .ts` as defined in `package.json` under the `scripts` section) before every commit. If linting errors are detected, commits are halted until the issues are addressed.
-
-  > **Tip**: Quickly rectify linting errors by running the `npm run lint:fix` command. Once resolved, you can proceed with commits if the Husky hook is successful.
-
-- **tests**: This directory houses the framework setup, end-to-end test files, API tests, and associated utilities. The tests are organized as:
-
-- **setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](#framework-setup) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
-
-- **pages**: This is where the [page objects](#page-objects) reside. Page Object Model (POM) is a design pattern that allows for better test maintenance and reduces code duplication. Each file in this directory typically represents a page or a component of the application, encapsulating the elements and actions specific to that page or component.
-
-- **testdata**: This directory is dedicated to storing test data, which is often externalized from test scripts to allow for easier management and data-driven testing. The data is primarily formatted as JSON objects, making it easily readable and modifiable without delving into the test scripts themselves.
-
-- **specs**: Here, you'll find all the [spec files](#writing-tests-in-a-spec-file). These are the actual test scripts, written to test specific functionalities or features of the application. Each spec file usually corresponds to a feature or functionality, containing one or multiple test scenarios related to it.
-
-- **utils**: A crucial directory that encompasses all test-related [utility functions](#utilities). These are reusable functions or methods written to perform common tasks, be it related to data manipulation, element interaction, or any other recurrent actions or assertions in the test scripts.
-
-- **.eslintrc**: This file is the heart of the ESLint configuration. ESLint is a static code analysis tool that identifies problematic patterns found in Typescript code. The configurations in `.eslintrc` dictate the rules and standards the code should adhere to, ensuring consistency and best practices across the codebase.
-
-- **.prettierrc**: Prettier is an opinionated code formatter, ensuring that the code adheres to a consistent style. The `.prettierrc` file contains the specific formatting rules, like line length, indentation, and more, ensuring that every developer working on the project produces code with a consistent style.
-
-- **.gitignore**: This file ensures the repository's cleanliness by listing files and directories that Git should not track. It typically excludes node modules, build folders, and temporary files, ensuring only essential code and files are versioned.
-
-- **README.md**: The initial file seen in a repository, the `README.md` offers a snapshot of the project. It details the project's purpose, setup instructions, and usage. A well-structured README aids in onboarding new developers and offers clarity to stakeholders.
-
-- **package.json**: Acts as the manifest for your project, detailing metadata like the project's name, version, and description. More importantly, it lists the project's dependencies and devDependencies, scripts that can be run, and other configurations.
-- **package-lock.json**: This is an auto-generated file that provides a detailed versioning of each package and its dependencies. It ensures that every install results in the exact same file structure in `node_modules` across all setups, leading to consistent behavior and builds.
-
-- **playwright.config.ts**: This configuration file is pivotal for the Playwright testing framework. It centralizes settings specific to Playwright, detailing configurations for various browsers (like Chrome, Firefox, Safari) and devices. Within this file, you can specify configurations such as viewport sizes, user agent strings, launch options, and more. These settings ensure that tests run consistently across different environments and scenarios, replicating real-world conditions.
-
-- **tsconfig.json**: This configuration file is essential for TypeScript projects. It specifies the root files and the compiler options required to compile the TypeScript project. It can dictate various settings, from target JavaScript version, module system, source map options, to including or excluding specific files or directories.
-
-- **playwright-report**: This directory is auto-generated during the initial test run, based on the [Playwright reporters](https://playwright.dev/docs/test-reporters) configuration. The report file is updated after each test run. For more on viewing the reports, see [here](#viewing-reports).
+Understanding the project's architecture is key to working with the code. Please refer to the [Project Structure section](docs/ProjectStructure.md) for an overview of the directory layout and file organization.
 
 ## Framework Setup
 
-1. `GlobalSetup.ts`: This file contains the global setup function that is executed once before all test files. It is typically used for setting up global states such as database connections or configuring the test environment like setting environment variables.
+Learn how to configure and customize the framework to suit your needs. Please refer to the [Framework Setup section](docs/FrameworkSetup.md) for detailed instructions.
 
-2. `GlobalTeardown.ts`: This file contains the global teardown function that is executed once after all test files. It is typically used for cleaning up the global states such as closing database connections or resetting the test environment.
+### Page set up and Switching Pages
 
-3. `PageSetup.ts`: This file contains the setup function for the Page object from Playwright. It is used for setting up the page before each test. This is where you can add any common setup code that should run before each test across all spec files.
-
-4. `PageFactory.ts`: This file contains the functions of the PageFactory. These functions are used for managing Page objects, including getting and setting Page objects, switching between pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
-
-5. `Types.ts`: This file contains type definitions that are used across the framework as optional parameters for the utility methods.
-
-### PageFactory
-
-The PageFactory provides functions for managing Page objects during tests. Here are examples of how to switch between pages and close a page:
-
-```typescript
-import { switchPage, switchToDefaultPage, closePage } from '@PageFactory';
-
-// Switch to the second tab/window. Useful when a test involves interacting with multiple pages.
-await switchPage(2);
-
-// Switch to the initial page that was launched or the first tab/window. Useful when you want to return to the starting context after interacting with other pages.
-switchToDefaultPage();
-
-// Close the current page and then switch to the default page if it exists. Useful for cleaning up after a test that opens additional pages.
-await closePage();
-```
+Managing page navigation is a common task in web testing. Please refer to the [Pages section](docs/FrameworkSetup.md#switching-pages) for techniques and examples on how to set up a page and switch between different pages within your tests.
 
 ## Usage
 
@@ -242,12 +114,12 @@ Page objects are utilized to encapsulate information about the elements present 
 
 Here's an example of a page object under the `pages` package:
 
-**sauceDemoLoginPage.ts**
+**sauce-demo-login-page.ts**
 
 ```typescript
 //importing utility functions
 import { click, clickAndNavigate, fill, gotoURL } from '@ActionUtils';
-import { failureLoginCredentials, successLoginCredentials } from '../testdata/SauceDemoTestData';
+import { failureLoginCredentials, successLoginCredentials } from '../../testdata/sauce-demo-test-data';
 import { expectElementToBeVisible } from '@AssertUtils';
 import { getLocator, getLocatorByPlaceholder, getLocatorByRole } from '@LocatorUtils';
 
@@ -281,11 +153,11 @@ export async function verifyLoginPageisDisplayed() {
 }
 ```
 
-In this example, the `SauceDemoLoginPage` represents a login page in the application. It has methods to navigate to the Saucedemo homepage, perform a success and failure login action, check if the login was successful in successful login case and check if the error message displayed in failure login case
+In this example, the `sauce-demo-login-page` represents the login page within the application. It includes methods to navigate to the Saucedemo homepage, execute both successful and unsuccessful login actions, verify the success of the login in the successful login scenario, and confirm the display of an error message in the case of a failed login.
 
-Refer [Utilities](#utilities) section for more information on Utilities.
+Refer to the [Utilities](docs/Utilities.md) section on how to use the reusable methods.
 
-Refer to the [Running Tests](#running-tests) section below on how to run tests.
+Refer to the [Running Tests](#executing-tests) section below on how to run tests.
 
 ### Writing Tests in a spec file
 
@@ -293,18 +165,22 @@ Tests are written in the `specs` directory. Each test file should correspond to 
 
 Here's an example of a test file under the `specs` directory:
 
-**sauceDemo.spec.ts**
+**sauce-demo-preferred-pom.spec.ts**
 
 ```typescript
 //import test from PageSetup.ts which sets up the page before each test
 import { test } from '@PageSetup';
 
 //importing page objects to use all functions within that page to construct the tests
-import * as LoginPage from 'tests/pages/SauceDemoLoginPage';
-import * as MiniCart from 'tests/pages/SauceDemoMiniCart';
-import * as ProductsPage from 'tests/pages/SauceDemoProductsPage';
+import * as LoginPage from 'tests/pages/preferredPOM/sauce-demo-login-page';
+import * as MiniCart from 'tests/pages/preferredPOM/sauce-demo-mini-cart';
+import * as ProductsPage from 'tests/pages/preferredPOM/sauce-demo-products-page';
 
+<<<<<<< HEAD
 test.describe('Saucedemo tests for successful login and add product to cart', () => {
+=======
+test.describe('Saucedemo tests for successful, unsuccessful logins and add product to cart', () => {
+>>>>>>> 2337574b368863f90b3c329fa56455c91ba36507
   test('Saucedemo tests - Successful login will display Products Page', async () => {
     await LoginPage.navigateToSauceDemoLoginPage();
     await LoginPage.logInSuccessfully();
@@ -335,58 +211,34 @@ test.describe('Saucedemo tests for successful login and add product to cart', ()
 
 In this example, we are setting the page state by importing `test` from `@PageSetup` and writing the spec file. Here are some important points to note:
 
-1. Import `test` from `@PageSetup` instead from `@playwright/test`. `@PageSetup` is customized for this framework to set the page state. This ensures that the page is set up correctly before each test.
+1. Import `test` from `@PageSetup` instead from `@playwright/test`. `page-setup` is customized for this framework to set the page state. This ensures that the page is set up correctly before each test.
 
-2. `setPage` function from `Pagesetup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from 'PageFactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
+2. `setPage` function from `page-setup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from 'pagefactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
-In this example, the `LoginPage` represents a login page in the application. It has methods to navigate to the homepage, perform a login action, and check if the login was successful. Similarly, `ProductsPage` and `MiniCart` are also the page objects that has the functions for the respective pages.
-
-Refer [Utilities](#utilities) section for more information on Utilities.
-
-Refer to the [Running Tests](#running-tests) section below on how to run tests.
-
-### Test annotations
-
-Test annotations are a powerful feature of Playwright Test that allows you to modify the behavior of individual tests. You can use them to mark a test as slow, skip it, indicate that it needs to be fixed, group tests, and much more. They provide a flexible way to manage your tests and handle different scenarios.
-
-Here are some examples of how to use test annotations:
-
-```typescript
-import { test } from '@PageSetup';
-
-test.fixme('This test will fail and needs to be fixed so it will be skipped', async () => {});
-
-test.slow('Triples the default timeouts for this test', async () => {});
-
-test.skip('Skip this test', async () => {});
-```
-
-1. `fixme`: marks the test as failing. Playwright Test will not run this test. Use `fixme` when running the test is slow, crashes, or needs any fixes. This allows you to temporarily disable a test until it can be fixed.
-
-2. `slow`: marks the test as slow and triples the timeout. Use `slow` when a test takes longer than usual to complete. This allows Playwright Test to adjust its behavior and avoid prematurely terminating the test.
-
-3. `skip`: marks the test as irrelevant. Playwright Test does not run such a test. Use skip when a test is not applicable in some configurations. This allows you to exclude certain tests based on specific conditions or configurations.
-
-For more info on test annotations, please refer to [Playwright Test Annotations documentation](https://playwright.dev/docs/test-annotations)
+In this example, the `LoginPage` represents a login page within the application. It includes methods to navigate to the homepage, perform a login action, and check if the login was successful. Similarly, `ProductsPage` and `MiniCart` are also page objects that have functions for their respective pages.
 
 ## Utilities
 
-The framework provides a set of utility functions that simplify common actions and assertions in Playwright. These functions are located in the `tests/utils` directory and include:
+Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
 
-- `LocatorUtils.ts`: This file contains functions for locating web elements in different ways, such as by test ID, label, text, CSS, or XPath.
+1. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
+2. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate common actions like clicking, typing, or dragging, providing a more concise way to express these operations in your tests.
+3. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
+4. [Assertion Utilities](docs/Utilities.md#assert-utilities): Helpers that simplify the process of making assertions about the state of the application, enhancing the readability and maintainability of your tests.
 
-- `ActionUtils.ts`: This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
+Please refer to the [Utilities section](docs/Utilities.md) for a comprehensive guide to the available utilities in this project, including detailed descriptions and examples of how to use them.
 
-- `ElementUtils.ts`: This file contains functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
+## Executing Tests
 
-- `AssertUtils.ts`: This file contains functions for adding both soft and hard assertions in your tests. Soft assertions do not stop the test when they fail, while hard assertions do.
+We have the flexibility to execute a single test, a specific set of tests, or the entire test suite. Testing can be carried out on a single browser or across multiple browsers simultaneously. By default, tests run in a headless mode, and the test outcomes are displayed in the terminal.
 
-- `Timeouts.ts`: This file contains static timeout values that can be used along with different functions.
+### Run tests using plugin
 
-These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
+**`Playwright Test for VSCode`** plugin empowers you to run specific tests or entire test suites directly from the editor. You can conveniently trigger tests with a click, making it efficient to validate changes.
 
+<<<<<<< HEAD
 Here are a few examples of how to use the utility functions:
 
 ### LocatorUtils
@@ -711,7 +563,11 @@ To run the tests using the Playwright plugin in Visual Studio Code, please follo
 
 ![Running Tests](https://blog.jetbrains.com/wp-content/uploads/2023/06/OpenProject.png)
 
-The Playwright plugin for Visual Studio Code provides a convenient way to run your tests directly from your code editor, without having to switch to the terminal.
+# The Playwright plugin for Visual Studio Code provides a convenient way to run your tests directly from your code editor, without having to switch to the terminal.
+
+For detailed guidance on plugin installation, configuring test settings in the playwright.config file, and executing tests, please visit [Executing tests using a Playwright plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin).
+
+> > > > > > > 2337574b368863f90b3c329fa56455c91ba36507
 
 ### Parallel Execution
 
@@ -727,11 +583,11 @@ The number of workers can be configured either in the `playwright.config` file o
 
 ### Running Tests via the Command-Line Interface
 
-You can use various commands to run your tests in different modes. Here are some examples:
+Utilize a variety of commands to execute your tests in different modes. Below are a few illustrative examples:
 
 #### npm run commands
 
-The `package.json` file includes various scripts that simplify running your tests. Here are some examples:
+The `package.json` file contains several scripts designed to streamline test execution. Here are a few common examples:
 
 - To run a single test in chromium headed mode (i.e., with the browser UI visible), use the `grep` command to specify the test:
 
@@ -796,9 +652,11 @@ Here's what each option does:
 - `--max-failures 4`: Stops after the first 4 test failures. This includes a count of failures in the retry test as well.
 - `--list`: Lists all the tests, but does not run them.
 
+[![CLI Parallel Execution](http://img.youtube.com/vi/gtkoLizAsaw/0.jpg)](https://www.youtube.com/watch?v=gtkoLizAsaw 'CLI Parallel Execution')
+
 For more information, please refer to the [Playwright CLI documentation](https://playwright.dev/docs/test-cli).
 
-## Viewing Reports
+## Report Generation and Viewing
 
 Playwright Test offers several built-in reporters tailored for various requirements, along with the flexibility to integrate custom reporters. You can configure these reporters either through the command line or within the `playwright.config.ts` file. For a comprehensive guide on Playwright's in-built reporters, refer to the official [documentation](https://playwright.dev/docs/test-reporters).
 
@@ -834,13 +692,13 @@ npm run report
 
 Here are some recommended best practices when using this framework:
 
-- **Use Utility Functions**: Whenever possible, use the [Utilities](#utilities) functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable.
+- **Use Utility Functions**: Whenever possible, use the [Utilities](docs/Utilities.md) functions provided in the framework instead of directly using Playwright methods. These utility functions are designed to simplify common tasks and make your tests more readable and maintainable.
 
 - **Feedback on Utility Functions**: If you find that a utility function for a specific action or assertion is missing, please provide feedback so we can continue to improve and expand our utility Functions. Meanwhile, temporarily use the corresponding Playwright method combined with `getPage` from `@PageSetup` for a specific task, the utility function is not available. Replace these with newly added utility functions once they are available.
 
-- **Conditional Statements**: Instead of manually implementing waits, use functions like `isElementVisible`, `isElementChecked` from [ElementUtils](#elementutils). These functions automatically wait for the element to become visible, with customizable timeout options. It's advisable to avoid using these for assertions; instead, utilize [AssertUtils](#assertutils) wherever possible.
+- **Conditional Statements**: Instead of manually implementing waits, use functions like `isElementVisible`, `isElementChecked` from [elementutils](docs/Utilities.md#elementutils). These functions automatically wait for the element to become visible, with customizable timeout options. It's advisable to avoid using these for assertions; instead, utilize [AssertUtils](docs/Utilities.md#assertutils) wherever possible.
 
-- **Retrieving Text and Input Values**: To fetch texts or input values, consider functions like `getAllTexts` and `getAllInputValues` from [ElementUtils](#elementutils). These methods come with built-in waits, ensuring they only proceed once an element is available, preventing premature returns of an empty Array<string>.
+- **Retrieving Text and Input Values**: To fetch texts or input values, consider functions like `getAllTexts` and `getAllInputValues` from [elementutils](docs/Utilities.md#elementutils). These methods come with built-in waits, ensuring they only proceed once an element is available, preventing premature returns of an empty Array<string>.
 
 - **clickandNavigate vs click**: If a click action triggers page navigation, use the `clickandNavigate` utility function instead of the `click` function. `clickandNavigate` function includes built-in checks for frame navigation and waits for a new page to load. Use the `click` function if it is an Ajax call when you don't navigate to a different page.
 
@@ -865,6 +723,6 @@ Here are some recommended best practices when using this framework:
 
 In addition to these, Playwright also recommends following certain best practices. You can find more details in the [Playwright Best Practices documentation](https://playwright.dev/docs/best-practices)
 
-## Contributing
+## Contribution guide
 
 Contributions are welcome! Please read the contributing guidelines first. (In progress)

@@ -1,59 +1,99 @@
+/**
+ * playwright.config.ts: This module is responsible for configuring the Playwright test runner.
+ * It includes settings for test execution, browser configuration, and environment variables.
+ * See https://playwright.dev/docs/test-configuration for more details.
+ */
+
 import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from '@TimeoutConstants';
-import { WaitForLoadStateOptions } from 'tests/setup/Types';
+import { WaitForLoadStateOptions } from '@OptionalParameters';
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
-const BASE_URL = process.env.URL || 'https://www.amazon.com';
+const BASE_URL = process.env.URL || 'https://www.saucedemo.com/';
 const startLocalHost = process.env.URL && process.env.URL.includes('localhost');
-/* Default LoadsSate while Loading url, clickAndNavigate */
-export const LOADSTATE: WaitForLoadStateOptions = 'domcontentloaded';
 /**
- * See https://playwright.dev/docs/test-configuration.
+ * Default load state to be used while loading a URL or performing a click and navigate operation.
+ * The load state is set to 'domcontentloaded', which means the action will wait until the 'DOMContentLoaded' event is fired.
  */
+export const LOADSTATE: WaitForLoadStateOptions = 'domcontentloaded';
+
 export default defineConfig({
+  /**
+   * The directory where tests are located.
+   * See https://playwright.dev/docs/api/class-testconfig#testconfig-testdir
+   */
   testDir: './tests',
-  /* Run tests in files in parallel */
+  /**
+   * Determines whether to run tests within each spec file in parallel, in addition to running the spec files themselves in parallel.
+   * See https://playwright.dev/docs/api/class-testconfig#testconfig-fullyparallel
+   */
   fullyParallel: false,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  /**
+   * Whether to fail the build on CI if you accidentally left test.only in the source code.
+   * See https://playwright.dev/docs/api/class-testconfig#testconfig-forbidonly
+   */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
+  /**
+   * The number of times to retry failed tests. Retries value is only set to happen on CI.
+   * See https://playwright.dev/docs/api/class-testconfig#testconfig-retries
+   */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
+  /**
+   * The number of worker threads to use for running tests. This is set to a different value on CI.
+   * See https://playwright.dev/docs/api/class-testconfig#testconfig-workers
+   */
   workers: process.env.CI ? 3 : 6,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  //allure-playwright
-  reporter: process.env.CI ? 'dot' : [['./tests/setup/CustomReporterConfig.ts'], ['html', { open: 'never' }], ['dot']],
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  globalSetup: require.resolve('./tests/setup/GlobalSetup.ts'),
-  globalTeardown: require.resolve('./tests/setup/GlobalTeardown.ts'),
-  timeout: TEST_TIMEOUT, // Individual test timeout to prevent tests from hanging indefinitely
+  /*  Note: Add allure-playwright report */
+  /**
+   * The reporter to use. This can be set to use a different value on CI.
+   * See https://playwright.dev/docs/test-reporters
+   */
+  reporter: [['./tests/setup/custom-logger.ts'], ['html', { open: 'never' }], ['dot']],
+  /**
+   * Shared settings for all the projects below.
+   * See https://playwright.dev/docs/api/class-testoptions
+   */
+  globalSetup: require.resolve('./tests/setup/global-setup.ts'),
+  globalTeardown: require.resolve('./tests/setup/global-teardown.ts'),
+  timeout: TEST_TIMEOUT,
   expect: {
-    timeout: EXPECT_TIMEOUT, // Timeout for assertions such as element being visible, hidden, or the page having a specific URL
+    timeout: EXPECT_TIMEOUT,
   },
   use: {
     headless: true,
-    //Setting extra headers for CloudFlare
+    /* Sets extra headers for CloudFlare. */
     extraHTTPHeaders: {
       'CF-Access-Client-Id': process.env.CF_CLIENT_ID || '',
       'CF-Access-Client-Secret': process.env.CF_CLIENT_SECRET || '',
     },
     ignoreHTTPSErrors: true,
     acceptDownloads: true,
+<<<<<<< HEAD
     testIdAttribute: 'qaid',
     /* Base URL to use in actions like `await page.goto('/')`. */
+=======
+    testIdAttribute: 'qa-target',
+    /**
+     * The base URL to be used in navigation actions such as `await page.goto('/')`.
+     * This allows for shorter and more readable navigation commands in the tests.
+     */
+>>>>>>> 2337574b368863f90b3c329fa56455c91ba36507
     baseURL: BASE_URL,
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'retain-on-failure', // Record traces after each test failure
-
-    screenshot: 'only-on-failure', // Capture screenshots after each test failure
-    actionTimeout: ACTION_TIMEOUT, // Timeout for actions like click, fill, select
-    // Timeout for page loading navigations like goto URL, go back, reload, waitForNavigation
+    /* Records traces after each test failure for debugging purposes. */
+    trace: 'retain-on-failure',
+    /* Captures screenshots after each test failure to provide visual context. */
+    screenshot: 'only-on-failure',
+    /* Sets a timeout for actions like click, fill, select to prevent long-running operations. */
+    actionTimeout: ACTION_TIMEOUT,
+    /* Sets a timeout for page loading navigations like goto URL, go back, reload, waitForNavigation to prevent long page loads. */
     navigationTimeout: NAVIGATION_TIMEOUT,
   },
 
-  /* Configure projects for major browsers */
+  /**
+   * Configure projects for major browsers.
+   * See https://playwright.dev/docs/test-configuration#projects
+   */
   projects: [
     {
       name: 'chromium',
@@ -62,6 +102,7 @@ export default defineConfig({
         viewport: { width: 1600, height: 1000 },
         launchOptions: {
           args: ['--disable-web-security'],
+          /* --auto-open-devtools-for-tabs option is used to open a test with Network tab for debugging. It can help in analyzing network requests and responses.*/
           // args: ["--disable-web-security","--auto-open-devtools-for-tabs"],
           slowMo: 0,
         },
@@ -114,6 +155,10 @@ export default defineConfig({
   ***************/
   ],
 
+  /**
+   * If the tests are being run on localhost, this configuration starts a web server.
+   * See https://playwright.dev/docs/test-configuration#webserver
+   */
   ...(startLocalHost && {
     webServer: {
       command: 'cd ~/repos/ui && npm start ui-server',
