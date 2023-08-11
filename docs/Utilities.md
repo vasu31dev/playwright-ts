@@ -2,6 +2,8 @@
 
 The framework provides a set of utility functions that simplify common actions and assertions in Playwright. These functions are located in the `tests/utils` directory and include:
 
+- [page-utils.ts](#page-utilities): This file contains functions for setting and getting pages, switching between the pages and closing a page.
+
 - [locator-utils.ts](#locator-utilities): This file contains functions for locating web elements in different ways, such as by test ID, label, text, CSS, or XPath.
 
 - [action-utils.ts](#action-utilities): This file contains functions for performing actions such as clicking, filling input fields, selecting options from dropdowns, and navigating between pages.
@@ -15,6 +17,23 @@ The framework provides a set of utility functions that simplify common actions a
 These utilities are designed to make your tests more readable and maintainable and to reduce the amount of boilerplate code you need to write.
 
 Here are a few examples of how to use the utility functions:
+
+### Page Utilities
+
+The `page-utils.ts`: module contains the functions of the Page. These functions are used for managing Page objects, including getting and setting Page objects, switching between pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
+
+```typescript
+import { switchPage, switchToDefaultPage, closePage } from '@PageUtils';
+
+// Switch to the second tab/window. Useful when a test involves interacting with multiple pages.
+await switchPage(2);
+
+// Switch to the initial page that was launched or the first tab/window. Useful when you want to return to the starting context after interacting with other pages.
+switchToDefaultPage();
+
+// Close the current page and then switch to the default page if it exists. Useful for cleaning up after a test that opens additional pages.
+await closePage();
+```
 
 ### Locator Utilities
 
