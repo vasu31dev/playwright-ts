@@ -1,5 +1,5 @@
 /**
- * ActionUtils.ts: This module provides a set of utility functions for performing various actions in Playwright tests.
+ * action-utils.ts: This module provides a set of utility functions for performing various actions in Playwright tests.
  * These actions include navigation, interaction with page elements, handling of dialogs, and more.
  */
 import { Dialog, Locator, Response } from '@playwright/test';
@@ -20,7 +20,7 @@ import {
   UploadOptions,
   UploadValues,
   WaitForLoadStateOptions,
-} from '@OptionalParameters';
+} from '@OptionalParameterTypes';
 import { STANDARD_TIMEOUT } from '@TimeoutConstants';
 import { LOADSTATE } from 'playwright.config';
 import { getLocator } from '@LocatorUtils';

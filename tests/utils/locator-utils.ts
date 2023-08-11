@@ -1,5 +1,5 @@
 /**
- * LocatorUtils.ts: This module provides utility functions for handling and manipulating locators in Playwright.
+ * locator-utils.ts: This module provides utility functions for handling and manipulating locators in Playwright.
  * These utilities make it easier to interact with elements on the page, providing a layer of abstraction over Playwright's built-in locator methods.
  */
 
@@ -11,7 +11,7 @@ import {
   GetByRoleTypes,
   GetByTextOptions,
   LocatorOptions,
-} from '@OptionalParameters';
+} from '@OptionalParameterTypes';
 
 /**
  * 1. Locators: This section contains functions and definitions related to locators.

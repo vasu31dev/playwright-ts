@@ -1,5 +1,5 @@
 /**
- * PageFactory.ts: This module is responsible for setting and managing instances of pages.
+ * page-factory.ts: This module is responsible for setting and managing instances of pages.
  * It provides a centralized way to set and access pages, ensuring that each test has a clean, isolated page instance.
  * This helps to maintain the state and context of each test independently, improving test reliability and debugging.
  * It also includes functions for switching between pages, closing pages, and reverting to the default page.

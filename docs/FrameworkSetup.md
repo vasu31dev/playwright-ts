@@ -8,7 +8,7 @@
 
 4. `page-factory.ts`: This file contains the functions of the PageFactory. These functions are used for managing Page objects, including getting and setting Page objects, switching between pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
 
-5. `optional-parameters.ts`: This file contains type definitions that are used across the framework as optional parameters for the utility methods.
+5. `optional-parameter-types.ts`: This file contains type definitions that are used across the framework as optional parameters for the utility methods.
 
 ### Page set up and Switching Pages
 

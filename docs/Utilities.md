@@ -301,9 +301,9 @@ These functions make it easier to write assertions in your tests, and they provi
 
 Refer to the [Optional Parameter Objects](#optional-parameter-objects) section for more information.
 
-### Optional Parameter Objects
+### Optional Parameter Type Objects
 
-The `optional-parameters` module provides a set of options for utility modules.
+The `optional-parameter-types` module provides a set of options for utility modules.
 
 ```typescript
 import { getLocator, getLocatorByTestId } from '@LocatorUtils';

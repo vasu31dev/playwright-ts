@@ -58,7 +58,7 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Managing Alerts](docs/Utilities.md#managing-alerts)
   - [Element Utilities](docs/Utilities.md#element-utilities)
   - [Assertion Utilities](docs/Utilities.md#assert-utilities)
-  - [Optional Parameter Objects](docs/Utilities.md#optional-parameter-objects)
+  - [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects)
   - [Test annotations](docs/Utilities.md#test-annotations)
 - [**Executing Tests**](#executing-tests)
   - [Using the Playwright Plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin)

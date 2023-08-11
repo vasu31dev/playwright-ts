@@ -21,7 +21,7 @@
       "@LocatorUtils": ["tests/utils/locator-utils.ts"],
       "@ElementUtils": ["tests/utils/element-utils.ts"],
       "@TimeoutConstants": ["tests/utils/timeout-constants.ts"],
-      "@OptionalParameters": ["tests/setup/optional-parameters.ts"],
+      "@OptionalParameterTypes": ["tests/setup/optional-parameter-types.ts"],
       "@CustomLogger": ["tests/setup/custom-logger.ts"]
     }
   },
