@@ -69,16 +69,8 @@ export default defineConfig({
     },
     ignoreHTTPSErrors: true,
     acceptDownloads: true,
-<<<<<<< HEAD
     testIdAttribute: 'qaid',
     /* Base URL to use in actions like `await page.goto('/')`. */
-=======
-    testIdAttribute: 'qa-target',
-    /**
-     * The base URL to be used in navigation actions such as `await page.goto('/')`.
-     * This allows for shorter and more readable navigation commands in the tests.
-     */
->>>>>>> 2337574b368863f90b3c329fa56455c91ba36507
     baseURL: BASE_URL,
     /* Records traces after each test failure for debugging purposes. */
     trace: 'retain-on-failure',
