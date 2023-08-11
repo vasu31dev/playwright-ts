@@ -6,7 +6,7 @@
  */
 
 import { Locator } from '@playwright/test';
-import { getPage } from '@PageFactory';
+import { getPage } from '@PageUtils';
 import { NavigationOptions, TimeoutOption } from '@OptionalParameterTypes';
 import { getAllLocators, getLocator } from '@LocatorUtils';
 import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from '@TimeoutConstants';

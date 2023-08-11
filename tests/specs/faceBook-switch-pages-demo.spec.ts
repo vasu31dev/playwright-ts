@@ -1,5 +1,5 @@
 import { goBack } from '@ActionUtils';
-import { closePage, switchPage, switchToDefaultPage } from '@PageFactory';
+import { closePage, switchPage, switchToDefaultPage } from '@PageUtils';
 import { test } from '@PageSetup';
 import {
   clickFacebookInstagramFooterLink,

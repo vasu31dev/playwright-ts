@@ -15,7 +15,7 @@
     "baseUrl": ".",
     "paths": {
       "@PageSetup": ["tests/setup/page-setup.ts"],
-      "@PageFactory": ["tests/setup/page-factory.ts"],
+      "@PageUtils": ["tests/utils/page-utils.ts"],
       "@ActionUtils": ["tests/utils/action-utils.ts"],
       "@AssertUtils": ["tests/utils/assert-utils.ts"],
       "@LocatorUtils": ["tests/utils/locator-utils.ts"],

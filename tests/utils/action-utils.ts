@@ -3,7 +3,7 @@
  * These actions include navigation, interaction with page elements, handling of dialogs, and more.
  */
 import { Dialog, Locator, Response } from '@playwright/test';
-import { getPage } from '@PageFactory';
+import { getPage } from '@PageUtils';
 import {
   CheckOptions,
   ClearOptions,
