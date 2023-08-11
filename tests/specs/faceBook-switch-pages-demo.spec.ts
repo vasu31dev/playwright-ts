@@ -10,7 +10,7 @@ import {
   verifyInstagaramPageURL,
   verifyMetaQuestpageURL,
   verifyPrivacyPolicyPageURL,
-} from 'tests/pages/preferredPOM/facebook-page';
+} from 'tests/pages/preferred-pom/facebook-page';
 
 test.describe('test to switch and navigate to different pages from facebook footer links', () => {
   test('Switch pages demo from facebook footer links', async () => {
