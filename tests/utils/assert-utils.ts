@@ -1,14 +1,14 @@
 /**
- * AssertUtils.ts: This module contains utility functions for assertions in tests.
+ * assert-utils.ts: This module contains utility functions for assertions in tests.
  * All expect assertions will dynamically wait until either the expect timeout specified in the
  * playwright.config is reached or the condition becomes true.
  * @module AssertUtils
  */
 
 import { Expect, Locator, TestInfo, expect } from '@playwright/test';
-import { ExpectOptions, ExpectTextOptions, SoftOption } from '@OptionalParameters';
+import { ExpectOptions, ExpectTextOptions, SoftOption } from '@OptionalParameterTypes';
 import { getLocator } from '@LocatorUtils';
-import { getPage } from '@PageFactory';
+import { getPage } from '@PageUtils';
 
 /**
  * Returns an Expect object configured with the given soft option.

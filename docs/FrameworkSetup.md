@@ -6,26 +6,15 @@
 
 3. `page-setup.ts`: This file contains the setup function for the Page object from Playwright. It is used for setting up the page before each test. This is where you can add any common setup code that should run before each test across all spec files.
 
-4. `page-factory.ts`: This file contains the functions of the PageFactory. These functions are used for managing Page objects, including getting and setting Page objects, switching between pages, and closing a page. This centralizes the management of Page objects, making it easier to control the state of your tests.
+4. `optional-parameter-types.ts`: This file contains type definitions that are used across the framework as optional parameters for the utility methods.
 
-5. `optional-parameters.ts`: This file contains type definitions that are used across the framework as optional parameters for the utility methods.
+### Page set up
 
-### Page set up and Switching Pages
-
-The `page-factory.ts` provides functions for setting up a page and managing Page objects during tests. Here are examples of how to switch between pages and close a page:
+The `page-utils.ts` provides functions for setting up a page and managing Page objects during tests. Here are examples of how to switch between pages and close a page:
 
 ```typescript
-import { setupPage, switchPage, switchToDefaultPage, closePage } from '@PageFactory';
+import { setupPage } from '@PageUtils';
 
-//This function is responsible for configuring the page prior to each test and is employed within the pagesetup function using the beforeEach hook.
+//This function is responsible for configuring the page prior to each test and is employed within the page-setup function using the beforeEach hook.
 setupPage(page);
-
-// Switch to the second tab/window. Useful when a test involves interacting with multiple pages.
-await switchPage(2);
-
-// Switch to the initial page that was launched or the first tab/window. Useful when you want to return to the starting context after interacting with other pages.
-switchToDefaultPage();
-
-// Close the current page and then switch to the default page if it exists. Useful for cleaning up after a test that opens additional pages.
-await closePage();
 ```

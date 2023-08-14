@@ -35,4 +35,4 @@ This project is meticulously organized into distinct packages and files, each ta
 
 - **tsconfig.json**: This configuration file is essential for TypeScript projects. It specifies the root files and the compiler options required to compile the TypeScript project. It can dictate various settings, from the target JavaScript version, module system, and source map options, to including or excluding specific files or directories.
 
-- **playwright-report**: This directory is auto-generated during the initial test run, based on the [Playwright reporters](https://playwright.dev/docs/test-reporters) configuration. The report file is updated after each test run. For more on viewing the reports, see [here](../README.md#viewing-reports).
+- **playwright-report**: This directory is auto-generated during the initial test run, based on the [Playwright reporters](https://playwright.dev/docs/test-reporters) configuration. The report file is updated after each test run. For more on viewing the reports, see [here](../README.md#report-generation-and-viewing).

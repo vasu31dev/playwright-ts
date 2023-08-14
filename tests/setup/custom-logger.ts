@@ -1,5 +1,5 @@
 /**
- * CustomLogger.ts: This module provides a custom logger for Playwright tests. It implements the Reporter interface from Playwright
+ * custom-logger.ts: This module provides a custom logger for Playwright tests. It implements the Reporter interface from Playwright
  * and uses the Winston logging library to provide detailed logs for test execution. The logger includes custom colors
  * for different log levels and can be configured to log to the console or a file.
  */

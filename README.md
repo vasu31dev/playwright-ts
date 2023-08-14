@@ -47,18 +47,19 @@ In summary, the Playwright TypeScript Framework is a powerful, flexible, and use
   - [Project Update Guide](docs/Installation.md#project-update-guide)
 - [**Project Structure**](docs/ProjectStructure.md)
 - [**Framework Setup**](docs/FrameworkSetup.md)
-  - [Page set up and Switching Pages](docs/FrameworkSetup.md#page-set-up-and-switching-pages)
+  - [Page set up](docs/FrameworkSetup.md#page-set-up)
 - [**Usage**](#usage)
   - [Working with Page Objects](#page-objects)
   - [Creating a Spec File](#writing-tests-in-a-spec-file)
 - [**Utilities**](docs/Utilities.md)
+  - [Page Utilities](docs/Utilities.md#page-utilities)
   - [Locator Utilities](docs/Utilities.md#locator-utilities)
   - [Handling Frames](docs/Utilities.md#handling-frames)
   - [Action Utilities](docs/Utilities.md#action-utilities)
   - [Managing Alerts](docs/Utilities.md#managing-alerts)
   - [Element Utilities](docs/Utilities.md#element-utilities)
   - [Assertion Utilities](docs/Utilities.md#assert-utilities)
-  - [Optional Parameter Objects](docs/Utilities.md#optional-parameter-objects)
+  - [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects)
   - [Test annotations](docs/Utilities.md#test-annotations)
 - [**Executing Tests**](#executing-tests)
   - [Using the Playwright Plugin](docs/ExecutingTests.md#run-tests-using-the-playwright-plugin)
@@ -213,7 +214,7 @@ In this example, we are setting the page state by importing `test` from `@PageSe
 
 1. Import `test` from `@PageSetup` instead from `@playwright/test`. `page-setup` is customized for this framework to set the page state. This ensures that the page is set up correctly before each test.
 
-2. `setPage` function from `page-setup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from 'pagefactory' file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
+2. `setPage` function from `page-setup` file will set the page state before each test and is imported to our spec files while executing the tests. If you want to use the Playwright page directly to write our tests, we can use `getPage` function from `page-utils` file. The page object is managed by the framework, and we can use the `setPage` and `getPage` functions to set and get the page state, ensuring that all of the pages operate on the same page object.
 
 3. We first navigate to the home page, then perform the login action, and finally verify if the login was successful.
 
@@ -223,10 +224,12 @@ In this example, the `LoginPage` represents a login page within the application.
 
 Explore various utility functions and helpers that can make your testing more efficient. The Utilities section in this project encompasses a variety of functions designed to enhance the efficiency of your testing process. These utilities include:
 
-1. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
-2. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate common actions like clicking, typing, or dragging, providing a more concise way to express these operations in your tests.
-3. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
-4. [Assertion Utilities](docs/Utilities.md#assert-utilities): Helpers that simplify the process of making assertions about the state of the application, enhancing the readability and maintainability of your tests.
+1. [Page Utilities](docs/Utilities.md#page-utilities): Functions that assist in setting and getting the page object.
+2. [Locator Utilities](docs/Utilities.md#locator-utilities): Functions that assist in locating elements on the page, making it easier to interact with them.
+3. [Action Utilities](docs/Utilities.md#action-utilities): Functions that encapsulate common actions like clicking, typing, or dragging, providing a more concise way to express these operations in your tests.
+4. [Element Utilities](docs/Utilities.md#element-utilities): Functions for handling conditional statements with web elements, such as checking if an element is visible, hidden, or contains certain text or input values.
+5. [Assertion Utilities](docs/Utilities.md#assert-utilities): Helpers that simplify the process of making assertions about the state of the application, enhancing the readability and maintainability of your tests.
+6. [Optional Parameter Type Objects](docs/Utilities.md#optional-parameter-type-objects): Provides a set of options for utility modules.
 
 Please refer to the [Utilities section](docs/Utilities.md) for a comprehensive guide to the available utilities in this project, including detailed descriptions and examples of how to use them.
 

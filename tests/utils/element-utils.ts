@@ -1,13 +1,13 @@
 /**
- * ElementUtils.ts: This module provides utility functions for retrieving text from web elements in web page and conditional statements with in Playwright.
+ * element-utils.ts: This module provides utility functions for retrieving text from web elements in web page and conditional statements with in Playwright.
  * These utilities include a variety of functions for retrieving text, input values, URLs, and checking conditions such as
  * whether an element is visible or checked. It provides a layer of abstraction over Playwright's built-in methods for
  * interacting with elements, making it easier to perform common tasks and checks on web elements.
  */
 
 import { Locator } from '@playwright/test';
-import { getPage } from '@PageFactory';
-import { NavigationOptions, TimeoutOption } from '@OptionalParameters';
+import { getPage } from '@PageUtils';
+import { NavigationOptions, TimeoutOption } from '@OptionalParameterTypes';
 import { getAllLocators, getLocator } from '@LocatorUtils';
 import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from '@TimeoutConstants';
 import { waitForPageLoadState } from '@ActionUtils';
