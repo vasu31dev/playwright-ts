@@ -9,7 +9,7 @@ import {
 import { verifyBikeArchiveYearDropDown } from 'tests/pages/TrekPages/TrekBikeArchivepage';
 import { verifyUserManualPageHeader, verifyUserManualPageURL } from '../../pages/TrekPages/TrekuserManualPage';
 import { verifyPostInRacingPage } from 'tests/pages/TrekPages/TrekRacingPage';
-import { closePage, getPage, switchPage, switchToDefaultPage } from '@PageFactory';
+import { closePage, getPage, switchPage, switchToDefaultPage } from '@PageUtils';
 
 test('New window or tab navigation test for bike archve link in footer', async () => {
   await navigateToHomepage();
