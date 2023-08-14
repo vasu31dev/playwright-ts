@@ -7,12 +7,14 @@ import {
   verifyPriceInfoMessageDisplayed,
 } from 'tests/pages/TrekPages/TrekProductPage';
 
-test('To test price info information icon in PDP', async () => {
-  await navigateToHomepage();
-  await clickMyAccountIcon();
-  await clicklogInText();
-  await logInSuccessfullyAsB2BUser();
-  await navigateToproductPage('https://test.trekbikes.com/b2b/us/en_US/p/36956');
-  await hoverOnPriceInfo();
-  await verifyPriceInfoMessageDisplayed();
+test.describe('Testing hover functiobality', () => {
+  test('To test price info information icon in PDP', async () => {
+    await navigateToHomepage();
+    await clickMyAccountIcon();
+    await clicklogInText();
+    await logInSuccessfullyAsB2BUser();
+    await navigateToproductPage('https://test.trekbikes.com/b2b/us/en_US/p/36956');
+    await hoverOnPriceInfo();
+    await verifyPriceInfoMessageDisplayed();
+  });
 });
