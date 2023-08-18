@@ -104,7 +104,7 @@ export default defineConfig({
       },
     },
 
-    /******* Uncomment to run tests in other browsers  
+    /******* Uncomment to run tests in other browsers
     {
       name: 'firefox',
       use: {
@@ -145,8 +145,8 @@ export default defineConfig({
     {
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    }, 
-    
+    },
+
   ***************/
   ],
 

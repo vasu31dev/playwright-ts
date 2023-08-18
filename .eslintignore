@@ -3,3 +3,6 @@ test-results/
 playwright-report/
 .husky/
 *.js
+package-lock.json
+dist/**/*
+build/**/*

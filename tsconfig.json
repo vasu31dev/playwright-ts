@@ -4,6 +4,7 @@
     "target": "es6",
     "outDir": "dist",
     "strict": true,
+    "sourceMap": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -12,6 +13,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
     "baseUrl": ".",
     "paths": {
       "@PageSetup": ["tests/setup/page-setup.ts"],
@@ -25,6 +29,6 @@
       "@CustomLogger": ["tests/setup/custom-logger.ts"]
     }
   },
-  "include": ["tests/**/*.ts", "index.ts", "playwright.config.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "index.ts", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }

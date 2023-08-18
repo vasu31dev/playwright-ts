@@ -1,6 +1,15 @@
 {
   "name": "playwright-ts",
   "description": "Playwright TS framework is designed for Web (Desktop & Mobile), API, and Electron apps. Stable and Robust layer on top of Playwright with inbuilt Utilities, Linting, Logger, Web hooks, Github actions, Reports and much more",
+  "keywords": [
+    "playwright",
+    "typescript",
+    "testing"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/vasu31dev/playwright-ts.git"
@@ -9,8 +18,18 @@
     "name": "Vasudeva Annam",
     "email": "vasu31dev@gmail.com"
   },
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "lint-staged": {
+    "*.{json,md,ts}": [
+      "prettier --write"
+    ],
+    "*.{ts}": "eslint --fix"
+  },
   "devDependencies": {
-    "@playwright/test": "^1.37.0",
+    "@playwright/test": "^1.37.1",
     "@types/node": "^20.5.0",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
@@ -21,9 +40,12 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-jsdoc": "^46.4.6",
     "eslint-plugin-playwright": "^0.15.3",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
+    "lint-staged": "^14.0.0",
+    "prettier": "^3.0.2",
     "winston": "^3.10.0"
   },
   "scripts": {
@@ -36,13 +58,15 @@
     "ui": "playwright test --ui-port 0",
     "trace": "playwright show-trace --port 0",
     "allure": "npx allure generate ./allure-results --clean && npx allure open ./allure-report",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix",
-    "prepare": "husky install"
+    "lint": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'index.ts' 'playwright.config.ts'",
+    "lint:fix": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'index.ts' 'playwright.config.ts' --fix",
+    "prepare": "husky install",
+    "format": "prettier --write 'tests/**/*.ts' 'src/**/*.ts' 'index.ts' 'playwright.config.ts' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
+    "postinstall": "npx playwright install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
   }
 }
