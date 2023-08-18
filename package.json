@@ -6,6 +6,7 @@
     "typescript",
     "testing"
   ],
+  "version": "1.0.0",
   "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
@@ -46,6 +47,8 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "prettier": "^3.0.2",
+    "typescript": "5.1.6",
+    "tslib": "^2.6.2",
     "winston": "^3.10.0"
   },
   "scripts": {
