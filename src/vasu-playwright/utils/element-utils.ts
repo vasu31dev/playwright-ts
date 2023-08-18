@@ -6,11 +6,11 @@
  */
 
 import { Locator } from '@playwright/test';
-import { getPage } from '@PageUtils';
-import { NavigationOptions, TimeoutOption } from '@OptionalParameterTypes';
-import { getAllLocators, getLocator } from '@LocatorUtils';
-import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from '@TimeoutConstants';
-import { waitForPageLoadState } from '@ActionUtils';
+import { getPage } from './page-utils';
+import { NavigationOptions, TimeoutOption } from '../setup/optional-parameter-types';
+import { getAllLocators, getLocator } from './locator-utils';
+import { INSTANT_TIMEOUT, SMALL_TIMEOUT } from './timeout-constants';
+import { waitForPageLoadState } from './action-utils';
 
 /**
  * 1. Retreiving Data: Use these functions to retrieve text, values, and counts from web elements.

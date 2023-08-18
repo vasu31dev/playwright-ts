@@ -1,6 +1,6 @@
-import { goBack } from '@ActionUtils';
-import { closePage, switchPage, switchToDefaultPage } from '@PageUtils';
-import { test } from '@PageSetup';
+import { goBack } from 'utils/action-utils';
+import { closePage, switchPage, switchToDefaultPage } from 'utils/page-utils';
+import { test } from 'setup/page-setup';
 import {
   clickFacebookInstagramFooterLink,
   clickFacebookMetaQuestFooterLink,
@@ -10,7 +10,7 @@ import {
   verifyInstagaramPageURL,
   verifyMetaQuestpageURL,
   verifyPrivacyPolicyPageURL,
-} from 'tests/pages/preferred-pom/facebook-page';
+} from '../pages/preferred-pom/facebook-page';
 
 test.describe('test to switch and navigate to different pages from facebook footer links', () => {
   test('Switch pages demo from facebook footer links', async () => {

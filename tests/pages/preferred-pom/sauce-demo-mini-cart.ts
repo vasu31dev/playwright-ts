@@ -1,5 +1,5 @@
-import { expectElementToHaveText } from '@AssertUtils';
-import { getLocator } from '@LocatorUtils';
+import { expectElementToHaveText } from 'utils/assert-utils';
+import { getLocator } from 'utils/locator-utils';
 
 const miniCartCount = () => getLocator(`//*[@id='shopping_cart_container']//span`);
 

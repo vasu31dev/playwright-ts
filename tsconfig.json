@@ -4,6 +4,7 @@
     "target": "es6",
     "outDir": "dist",
     "strict": true,
+    "sourceMap": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -12,19 +13,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "baseUrl": "src/vasu-playwright",
     "paths": {
-      "@PageSetup": ["tests/setup/page-setup.ts"],
-      "@PageUtils": ["tests/utils/page-utils.ts"],
-      "@ActionUtils": ["tests/utils/action-utils.ts"],
-      "@AssertUtils": ["tests/utils/assert-utils.ts"],
-      "@LocatorUtils": ["tests/utils/locator-utils.ts"],
-      "@ElementUtils": ["tests/utils/element-utils.ts"],
-      "@TimeoutConstants": ["tests/utils/timeout-constants.ts"],
-      "@OptionalParameterTypes": ["tests/setup/optional-parameter-types.ts"],
-      "@CustomLogger": ["tests/setup/custom-logger.ts"]
+      "@pages": ["./tests/pages"],
+      "@testdata": ["./tests/testdata"]
     }
   },
-  "include": ["tests/**/*.ts", "index.ts", "playwright.config.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "index.ts", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }

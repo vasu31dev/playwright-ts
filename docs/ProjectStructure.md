@@ -8,17 +8,19 @@ This project is meticulously organized into distinct packages and files, each ta
 
 - **docs**: This directory hosts the images and document files referenced in README.md.
 
+- **src/vasu-playwright**: This directory houses the framework setup and associated utilities. The farmework structure is organized as:
+
+  - **setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](FrameworkSetup.md) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
+
+  - **utils**: A crucial directory that encompasses all test-related [utility functions](Utilities.md). These are reusable functions or methods written to perform common tasks, be it related to data manipulation, element interaction, or any other recurrent actions or assertions in the test scripts.
+
 - **tests**: This directory houses the framework setup, end-to-end test files, API tests, and associated utilities. The tests are organized as:
 
-- **setup**: This directory is pivotal for initializing the testing framework and setting up the environment. It contains configurations, initializations, and any global setups required for the tests to run. The [Framework and Page setup](FrameworkSetup.md) section provides a deeper dive into how the framework is structured and how pages are initialized for testing.
+  - **pages**: This is where the [page objects](../README.md#page-objects) reside. Page Object Model (POM) is a design pattern that allows for better test maintenance and reduces code duplication. Each file in this directory typically represents a page or a component of the application, encapsulating the elements and actions specific to that page or component.
 
-- **pages**: This is where the [page objects](../README.md#page-objects) reside. Page Object Model (POM) is a design pattern that allows for better test maintenance and reduces code duplication. Each file in this directory typically represents a page or a component of the application, encapsulating the elements and actions specific to that page or component.
+  - **testdata**: This directory is dedicated to storing test data, which is often externalized from test scripts to allow for easier management and data-driven testing. The data is primarily formatted as JSON objects, making it easily readable and modifiable without delving into the test scripts themselves.
 
-- **testdata**: This directory is dedicated to storing test data, which is often externalized from test scripts to allow for easier management and data-driven testing. The data is primarily formatted as JSON objects, making it easily readable and modifiable without delving into the test scripts themselves.
-
-- **specs**: Here, you'll find all the [spec files](../README.md#writing-tests-in-a-spec-file). These are the actual test scripts, written to test specific functionalities or features of the application. Each spec file usually corresponds to a feature or functionality, containing one or multiple test scenarios related to it.
-
-- **utils**: A crucial directory that encompasses all test-related [utility functions](Utilities.md). These are reusable functions or methods written to perform common tasks, be it related to data manipulation, element interaction, or any other recurrent actions or assertions in the test scripts.
+  - **specs**: Here, you'll find all the [spec files](../README.md#writing-tests-in-a-spec-file). These are the actual test scripts, written to test specific functionalities or features of the application. Each spec file usually corresponds to a feature or functionality, containing one or multiple test scenarios related to it.
 
 - **.eslintrc**: This file is the heart of the ESLint configuration. ESLint is a static code analysis tool that identifies problematic patterns found in Typescript code. The configurations in `.eslintrc` dictate the rules and standards the code should adhere to, ensuring consistency and best practices across the codebase.
 
