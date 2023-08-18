@@ -3,7 +3,7 @@
  * These actions include navigation, interaction with page elements, handling of dialogs, and more.
  */
 import { Dialog, Locator, Response } from '@playwright/test';
-import { getPage } from '@PageUtils';
+import { getPage } from './page-utils';
 import {
   CheckOptions,
   ClearOptions,
@@ -20,10 +20,10 @@ import {
   UploadOptions,
   UploadValues,
   WaitForLoadStateOptions,
-} from '@OptionalParameterTypes';
-import { STANDARD_TIMEOUT } from '@TimeoutConstants';
-import { LOADSTATE } from 'playwright.config';
-import { getLocator } from '@LocatorUtils';
+} from '../setup/optional-parameter-types';
+import { STANDARD_TIMEOUT } from './timeout-constants';
+import { LOADSTATE } from '../../../playwright.config';
+import { getLocator } from './locator-utils';
 
 /**
  * 1. Navigations: This section contains functions for navigating within a web page or between web pages.

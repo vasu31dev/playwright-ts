@@ -1,6 +1,6 @@
-import { click, clickAndNavigate, gotoURL } from '@ActionUtils';
-import { expectPageToHaveURL } from '@AssertUtils';
-import { getLocatorByText } from '@LocatorUtils';
+import { click, clickAndNavigate, gotoURL } from 'utils/action-utils';
+import { expectPageToHaveURL } from 'utils/assert-utils';
+import { getLocatorByText } from 'utils/locator-utils';
 
 const instagramLink = () => getLocatorByText('Instagram', { exact: true });
 const privacyPolicyLink = () => getLocatorByText('Privacy Policy');

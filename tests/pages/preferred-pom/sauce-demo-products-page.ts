@@ -1,6 +1,6 @@
-import { click } from '@ActionUtils';
-import { expectElementToBeHidden, expectElementToBeVisible } from '@AssertUtils';
-import { getLocator } from '@LocatorUtils';
+import { click } from 'utils/action-utils';
+import { expectElementToBeHidden, expectElementToBeVisible } from 'utils/assert-utils';
+import { getLocator } from 'utils/locator-utils';
 
 const productsContainer = () => getLocator(`#inventory_container`).nth(0);
 

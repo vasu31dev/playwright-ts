@@ -6,9 +6,9 @@
  */
 
 import { Expect, Locator, TestInfo, expect } from '@playwright/test';
-import { ExpectOptions, ExpectTextOptions, SoftOption } from '@OptionalParameterTypes';
-import { getLocator } from '@LocatorUtils';
-import { getPage } from '@PageUtils';
+import { ExpectOptions, ExpectTextOptions, SoftOption } from '../setup/optional-parameter-types';
+import { getLocator } from './locator-utils';
+import { getPage } from './page-utils';
 
 /**
  * Returns an Expect object configured with the given soft option.

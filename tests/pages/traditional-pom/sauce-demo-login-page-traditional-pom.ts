@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { failureLoginCredentials, successLoginCredentials } from 'tests/testdata/sauce-demo-test-data';
+import { failureLoginCredentials, successLoginCredentials } from '../../testdata/sauce-demo-test-data';
 
 export class SauceDemoLoginPage {
   readonly page: Page;

@@ -4,8 +4,8 @@
  * See https://playwright.dev/docs/test-configuration for more details.
  */
 
-import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from '@TimeoutConstants';
-import { WaitForLoadStateOptions } from '@OptionalParameterTypes';
+import { ACTION_TIMEOUT, EXPECT_TIMEOUT, NAVIGATION_TIMEOUT, TEST_TIMEOUT } from 'utils/timeout-constants';
+import { WaitForLoadStateOptions } from 'setup/optional-parameter-types';
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
@@ -49,13 +49,13 @@ export default defineConfig({
    * The reporter to use. This can be set to use a different value on CI.
    * See https://playwright.dev/docs/test-reporters
    */
-  reporter: [['./tests/setup/custom-logger.ts'], ['html', { open: 'never' }], ['dot']],
+  reporter: [['./src/vasu-playwright/setup/custom-logger.ts'], ['html', { open: 'never' }], ['dot']],
   /**
    * Shared settings for all the projects below.
    * See https://playwright.dev/docs/api/class-testoptions
    */
-  globalSetup: require.resolve('./tests/setup/global-setup.ts'),
-  globalTeardown: require.resolve('./tests/setup/global-teardown.ts'),
+  globalSetup: require.resolve('./src/vasu-playwright/setup/global-setup.ts'),
+  globalTeardown: require.resolve('./src/vasu-playwright/setup/global-teardown.ts'),
   timeout: TEST_TIMEOUT,
   expect: {
     timeout: EXPECT_TIMEOUT,
