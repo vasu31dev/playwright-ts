@@ -4,7 +4,7 @@
  * for different log levels and can be configured to log to the console or a file.
  */
 
-import { Reporter, TestCase, TestError, TestResult, TestStep } from '@playwright/test/reporter';
+import { Reporter, TestCase, TestError, TestResult } from '@playwright/test/reporter';
 import winston from 'winston';
 
 /**
@@ -62,19 +62,6 @@ export default class CustomLogger implements Reporter {
       // logger.error(
       //   `Test Case Failed: ${test.title} Error: ${result.error.message}`,
       // );
-    }
-  }
-
-  /**
-   * Logs the start of a test step
-   * @param {TestCase} test - The test case
-   * @param {TestResult} result - The result of the test case
-   * @param {TestStep} step - The test step that is starting
-   * Note: The onStepBegin function work is still in progress.
-   */
-  onStepBegin(test: TestCase, result: TestResult, step: TestStep): void {
-    if (step.category === `test.step`) {
-      logger.info(`Executing Step : ${step.title}`);
     }
   }
 
