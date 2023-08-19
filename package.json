@@ -29,7 +29,7 @@
     ],
     "*.{ts}": "eslint --fix"
   },
-  "devDependencies": {
+  "dependencies": {
     "@playwright/test": "^1.37.1",
     "@types/node": "^20.5.0",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
@@ -60,12 +60,12 @@
     "report": "playwright show-report playwright-report",
     "ui": "playwright test --ui-port 0",
     "trace": "playwright show-trace --port 0",
-    "allure": "npx allure generate ./allure-results --clean && npx allure open ./allure-report",
-    "lint": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'index.ts' 'playwright.config.ts'",
-    "lint:fix": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'index.ts' 'playwright.config.ts' --fix",
+    "allure": "allure generate ./allure-results --clean && allure open ./allure-report",
+    "lint": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'playwright.config.ts'",
+    "lint:fix": "eslint 'tests/**/*.ts' 'src/**/*.ts' 'playwright.config.ts' --fix",
     "prepare": "husky install",
-    "format": "prettier --write 'tests/**/*.ts' 'src/**/*.ts' 'index.ts' 'playwright.config.ts' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
-    "postinstall": "npx playwright install"
+    "format": "prettier --write 'tests/**/*.ts' 'src/**/*.ts' 'playwright.config.ts' '**/*.json' '**/*.md' '!package-lock.json' '!dist/**/*' '!build/**/*'",
+    "postinstall": "playwright install"
   },
   "husky": {
     "hooks": {
